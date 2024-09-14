@@ -13,25 +13,24 @@ public class colorSensorTest extends LinearOpMode {
 
         RevColorSensorV3 sensor = hardwareMap.get(RevColorSensorV3.class, "Color");
         ElapsedTime timer = new ElapsedTime();
+        int color = 0;
 
-        sensor.setI2cAddress(new I2cAddr(400));
         waitForStart();
         while (opModeIsActive()){
-            int color = 0;
             if (gamepad1.a) {
                 color = sensor.argb();
                 telemetry.addData("color: ", color);
-                telemetry.update();
 
             }
 
             if (sensor.argb()!=color) {
                 timer.reset();
-                telemetry.addData("Color: ", sensor.argb());
+                telemetry.addData("Color: ", color);
                 telemetry.addData("Delay (Milli): ", timer.milliseconds());
                 telemetry.addData("Delay (Nano): ", timer.nanoseconds());
-                telemetry.update();
+
             }
+            telemetry.update();
         }
     }
 }
