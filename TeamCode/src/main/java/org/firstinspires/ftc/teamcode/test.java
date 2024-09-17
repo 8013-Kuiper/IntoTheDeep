@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 public class test {
-    ToggleBool Switch = new ToggleBool();
+    toggleBool Switch = new toggleBool(false, 1000);
 
 
 }

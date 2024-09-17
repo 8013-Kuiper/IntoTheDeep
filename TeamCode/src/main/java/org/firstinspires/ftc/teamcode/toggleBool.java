@@ -54,6 +54,6 @@ public class toggleBool{
     }
 
     public void setInputTimeOut(double  Timeout){
-        Timeout = wait;
+        wait = Timeout;
     }
 }
