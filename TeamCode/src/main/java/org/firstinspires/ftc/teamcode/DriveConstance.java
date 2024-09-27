@@ -17,4 +17,3 @@ public abstract class DriveConstance extends LinearOpMode {
         backRight = hardwareMap.get(DcMotorEx.class, "backRight");
     }
 }
-// boner boy, little pissbaby
