@@ -15,6 +15,10 @@ public class toggleBool{
     private double wait = 1000;
     ElapsedTime timeOut = new ElapsedTime();
 
+    public toggleBool() {
+
+    }
+
     public boolean flipAndReturnBool(boolean gamepad){
         flipBool(gamepad);
         return bool;
