@@ -5,10 +5,12 @@ public class intake extends DriveConstance{
     public void runOpMode() throws InterruptedException {
         waitForStart();
         while (opModeIsActive()){
-            int intakeColor = colorInIntake(intakeColorSensor.argb());
+            colorInIntakeClass colorInRange = new colorInIntakeClass();
+
+            colorInIntakeClass.colors intakeColor = colorInIntakeClass.colorInIntake(intakeColorSensor.argb());
 
             switch (intakeColor){
-                case 0:
+                case noColor:
                     telemetry.addLine("Nothing in intake");
                     if (gamepad1.a)
                         intake.setPower(1);
@@ -17,21 +19,21 @@ public class intake extends DriveConstance{
                     else
                         intake.setPower(0);
 
-                case 1:
+                case neutral:
                     telemetry.addLine("Neutral Sample");
                     if (gamepad1.b)
                         intake.setPower(-1);
                     else
                         intake.setPower(0);
 
-                case 2:
+                case red:
                     telemetry.addLine("Red Sample");
                     if (gamepad1.b)
                         intake.setPower(-1);
                     else
                         intake.setPower(0);
 
-                case 3:
+                case blue:
                     telemetry.addLine("Blue Sample");
                     if (gamepad1.b)
                         intake.setPower(-1);
