@@ -5,7 +5,6 @@ public class intake extends DriveConstance{
     public void runOpMode() throws InterruptedException {
         waitForStart();
         while (opModeIsActive()){
-            colorInIntakeClass colorInRange = new colorInIntakeClass();
 
             colorInIntakeClass.colors intakeColor = colorInIntakeClass.colorInIntake(intakeColorSensor.argb());
 

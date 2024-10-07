@@ -11,6 +11,7 @@ public class colorSensorTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
+        colorInIntakeClass colorInRange = new colorInIntakeClass();
         RevColorSensorV3 sensor = hardwareMap.get(RevColorSensorV3.class, "Color");
         ElapsedTime timer = new ElapsedTime();
         int color = 0;
