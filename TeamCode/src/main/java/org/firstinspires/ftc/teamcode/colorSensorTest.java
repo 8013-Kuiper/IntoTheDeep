@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@TeleOp
+@TeleOp (group = "Testing")
 public class colorSensorTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
