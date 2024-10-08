@@ -15,6 +15,10 @@ public class colorInIntakeClass {
     }
 
     public colorInIntakeClass(){
+    }
+
+    public colorInIntakeClass(int setColorRange){
+        colorRange = setColorRange;
 
     }
 
@@ -62,13 +66,5 @@ public class colorInIntakeClass {
         }
 
         return isColorInRange;
-    }
-
-    public void setColorRange(int number){
-        colorRange = number;
-    }
-
-    public int getColorRange(){
-        return colorRange;
     }
 }

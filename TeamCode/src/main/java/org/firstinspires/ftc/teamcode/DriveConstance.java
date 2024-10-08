@@ -6,8 +6,6 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
-
 public abstract class DriveConstance extends LinearOpMode {
     public DcMotorEx frontLeft;
     public DcMotorEx frontRight;

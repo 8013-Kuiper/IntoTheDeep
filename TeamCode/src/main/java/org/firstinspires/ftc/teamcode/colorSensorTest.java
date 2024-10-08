@@ -11,27 +11,30 @@ public class colorSensorTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        colorInIntakeClass colorInRange = new colorInIntakeClass();
         RevColorSensorV3 sensor = hardwareMap.get(RevColorSensorV3.class, "Color");
+        colorInIntakeClass.colors intakeColor = colorInIntakeClass.colorInIntake(sensor.argb());
         ElapsedTime timer = new ElapsedTime();
-        int color = 0;
+
+
 
         waitForStart();
         while (opModeIsActive()){
-            if (gamepad1.a) {
-                color = sensor.argb();
-                telemetry.addData("color: ", color);
+            telemetry.addData("color: ", sensor.argb());
+
+            switch (intakeColor){
+                case noColor:
+                    telemetry.addLine("Nothing in intake");
+
+                case neutral:
+                    telemetry.addLine("Neutral Sample");
+
+                case red:
+                    telemetry.addLine("Red Sample");
+
+                case blue:
+                    telemetry.addLine("Blue Sample");
 
             }
-
-            if (sensor.argb()!=color) {
-                timer.reset();
-                telemetry.addData("Color: ", color);
-                telemetry.addData("Delay (Milli): ", timer.milliseconds());
-                telemetry.addData("Delay (Nano): ", timer.nanoseconds());
-
-            }
-            telemetry.update();
         }
     }
 }
