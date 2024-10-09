@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 public class colorInIntakeClass {
     public static int neutralSampleColor = 0;
-    public static int redSampleColor = 0;
+    public static int redSampleColor = 700;
     public static int blueSampleColor = 0;
 
     private static int colorRange = 20;

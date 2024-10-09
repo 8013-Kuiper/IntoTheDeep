@@ -3,7 +3,9 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.hardware.rev.RevColorSensorV3;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.I2cAddr;
+import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp (group = "Testing")
@@ -11,17 +13,17 @@ public class colorSensorTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        RevColorSensorV3 sensor = hardwareMap.get(RevColorSensorV3.class, "Color");
-        colorInIntakeClass.colors intakeColor = colorInIntakeClass.colorInIntake(sensor.argb());
+        NormalizedColorSensor sensor = hardwareMap.get(NormalizedColorSensor.class, "intakeColor");
+        //colorInIntakeClass.colors intakeColor = colorInIntakeClass.colorInIntake();
         ElapsedTime timer = new ElapsedTime();
 
 
 
         waitForStart();
         while (opModeIsActive()){
-            telemetry.addData("color: ", sensor.argb());
+            telemetry.addData("color: ", sensor.getNormalizedColors().red);
 
-            switch (intakeColor){
+            /*switch (intakeColor){
                 case noColor:
                     telemetry.addLine("Nothing in intake");
 
@@ -35,6 +37,10 @@ public class colorSensorTest extends LinearOpMode {
                     telemetry.addLine("Blue Sample");
 
             }
+
+             */
+
+            telemetry.update();
         }
     }
 }
