@@ -10,12 +10,14 @@ public class BlueLeft {
     public static void main(String[] args) {
         MeepMeep meepMeep = new MeepMeep(750);
 
-        RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
+        Pose2d startPose = new Pose2d(38, 62, Math.toRadians(0));
+
+        RoadRunnerBotEntity hookPlusThreeYellow = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .build();
 
-        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(38, 62, Math.toRadians(0)))
+        hookPlusThreeYellow.runAction(hookPlusThreeYellow.getDrive().actionBuilder(startPose)
                         .setTangent(Math.toRadians(270))
                         .splineToConstantHeading(new Vector2d(25,0), Math.toRadians(225))
                 //Drop specimen on bar
@@ -37,10 +39,15 @@ public class BlueLeft {
 
                 .build());
 
+        hookPlusThreeYellow.runAction(hookPlusThreeYellow.getDrive().actionBuilder(startPose)
+
+
+                        .build());
+
         meepMeep.setBackground(MeepMeep.Background.FIELD_INTO_THE_DEEP_JUICE_DARK)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
-                .addEntity(myBot)
+                .addEntity(hookPlusThreeYellow)
                 .start();
     }
 }
