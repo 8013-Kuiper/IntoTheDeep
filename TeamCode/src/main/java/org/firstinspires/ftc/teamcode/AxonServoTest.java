@@ -12,8 +12,6 @@ public class AxonServoTest extends LinearOpMode {
         while (opModeIsActive()){
 
 
-
-
         }
     }
 }

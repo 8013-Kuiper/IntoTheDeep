@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.hardware.rev.RevColorSensorV3;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 public abstract class DriveConstance extends LinearOpMode {
@@ -13,9 +12,7 @@ public abstract class DriveConstance extends LinearOpMode {
     public DcMotorEx backRight;
 
     public CRServo intake;
-
     public RevColorSensorV3 intakeColorSensor;
-
 
     public void initRobot() {
         frontLeft = hardwareMap.get(DcMotorEx.class, "frontLeft");
@@ -28,5 +25,3 @@ public abstract class DriveConstance extends LinearOpMode {
 
     }
 }
-
-
