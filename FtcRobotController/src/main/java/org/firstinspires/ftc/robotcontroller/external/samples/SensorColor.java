@@ -66,7 +66,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
  */
 @TeleOp(name = "Sensor: Color", group = "Sensor")
 
-public class SensorColor extends LinearOpMode {
+public class
+SensorColor extends LinearOpMode {
 
   /** The colorSensor field will contain a reference to our color sensor hardware object */
   NormalizedColorSensor colorSensor;
