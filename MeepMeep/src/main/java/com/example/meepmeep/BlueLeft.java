@@ -17,6 +17,11 @@ public class BlueLeft {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .build();
 
+        RoadRunnerBotEntity oneBluePlusThreeYellow = new DefaultBotBuilder(meepMeep)
+                // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
+                .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
+                .build();
+
         hookPlusThreeYellow.runAction(hookPlusThreeYellow.getDrive().actionBuilder(startPose)
                         .setTangent(Math.toRadians(270))
                         .splineToConstantHeading(new Vector2d(25,0), Math.toRadians(225))
@@ -39,15 +44,29 @@ public class BlueLeft {
 
                 .build());
 
-        hookPlusThreeYellow.runAction(hookPlusThreeYellow.getDrive().actionBuilder(startPose)
 
 
+        oneBluePlusThreeYellow.runAction(oneBluePlusThreeYellow.getDrive().actionBuilder(startPose)
+                        .setTangent(Math.toRadians(270))
+                        .splineToLinearHeading(new Pose2d(58, 50, Math.toRadians(250)), Math.toRadians(0))
+                        //Drop sample in basket and pick up another then drop again.
+                        .setTangent(0)
+                        .splineToLinearHeading(new Pose2d(61, 48, Math.toRadians(270)), Math.toRadians(0))
+                        //adjust for next pick up, pick up, then drop
+                        .setTangent(Math.toRadians(200))
+                        .splineToSplineHeading(new Pose2d(50, 35, Math.toRadians(340)), Math.toRadians(230))
+                        //Reach out and pick up sample
+                        .setTangent(Math.toRadians(110))
+                        .splineToSplineHeading(new Pose2d(60, 48, Math.toRadians(269)), Math.toRadians(0))
+                        //Deposit sample into basket
+                        //Park
                         .build());
 
         meepMeep.setBackground(MeepMeep.Background.FIELD_INTO_THE_DEEP_JUICE_DARK)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
-                .addEntity(hookPlusThreeYellow)
+                //.addEntity(hookPlusThreeYellow)
+                .addEntity(oneBluePlusThreeYellow)
                 .start();
     }
 }
