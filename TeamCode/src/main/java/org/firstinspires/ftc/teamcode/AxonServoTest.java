@@ -3,14 +3,14 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.Axon.CRAxonServo;
+import org.firstinspires.ftc.teamcode.Axon.AxonServo;
 
 @TeleOp
 public class AxonServoTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        CRAxonServo axonServo = new CRAxonServo("AxonServo", "AxonServoAnalogInput");
+        AxonServo.CRAxonServoTest axonServo = new AxonServo.CRAxonServoTest("AxonServo", "AxonServoAnalogInput");
 
         waitForStart();
         while (opModeIsActive()){
