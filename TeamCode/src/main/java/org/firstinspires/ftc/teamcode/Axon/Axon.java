@@ -5,12 +5,17 @@ import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.har
 import com.qualcomm.robotcore.hardware.AnalogInput;
 
 public class Axon {
-    String ServoHardwareName;
+
+    private String ServoHardwareName;
     private String ServoAnalogInput;
     public AnalogInput analogInput;
 
     protected void setServoHardwareName(String servoHardwareName) {
         ServoHardwareName = servoHardwareName;
+    }
+
+    public String getServoHardwareName() {
+        return ServoHardwareName;
     }
 
     protected void setServoAnalogInput(String servoAnalogInput) {

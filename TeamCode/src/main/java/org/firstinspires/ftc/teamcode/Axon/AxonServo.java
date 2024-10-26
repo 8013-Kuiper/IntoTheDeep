@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Axon;
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
 
 import com.qualcomm.robotcore.hardware.CRServoImplEx;
+import com.qualcomm.robotcore.hardware.PwmControl;
 import com.qualcomm.robotcore.hardware.ServoImplEx;
 
 public class AxonServo extends Axon {
@@ -15,8 +16,9 @@ public class AxonServo extends Axon {
 
     }
 
-    protected void initServo() {
-        servo = hardwareMap.get(ServoImplEx.class, ServoHardwareName);
+    private void initServo() {
+        servo = hardwareMap.get(ServoImplEx.class, getServoHardwareName());
+        servo.setPwmRange(new PwmControl.PwmRange(500, 2500));
         initAnalog();
 
     }
@@ -26,11 +28,13 @@ public class AxonServo extends Axon {
 
         public CRAxonServoTest(String ServoHardwareName, String ServoAnalogInput) {
             super(ServoHardwareName, ServoAnalogInput);
+            initServo();
 
         }
 
-        protected void initServo() {
-            servo = hardwareMap.get(CRServoImplEx.class, ServoHardwareName);
+        private void initServo() {
+            servo = hardwareMap.get(CRServoImplEx.class, getServoHardwareName());
+            servo.setPwmRange(new PwmControl.PwmRange(500, 2500));
             initAnalog();
 
         }

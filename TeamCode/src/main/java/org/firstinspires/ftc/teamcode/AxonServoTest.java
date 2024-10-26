@@ -1,16 +1,11 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.Axon.AxonServo;
-
 @TeleOp
-public class AxonServoTest extends LinearOpMode {
+public class AxonServoTest extends DriveConstance{
     @Override
     public void runOpMode() throws InterruptedException {
-
-        AxonServo.CRAxonServoTest axonServo = new AxonServo.CRAxonServoTest("AxonServo", "AxonServoAnalogInput");
 
         waitForStart();
         while (opModeIsActive()){
@@ -19,6 +14,9 @@ public class AxonServoTest extends LinearOpMode {
             }else if (!gamepad1.a){
                 axonServo.servo.setPower(0);
             }
+
+            telemetry.addData("Position", axonServo.getAxonServoPosition());
+            telemetry.update();
 
 
         }
