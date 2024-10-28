@@ -5,8 +5,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServoImplEx;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-import org.firstinspires.ftc.teamcode.Axon.AxonServo;
-
 public abstract class DriveConstance extends LinearOpMode {
 
     public DcMotorEx frontLeft;
@@ -16,7 +14,6 @@ public abstract class DriveConstance extends LinearOpMode {
 
     public RevColorSensorV3 intakeColorSensor;
 
-    AxonServo axonServo;
     public CRServoImplEx intake;
 
     public void initRobot() {
@@ -26,8 +23,6 @@ public abstract class DriveConstance extends LinearOpMode {
         backRight = hardwareMap.get(DcMotorEx.class, "backRight");
 
         intakeColorSensor = hardwareMap.get(RevColorSensorV3.class, "intakeColor");
-
-        axonServo = new AxonServo("AxonServo", "AxonServoAnalogInput");
 
     }
 }
