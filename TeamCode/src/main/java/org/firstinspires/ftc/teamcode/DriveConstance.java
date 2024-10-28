@@ -16,7 +16,7 @@ public abstract class DriveConstance extends LinearOpMode {
 
     public RevColorSensorV3 intakeColorSensor;
 
-    AxonServo.CRAxonServoTest axonServo;
+    AxonServo axonServo;
     public CRServoImplEx intake;
 
     public void initRobot() {
@@ -27,7 +27,7 @@ public abstract class DriveConstance extends LinearOpMode {
 
         intakeColorSensor = hardwareMap.get(RevColorSensorV3.class, "intakeColor");
 
-        axonServo = new AxonServo.CRAxonServoTest("AxonServo", "AxonServoAnalogInput");
+        axonServo = new AxonServo("AxonServo", "AxonServoAnalogInput");
 
     }
 }
