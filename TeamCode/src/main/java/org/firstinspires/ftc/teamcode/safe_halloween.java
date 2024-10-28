@@ -10,7 +10,9 @@ public class safe_halloween extends DriveConstance {
     public void runOpMode() throws InterruptedException {
         initRobot();
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        //backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        backRight.setDirection(DcMotorSimple.Direction.REVERSE);
         waitForStart();
         while (opModeIsActive()) {
 
