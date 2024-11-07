@@ -1,11 +1,24 @@
 package org.firstinspires.ftc.teamcode.testing;
 
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
 import org.firstinspires.ftc.teamcode.DriveConstance;
 
-public class Teleop extends DriveConstance {
+@TeleOp
+public class Teleop extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
-        initRobot();
+        DcMotorEx frontLeft = hardwareMap.get(DcMotorEx.class, "frontLeft");
+        DcMotorEx frontRight = hardwareMap.get(DcMotorEx.class, "frontRight");
+        DcMotorEx backLeft = hardwareMap.get(DcMotorEx.class, "backLeft");
+        DcMotorEx backRight = hardwareMap.get(DcMotorEx.class, "backRight");
+
+        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        backRight.setDirection(DcMotorSimple.Direction.REVERSE);
 
         waitForStart();
         while (opModeIsActive()) {
