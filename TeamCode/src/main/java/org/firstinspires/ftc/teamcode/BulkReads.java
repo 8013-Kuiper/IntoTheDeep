@@ -15,6 +15,7 @@ public class BulkReads extends LinearOpMode {
             for (LynxModule module : allHubs) {
                 telemetry.addData("Thing", module);
             }
+            telemetry.update();
         }
     }
 }
