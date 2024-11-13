@@ -16,14 +16,14 @@ public class AxonServo extends Axon {
         }
         finally {
             try {
-                axonServo().getConnectionInfo();
+                Servo().getConnectionInfo();
             } catch (Exception exception) {
                 throw new NullPointerException("Did you forget to init the Servo? ");
             }
         }
     }
 
-    public ServoImplEx axonServo() {
+    public ServoImplEx Servo() {
         return axonServo;
     }
 

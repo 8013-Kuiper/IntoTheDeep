@@ -1,6 +1,18 @@
 package org.firstinspires.ftc.teamcode;
 
-public abstract class outtakeIntakeMech extends DriveConstance{
+import com.qualcomm.robotcore.hardware.CRServoImplEx;
+
+import org.firstinspires.ftc.teamcode.Axon.AxonServo;
+
+public class outtakeIntakeMech {
+
+    AxonServo IntakeLift;
+    CRServoImplEx Wheel;
+
+    public outtakeIntakeMech(AxonServo IntakeLift, CRServoImplEx Wheel){
+        this.IntakeLift = IntakeLift;
+        this.Wheel = Wheel;
+    }
 
     public enum outtakeLiftEnum {
         High,
@@ -13,17 +25,17 @@ public abstract class outtakeIntakeMech extends DriveConstance{
     public void setOuttakeToPos(outtakeLiftEnum outtakeLiftEnum) {
         switch (outtakeLiftEnum) {
             case Low -> {
-                axonServo.axonServo().setPosition(0);
+                IntakeLift.Servo().setPosition(0);
                 outtakeLiftAsEnum = outtakeIntakeMech.outtakeLiftEnum.Low;
             }
 
             case Middle -> {
-                axonServo.axonServo().setPosition(.5);
+                IntakeLift.Servo().setPosition(.5);
                 outtakeLiftAsEnum = outtakeIntakeMech.outtakeLiftEnum.Middle;
             }
 
             case High -> {
-                axonServo.axonServo().setPosition(1);
+                IntakeLift.Servo().setPosition(1);
                 outtakeLiftAsEnum = outtakeIntakeMech.outtakeLiftEnum.High;
             }
 

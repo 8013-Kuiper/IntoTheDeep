@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.ServoImplEx;
 
 import org.firstinspires.ftc.teamcode.Axon.AxonServo;
 
-public class OuttakeIntake extends DriveConstance{
+public class OuttakeIntake extends DriveConstance {
     enum State{
         low,
         outtakeUp,
@@ -23,6 +23,8 @@ public class OuttakeIntake extends DriveConstance{
         AxonServo axonServo = new AxonServo();
         axonServo.setServo(hardwareMap.get(ServoImplEx.class, "axonServo"), hardwareMap.get(AnalogInput.class, "axonAnalogInput"));
         CRServoImplEx Wheel = hardwareMap.get(CRServoImplEx.class, "WheelServo");
+
+
 
 
         if (gamepad1.a)
