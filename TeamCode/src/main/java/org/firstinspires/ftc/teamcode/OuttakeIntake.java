@@ -90,11 +90,8 @@ public class OuttakeIntake extends DriveConstance{
             }
         }
     }
-    public enum outtakeLiftEnum{
-        High,
-        Middle,
-        Low
-    }
+
+
 
     enum wheel {
         Forward,
@@ -107,21 +104,4 @@ public class OuttakeIntake extends DriveConstance{
         LowOpen,
         LowClosed
     }
-
-    public void outtakeToPos(outtakeLiftEnum outtakeLiftEnum){
-        switch (outtakeLiftEnum){
-            case Low -> {
-                axonServo.axonServo().setPosition(0);
-            }
-            case Middle -> {
-                axonServo.axonServo().setPosition(.5);
-            }
-            case High -> {
-                axonServo.axonServo().setPosition(1);
-            }
-        }
-
-
-    }
-
 }

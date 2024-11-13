@@ -24,6 +24,8 @@ public abstract class DriveConstance extends LinearOpMode {
     ServoImplEx outtakeSpin;
     ServoImplEx outtakeGrab;
 
+    CRServoImplEx Wheel;
+
     public RevColorSensorV3 intakeColorSensor;
 
     public CRServoImplEx intake;
@@ -48,6 +50,8 @@ public abstract class DriveConstance extends LinearOpMode {
         outtakeFlip = hardwareMap.get(ServoImplEx.class, "");
         outtakeSpin = hardwareMap.get(ServoImplEx.class, "");
         outtakeGrab = hardwareMap.get(ServoImplEx.class, "");
+
+        Wheel = hardwareMap.get(CRServoImplEx.class, "WheelServo");
 
         intakeColorSensor = hardwareMap.get(RevColorSensorV3.class, "intakeColor");
 
