@@ -20,12 +20,6 @@ public class OuttakeIntake extends DriveConstance {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        AxonServo axonServo = new AxonServo();
-        axonServo.setServo(hardwareMap.get(ServoImplEx.class, "axonServo"), hardwareMap.get(AnalogInput.class, "axonAnalogInput"));
-        CRServoImplEx Wheel = hardwareMap.get(CRServoImplEx.class, "WheelServo");
-
-
-
 
         if (gamepad1.a)
             Wheel.setPower(1);
@@ -35,9 +29,9 @@ public class OuttakeIntake extends DriveConstance {
             Wheel.setPower(0);
 
         if (gamepad1.y)
-            axonServo.axonServo().setPosition(1);
+            intakeFlip.Servo().setPosition(1);
         if (gamepad1.x)
-            axonServo.axonServo().setPosition(0);
+            intakeFlip.Servo().setPosition(0);
 
 
         switch (state) {
@@ -56,10 +50,10 @@ public class OuttakeIntake extends DriveConstance {
             }
 
             case outtakeUp -> {
-                axonServo.axonServo().setPosition(1);
+                intakeFlip.Servo().setPosition(1);
 
                 if (gamepad1.x) {
-                    axonServo.axonServo().setPosition(0);
+                    intakeFlip.Servo().setPosition(0);
                     state = State.low;
 
                 }
@@ -86,7 +80,7 @@ public class OuttakeIntake extends DriveConstance {
             default -> {
                 outtakeGrab.setPosition(0);
                 Wheel.setPower(0);
-                axonServo.axonServo().setPosition(0);
+                intakeFlip.Servo().setPosition(0);
 
             state = State.low;
             }

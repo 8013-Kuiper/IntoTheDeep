@@ -1,16 +1,27 @@
 package org.firstinspires.ftc.teamcode;
 
+import androidx.annotation.NonNull;
+
 import com.qualcomm.robotcore.hardware.CRServoImplEx;
+import com.qualcomm.robotcore.hardware.ServoImplEx;
 
 import org.firstinspires.ftc.teamcode.Axon.AxonServo;
 
 public class outtakeIntakeMech {
 
     AxonServo IntakeLift;
+    ServoImplEx outtakeFlip;
+    ServoImplEx outtakeSpin;
+    ServoImplEx outtakeGrab;
     CRServoImplEx Wheel;
 
-    public outtakeIntakeMech(AxonServo IntakeLift, CRServoImplEx Wheel){
+    public outtakeIntakeMech(@NonNull AxonServo IntakeLift, @NonNull ServoImplEx outtakeFlip,
+                             @NonNull ServoImplEx outtakeSpin, @NonNull ServoImplEx outtakeGrab,
+                             @NonNull CRServoImplEx Wheel){
         this.IntakeLift = IntakeLift;
+        this.outtakeFlip = outtakeFlip;
+        this.outtakeSpin = outtakeSpin;
+        this.outtakeGrab = outtakeGrab;
         this.Wheel = Wheel;
     }
 

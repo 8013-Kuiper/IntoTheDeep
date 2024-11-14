@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.CRServoImplEx;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.ServoImplEx;
 
 import org.firstinspires.ftc.teamcode.Axon.AxonServo;
@@ -20,6 +21,8 @@ public abstract class DriveConstance extends LinearOpMode {
     public DcMotorEx leftVertLinear;
     public DcMotorEx rightVertLinear;
 
+    public DcMotorEx HorizontalLinear;
+
     ServoImplEx outtakeFlip;
     ServoImplEx outtakeSpin;
     ServoImplEx outtakeGrab;
@@ -28,9 +31,7 @@ public abstract class DriveConstance extends LinearOpMode {
 
     public RevColorSensorV3 intakeColorSensor;
 
-    public CRServoImplEx intake;
-
-    public AxonServo axonServo = new AxonServo();
+    public AxonServo intakeFlip = new AxonServo();
 
     public void initRobot() {
 
@@ -47,15 +48,19 @@ public abstract class DriveConstance extends LinearOpMode {
         leftVertLinear = hardwareMap.get(DcMotorEx.class, "leftVertLinear");
         rightVertLinear = hardwareMap.get(DcMotorEx.class, "rightVertLinear");
 
-        outtakeFlip = hardwareMap.get(ServoImplEx.class, "");
-        outtakeSpin = hardwareMap.get(ServoImplEx.class, "");
-        outtakeGrab = hardwareMap.get(ServoImplEx.class, "");
+        HorizontalLinear = hardwareMap.get(DcMotorEx.class, "HorizontalLinear");
 
-        Wheel = hardwareMap.get(CRServoImplEx.class, "WheelServo");
+        outtakeFlip = hardwareMap.get(ServoImplEx.class, "outtakeFlip");
+        outtakeSpin = hardwareMap.get(ServoImplEx.class, "outtakeSpin");
+        outtakeGrab = hardwareMap.get(ServoImplEx.class, "outtakeGrab");
+        outtakeGrab.setDirection(Servo.Direction.REVERSE);
+
+        Wheel = hardwareMap.get(CRServoImplEx.class, "Wheel");
+        Wheel.setDirection(DcMotorSimple.Direction.REVERSE);
 
         intakeColorSensor = hardwareMap.get(RevColorSensorV3.class, "intakeColor");
 
-        axonServo.setServo(hardwareMap.get(ServoImplEx.class, "axonServo"), hardwareMap.get(AnalogInput.class, "axonAnalogInput"));
+        intakeFlip.setServo(hardwareMap.get(ServoImplEx.class, "intakeFlip"), hardwareMap.get(AnalogInput.class, "axonAnalogInput"));
 
     }
 }

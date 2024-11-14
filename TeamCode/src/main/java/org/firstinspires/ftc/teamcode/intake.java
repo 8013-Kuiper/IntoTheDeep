@@ -1,8 +1,11 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.CRServoImplEx;
+
 public class intake extends DriveConstance{
     @Override
     public void runOpMode() throws InterruptedException {
+        CRServoImplEx intake = hardwareMap.get(CRServoImplEx.class, "");
         waitForStart();
         while (opModeIsActive()){
 
