@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import androidx.annotation.NonNull;
-
 import com.qualcomm.robotcore.hardware.CRServoImplEx;
 import com.qualcomm.robotcore.hardware.ServoImplEx;
 
@@ -15,54 +13,76 @@ public class outtakeIntakeMech {
     ServoImplEx outtakeGrab;
     CRServoImplEx Wheel;
 
-    public outtakeIntakeMech(@NonNull AxonServo IntakeLift, @NonNull ServoImplEx outtakeFlip,
-                             @NonNull ServoImplEx outtakeSpin, @NonNull ServoImplEx outtakeGrab,
-                             @NonNull CRServoImplEx Wheel){
-        this.IntakeLift = IntakeLift;
-        this.outtakeFlip = outtakeFlip;
-        this.outtakeSpin = outtakeSpin;
-        this.outtakeGrab = outtakeGrab;
-        this.Wheel = Wheel;
+    public outtakeIntakeMech(DriveConstance DriveConstance){
+        this.IntakeLift = DriveConstance.intakeFlip;
+        this.outtakeFlip = DriveConstance.outtakeFlip;
+        this.outtakeSpin = DriveConstance.outtakeSpin;
+        this.outtakeGrab = DriveConstance.outtakeGrab;
+        this.Wheel = DriveConstance.Wheel;
+
     }
 
-    public enum outtakeLiftEnum {
+
+
+    public enum IntakeLiftEnum {
         High,
         Middle,
         Low
     }
 
-    private outtakeLiftEnum outtakeLiftAsEnum;
+    private IntakeLiftEnum IntakeLiftAsEnum;
 
-    public void setOuttakeToPos(outtakeLiftEnum outtakeLiftEnum) {
-        switch (outtakeLiftEnum) {
+    public void setIntakeLiftToPos(IntakeLiftEnum IntakeLiftEnum) {
+        switch (IntakeLiftEnum) {
             case Low -> {
                 IntakeLift.Servo().setPosition(0);
-                outtakeLiftAsEnum = outtakeIntakeMech.outtakeLiftEnum.Low;
+                IntakeLiftAsEnum = IntakeLiftEnum;
             }
 
             case Middle -> {
                 IntakeLift.Servo().setPosition(.5);
-                outtakeLiftAsEnum = outtakeIntakeMech.outtakeLiftEnum.Middle;
+                IntakeLiftAsEnum = IntakeLiftEnum;
             }
 
             case High -> {
                 IntakeLift.Servo().setPosition(1);
-                outtakeLiftAsEnum = outtakeIntakeMech.outtakeLiftEnum.High;
+                IntakeLiftAsEnum = IntakeLiftEnum;
             }
 
         }
     }
 
-    public outtakeLiftEnum getOuttakePosAsEnum(){
-        return outtakeLiftAsEnum;
+    public IntakeLiftEnum getIntakePosAsEnum(){
+        return IntakeLiftAsEnum;
     }
 
+
+
+    private outtake outtakePosAsEnum;
     public enum outtake{
-        BackPosOpen,
-        BackPosClosed,
-        LowPosOpen,
-        LowPosClosed
+        DropPos,
+        GrabPos
     }
+
+    public void setOuttakePos(outtake outtakePosEnum){
+        switch (outtakePosEnum){
+            case DropPos -> {
+                outtakeFlip.setPosition(1);
+                outtakeSpin.setPosition(1);
+                this.outtakePosAsEnum = outtakePosEnum;
+            }
+            case GrabPos -> {
+                outtakeFlip.setPosition(0);
+                outtakeSpin.setPosition(0);
+                this.outtakePosAsEnum = outtakePosEnum;
+            }
+        }
+    }
+
+    public outtake getOuttakePosAsEnum(){
+        return outtakePosAsEnum;
+    }
+
 
 
     public enum wheelEnum {
@@ -77,17 +97,17 @@ public class outtakeIntakeMech {
         switch (wheelPower) {
             case Forward -> {
                 Wheel.setPower(1);
-                wheelAsEnum = wheelEnum.Forward;
+                wheelAsEnum = wheelPower;
             }
 
             case Reverse -> {
                 Wheel.setPower(-1);
-                wheelAsEnum = wheelEnum.Reverse;
+                wheelAsEnum = wheelPower;
             }
 
             case Off -> {
                 Wheel.setPower(0);
-                wheelAsEnum = wheelEnum.Off;
+                wheelAsEnum = wheelPower;
             }
 
         }
@@ -96,7 +116,4 @@ public class outtakeIntakeMech {
     public wheelEnum getWheelPowerAsEnum(){
         return wheelAsEnum;
     }
-
-
-
 }
