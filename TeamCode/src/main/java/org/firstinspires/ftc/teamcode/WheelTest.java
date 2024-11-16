@@ -7,6 +7,7 @@ public class WheelTest extends DriveConstance{
     @Override
     public void runOpMode() throws InterruptedException {
         initRobot();
+
         waitForStart();
         while (opModeIsActive()){
             if (gamepad1.a)
