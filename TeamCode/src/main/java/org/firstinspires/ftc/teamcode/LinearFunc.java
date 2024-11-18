@@ -56,18 +56,49 @@ public class LinearFunc {
     public void setLinearPos(LinearPosEnum PosEnum){
         switch (PosEnum){
             case HighBasket -> {
-
+                setVertPosition(HighBasket);
+                LinearPos = PosEnum;
             }
             case HighBar -> {
-
+                setVertPosition(HighBar);
+                LinearPos = PosEnum;
             }
             case LowBasket -> {
-
+                setVertPosition(LowBasket);
+                LinearPos = PosEnum;
             }
             case LowBar -> {
-
+                setVertPosition(LowBar);
+                LinearPos = PosEnum;
             }
         }
+
+    }
+
+    private void setVertPosition(int pos){
+        setLeftVertPos(pos);
+        setRightVertPos(pos);
+    }
+
+    private void setLeftVertPos(int pos){
+        leftVertLinear.setTargetPosition(pos);
+
+        if (leftVertLinear.getCurrentPosition()+ 20 > pos ||
+                leftVertLinear.getCurrentPosition() - 20 > pos)
+            leftVertLinear.setPower(1);
+        else
+            leftVertLinear.setPower(.3);
+
+    }
+
+    private void setRightVertPos(int pos){
+        rightVertLinear.setTargetPosition(pos);
+
+        if (rightVertLinear.getCurrentPosition()+ 20 > pos ||
+                rightVertLinear.getCurrentPosition() - 20 > pos)
+            rightVertLinear.setPower(1);
+        else
+            rightVertLinear.setPower(.3);
 
     }
 }

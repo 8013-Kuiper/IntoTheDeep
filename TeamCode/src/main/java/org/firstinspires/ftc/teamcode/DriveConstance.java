@@ -31,7 +31,7 @@ public abstract class DriveConstance extends LinearOpMode {
 
     public RevColorSensorV3 intakeColorSensor;
 
-    public AxonServo intakeFlip = new AxonServo();
+    public AxonServo intakeLift = new AxonServo();
 
     public void initRobot() {
 
@@ -60,7 +60,7 @@ public abstract class DriveConstance extends LinearOpMode {
 
         intakeColorSensor = hardwareMap.get(RevColorSensorV3.class, "intakeColor");
 
-        intakeFlip.setServo(hardwareMap.get(ServoImplEx.class, "intakeFlip"), hardwareMap.get(AnalogInput.class, "axonAnalogInput"));
+        intakeLift.setServo(hardwareMap.get(ServoImplEx.class, "intakeFlip"), hardwareMap.get(AnalogInput.class, "axonAnalogInput"));
 
     }
 }

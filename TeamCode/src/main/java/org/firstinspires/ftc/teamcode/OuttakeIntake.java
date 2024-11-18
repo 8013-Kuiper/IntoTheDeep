@@ -1,12 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.AnalogInput;
-import com.qualcomm.robotcore.hardware.CRServoImplEx;
-import com.qualcomm.robotcore.hardware.ServoImplEx;
-
-import org.firstinspires.ftc.teamcode.Axon.AxonServo;
-
 public class OuttakeIntake extends DriveConstance {
     enum State{
         low,
@@ -29,9 +22,9 @@ public class OuttakeIntake extends DriveConstance {
             Wheel.setPower(0);
 
         if (gamepad1.y)
-            intakeFlip.Servo().setPosition(1);
+            intakeLift.Servo().setPosition(1);
         if (gamepad1.x)
-            intakeFlip.Servo().setPosition(0);
+            intakeLift.Servo().setPosition(0);
 
 
         switch (state) {
@@ -50,10 +43,10 @@ public class OuttakeIntake extends DriveConstance {
             }
 
             case outtakeUp -> {
-                intakeFlip.Servo().setPosition(1);
+                intakeLift.Servo().setPosition(1);
 
                 if (gamepad1.x) {
-                    intakeFlip.Servo().setPosition(0);
+                    intakeLift.Servo().setPosition(0);
                     state = State.low;
 
                 }
@@ -80,7 +73,7 @@ public class OuttakeIntake extends DriveConstance {
             default -> {
                 outtakeGrab.setPosition(0);
                 Wheel.setPower(0);
-                intakeFlip.Servo().setPosition(0);
+                intakeLift.Servo().setPosition(0);
 
             state = State.low;
             }

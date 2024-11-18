@@ -14,7 +14,7 @@ public class outtakeIntakeMech {
     CRServoImplEx Wheel;
 
     public outtakeIntakeMech(DriveConstance DriveConstance){
-        this.IntakeLift = DriveConstance.intakeFlip;
+        this.IntakeLift = DriveConstance.intakeLift;
         this.outtakeFlip = DriveConstance.outtakeFlip;
         this.outtakeSpin = DriveConstance.outtakeSpin;
         this.outtakeGrab = DriveConstance.outtakeGrab;

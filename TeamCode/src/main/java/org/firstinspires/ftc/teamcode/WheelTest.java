@@ -17,9 +17,9 @@ public class WheelTest extends DriveConstance{
                 Wheel.setPower(0);
 
             if (gamepad1.left_trigger>.1)
-                intakeFlip.Servo().setPosition(1);
+                intakeLift.Servo().setPosition(1);
             if (gamepad1.right_trigger>.1)
-                intakeFlip.Servo().setPosition(0);
+                intakeLift.Servo().setPosition(0);
 
             if (gamepad1.x)
                 outtakeGrab.setPosition(.5);
