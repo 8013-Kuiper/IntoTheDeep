@@ -7,14 +7,27 @@ import org.firstinspires.ftc.teamcode.Axon.AxonServo;
 
 public class outtakeIntakeMech {
 
-    AxonServo IntakeLift;
-    ServoImplEx outtakeFlip;
-    ServoImplEx outtakeSpin;
-    ServoImplEx outtakeGrab;
-    CRServoImplEx Wheel;
+    private AxonServo IntakeLift;
+    private ServoImplEx outtakeFlip;
+    private ServoImplEx outtakeSpin;
+    private ServoImplEx outtakeGrab;
+    private CRServoImplEx Wheel;
+
+    public outtakeIntakeMech() {
+        DriveConstance DriveConstance = new DriveConstance() {
+            @Override
+            public void runOpMode() throws InterruptedException {
+                initRobot();
+            }
+        };
+        DriveConstance.initRobot();
+    }
 
     public outtakeIntakeMech(DriveConstance DriveConstance){
         this.IntakeLift = DriveConstance.intakeLift;
+
+        //this.IntakeLift = DriveConstance.intakeFlip;
+
         this.outtakeFlip = DriveConstance.outtakeFlip;
         this.outtakeSpin = DriveConstance.outtakeSpin;
         this.outtakeGrab = DriveConstance.outtakeGrab;
