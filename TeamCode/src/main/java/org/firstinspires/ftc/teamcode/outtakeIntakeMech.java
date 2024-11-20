@@ -25,9 +25,6 @@ public class outtakeIntakeMech {
 
     public outtakeIntakeMech(DriveConstance DriveConstance){
         this.IntakeLift = DriveConstance.intakeLift;
-
-        //this.IntakeLift = DriveConstance.intakeFlip;
-
         this.outtakeFlip = DriveConstance.outtakeFlip;
         this.outtakeSpin = DriveConstance.outtakeSpin;
         this.outtakeGrab = DriveConstance.outtakeGrab;
