@@ -44,6 +44,7 @@ public class outtakeIntakeMech {
                 if (IntakeLift.Servo().getPosition()<.1)
                     IntakeLift.Servo().setPwmDisable();
 
+
             }
 
             case Middle -> {

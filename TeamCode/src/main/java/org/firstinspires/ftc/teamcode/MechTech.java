@@ -49,6 +49,9 @@ public class MechTech extends DriveConstance{
             frontRight.setPower(frontRightPower);
             backRight.setPower(backRightPower);
 
+            telemetry.addData("axon state",outtakeFunc.getIntakePosAsEnum());
+            telemetry.update();
+
         }
     }
 }
