@@ -11,10 +11,12 @@ import java.util.List;
 
 public class LinearFunc {
 
-    public int HighBasket = 0;
+    public int HighBasket = 2853;
     public int LowBasket = 0;
     public int HighBar = 0;
     public int LowBar = 0;
+
+    public int HortPosMax = 1000;
 
     public DcMotorEx leftVertLinear;
     public DcMotorEx rightVertLinear;
@@ -75,7 +77,7 @@ public class LinearFunc {
 
     }
 
-    private void setVertPosition(int pos){
+    public void setVertPosition(int pos){
         setLeftVertPos(pos);
         setRightVertPos(pos);
     }

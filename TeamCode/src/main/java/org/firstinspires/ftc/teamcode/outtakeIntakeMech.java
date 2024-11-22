@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.CRServoImplEx;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.ServoImplEx;
 
 import org.firstinspires.ftc.teamcode.Axon.AxonServo;
@@ -13,22 +14,14 @@ public class outtakeIntakeMech {
     private ServoImplEx outtakeGrab;
     private CRServoImplEx Wheel;
 
-    public outtakeIntakeMech() {
-        DriveConstance DriveConstance = new DriveConstance() {
-            @Override
-            public void runOpMode() throws InterruptedException {
-                initRobot();
-            }
-        };
-        DriveConstance.initRobot();
-    }
-
-    public outtakeIntakeMech(DriveConstance DriveConstance){
-        this.IntakeLift = DriveConstance.intakeLift;
-        this.outtakeFlip = DriveConstance.outtakeFlip;
-        this.outtakeSpin = DriveConstance.outtakeSpin;
-        this.outtakeGrab = DriveConstance.outtakeGrab;
-        this.Wheel = DriveConstance.Wheel;
+    public outtakeIntakeMech(AxonServo intakeLift, ServoImplEx outtakeFlip,
+                             ServoImplEx outtakeSpin, ServoImplEx outtakeGrab,
+                             CRServoImplEx Wheel){
+        this.IntakeLift = intakeLift;
+        this.outtakeFlip = outtakeFlip;
+        this.outtakeSpin = outtakeSpin;
+        this.outtakeGrab = outtakeGrab;
+        this.Wheel = Wheel;
 
     }
 
@@ -47,6 +40,10 @@ public class outtakeIntakeMech {
             case Low -> {
                 IntakeLift.Servo().setPosition(0);
                 IntakeLiftAsEnum = IntakeLiftEnum;
+
+                if (IntakeLift.Servo().getPosition()<.1)
+                    IntakeLift.Servo().setPwmDisable();
+
             }
 
             case Middle -> {
@@ -55,6 +52,7 @@ public class outtakeIntakeMech {
             }
 
             case High -> {
+                IntakeLift.Servo().setPwmEnable();
                 IntakeLift.Servo().setPosition(1);
                 IntakeLiftAsEnum = IntakeLiftEnum;
             }
@@ -125,5 +123,25 @@ public class outtakeIntakeMech {
 
     public wheelEnum getWheelPowerAsEnum(){
         return wheelAsEnum;
+    }
+
+
+
+    public enum outtakeGrab{
+        Grabbed,
+        Release
+    }
+
+    public void setOuttakeGrabPos(outtakeGrab pos){
+        switch (pos){
+            case Grabbed -> {
+                outtakeGrab.setPosition(1);
+            }
+            case Release -> {
+                outtakeGrab.setPosition(.3);
+
+            }
+
+        }
     }
 }

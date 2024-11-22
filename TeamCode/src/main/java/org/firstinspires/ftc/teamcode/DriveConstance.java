@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.hardware.rev.RevColorSensorV3;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.AnalogInput;
@@ -11,6 +12,8 @@ import com.qualcomm.robotcore.hardware.ServoImplEx;
 
 import org.firstinspires.ftc.teamcode.Axon.AxonServo;
 
+import java.util.List;
+
 public abstract class DriveConstance extends LinearOpMode {
 
     public DcMotorEx frontLeft;
@@ -20,6 +23,7 @@ public abstract class DriveConstance extends LinearOpMode {
 
     public DcMotorEx leftVertLinear;
     public DcMotorEx rightVertLinear;
+    List<LynxModule> allHubs;
 
     public DcMotorEx HorizontalLinear;
 
@@ -42,16 +46,20 @@ public abstract class DriveConstance extends LinearOpMode {
         backRight = hardwareMap.get(DcMotorEx.class, "backRight");
 
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
-        backRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
+        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        backRight.setDirection(DcMotorSimple.Direction.FORWARD);
 
         leftVertLinear = hardwareMap.get(DcMotorEx.class, "leftVertLinear");
+        leftVertLinear.setDirection(DcMotorSimple.Direction.REVERSE);
         rightVertLinear = hardwareMap.get(DcMotorEx.class, "rightVertLinear");
+        allHubs = hardwareMap.getAll(LynxModule.class);
 
         HorizontalLinear = hardwareMap.get(DcMotorEx.class, "HorizontalLinear");
 
         outtakeFlip = hardwareMap.get(ServoImplEx.class, "outtakeFlip");
         outtakeSpin = hardwareMap.get(ServoImplEx.class, "outtakeSpin");
+        outtakeSpin.setDirection(Servo.Direction.REVERSE);
         outtakeGrab = hardwareMap.get(ServoImplEx.class, "outtakeGrab");
         outtakeGrab.setDirection(Servo.Direction.REVERSE);
 
