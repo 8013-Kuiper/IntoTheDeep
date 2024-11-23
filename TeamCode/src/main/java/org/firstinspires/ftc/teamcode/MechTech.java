@@ -53,7 +53,7 @@ public class MechTech extends DriveConstance{
 
             telemetry.addData("axon state",outtakeFunc.getIntakePosAsEnum());
             telemetry.addData("axon pos", intakeLift.Servo().getPosition());
-            telemetry.addData("Axon Analog Pos: ", intakeLift.getAnalogPosition());
+            telemetry.addData("Axon Analog Pos: ", intakeLift.getAnalogInput().getVoltage());
             telemetry.update();
 
         }

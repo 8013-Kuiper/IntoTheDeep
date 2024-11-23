@@ -41,10 +41,8 @@ public class outtakeIntakeMech {
                 IntakeLift.Servo().setPosition(0);
                 IntakeLiftAsEnum = IntakeLiftEnum;
 
-                if (IntakeLift.getAnalogPosition()<.1)
-                    IntakeLift.Servo().setPwmDisable();
-
-
+                //if (IntakeLift.getAnalogInput().getVoltage() / 3.3 <.1)
+                  //  IntakeLift.Servo().setPwmDisable();
 
             }
 

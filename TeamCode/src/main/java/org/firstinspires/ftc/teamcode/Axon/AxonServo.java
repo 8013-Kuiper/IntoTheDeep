@@ -30,7 +30,7 @@ public class AxonServo {
     }
 
 
-    AnalogInput getAnalogInput() {
+    public AnalogInput getAnalogInput() {
         return analogInput;
     }
 
