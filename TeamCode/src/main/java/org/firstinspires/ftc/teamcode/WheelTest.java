@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import android.text.method.MultiTapKeyListener;
+
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -12,6 +14,14 @@ public class WheelTest extends DriveConstance{
         ElapsedTime wait = new ElapsedTime();
         initRobot();
 
+        enum IntakeLiftE {
+            High,
+            Middle,
+            Low,
+            start
+        }
+
+        IntakeLiftE intake = IntakeLiftE.start;
         waitForStart();
         while (opModeIsActive()){
             if (gamepad1.a)
@@ -22,21 +32,32 @@ public class WheelTest extends DriveConstance{
                 Wheel.setPower(0);
 
 
+            switch (intake){
 
+                case Low:
+                    if(gamepad1.dpad_right){
+                        //intakeLift.Servo().setPwmEnable();
+                        intake = IntakeLiftE.start;
+                    }
 
+                case Middle:
+                    /*intakeLift.Servo().setPosition(.6);
+                    if (wait.seconds()>2){
+                        //intakeLift.Servo().setPwmDisable();
+                        intake = IntakeLiftE.Low;
+                    }*/
+                    if(gamepad1.dpad_left){
+                        intake= IntakeLiftE.Low;
+                    }
 
-            if (gamepad1.left_trigger>.1)
-                intakeLift.Servo().setPosition(1);
-            if (gamepad1.right_trigger>.1) {
-                intakeLift.Servo().setPosition(.5);
-                wait.reset();
+                case start:
+                   // intakeLift.Servo().setPosition(1);
+                    if (gamepad1.right_trigger>.1){
+                        wait.reset();
+                        intake = IntakeLiftE.Middle;
+                    }
             }
-            if(gamepad1.dpad_left){
-                intakeLift.Servo().setPwmDisable();
-            }
-            if (gamepad1.dpad_right){
-                intakeLift.Servo().setPwmEnable();
-            }
+
 
             if (gamepad1.x)
                 outtakeGrab.setPosition(.5);
@@ -54,8 +75,9 @@ public class WheelTest extends DriveConstance{
 
             HorizontalLinear.setPower(gamepad1.left_stick_y);
 
-            //telemetry.addData("servopos", intakeFlip.Servo().getPosition());
+            telemetry.addData("servopos", intakeLift.Servo().getPosition());
             telemetry.addData("time", wait);
+            telemetry.addData("state",intake);
             telemetry.update();
         }
     }
