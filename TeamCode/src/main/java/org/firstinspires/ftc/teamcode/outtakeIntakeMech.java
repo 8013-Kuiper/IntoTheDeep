@@ -41,13 +41,15 @@ public class outtakeIntakeMech {
                 IntakeLift.Servo().setPosition(0);
                 IntakeLiftAsEnum = IntakeLiftEnum;
 
-                if (IntakeLift.Servo().getPosition()<.1)
+                if (IntakeLift.getAnalogPosition()<.1)
                     IntakeLift.Servo().setPwmDisable();
+
 
 
             }
 
             case Middle -> {
+                IntakeLift.Servo().setPwmEnable();
                 IntakeLift.Servo().setPosition(.5);
                 IntakeLiftAsEnum = IntakeLiftEnum;
             }
@@ -56,6 +58,9 @@ public class outtakeIntakeMech {
                 IntakeLift.Servo().setPwmEnable();
                 IntakeLift.Servo().setPosition(1);
                 IntakeLiftAsEnum = IntakeLiftEnum;
+            }
+            default -> {
+                IntakeLiftEnum = outtakeIntakeMech.IntakeLiftEnum.Low;
             }
 
         }
@@ -76,7 +81,7 @@ public class outtakeIntakeMech {
     public void setOuttakePos(outtake outtakePosEnum){
         switch (outtakePosEnum){
             case DropPos -> {
-                outtakeFlip.setPosition(1);
+                outtakeFlip.setPosition(.5);
                 outtakeSpin.setPosition(1);
                 this.outtakePosAsEnum = outtakePosEnum;
             }

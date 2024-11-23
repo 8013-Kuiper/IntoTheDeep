@@ -68,7 +68,7 @@ public abstract class DriveConstance extends LinearOpMode {
 
         intakeColorSensor = hardwareMap.get(RevColorSensorV3.class, "intakeColor");
 
-        intakeLift.setServo(hardwareMap.get(ServoImplEx.class, "intakeFlip"), hardwareMap.get(AnalogInput.class, "axonAnalogInput"));
+        intakeLift.setServo(hardwareMap.get(ServoImplEx.class, "intakeFlip"), hardwareMap.get(AnalogInput.class, "intakeFlipAnalog"));
 
     }
 }

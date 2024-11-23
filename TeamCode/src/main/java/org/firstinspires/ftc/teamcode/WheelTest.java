@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp
@@ -21,24 +22,22 @@ public class WheelTest extends DriveConstance{
                 Wheel.setPower(0);
 
 
+
+
+
             if (gamepad1.left_trigger>.1)
                 intakeLift.Servo().setPosition(1);
-            if (gamepad1.right_trigger>.1)
-                intakeLift.Servo().setPosition(0);
-
-
-           /* if (gamepad1.left_trigger>.1)
-                intakeFlip.Servo().setPosition(1);
             if (gamepad1.right_trigger>.1) {
-                intakeFlip.Servo().setPosition(0);
+                intakeLift.Servo().setPosition(.5);
                 wait.reset();
             }
-            if (intakeFlip.Servo().getPosition() > .35) {
-                if (wait.milliseconds()>=500 && wait.milliseconds() <1000)
-                    intakeFlip.Servo().setPosition(0);
-                intakeFlip.Servo().setPwmDisable();
+            if(gamepad1.dpad_left){
+                intakeLift.Servo().setPwmDisable();
             }
-*/
+            if (gamepad1.dpad_right){
+                intakeLift.Servo().setPwmEnable();
+            }
+
             if (gamepad1.x)
                 outtakeGrab.setPosition(.5);
             if (gamepad1.y)

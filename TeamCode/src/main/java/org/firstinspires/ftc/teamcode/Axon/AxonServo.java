@@ -4,24 +4,10 @@ import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.CRServoImplEx;
 import com.qualcomm.robotcore.hardware.ServoImplEx;
 
-public class AxonServo extends Axon {
+public class AxonServo {
 
     private ServoImplEx axonServo;
-
-    public void isInitialized(){
-        try{
-            getAnalogInput().getConnectionInfo();
-        } catch (Exception exception) {
-            throw new NullPointerException("Did you forget to init the Analog Input? ");
-        }
-        finally {
-            try {
-                Servo().getConnectionInfo();
-            } catch (Exception exception) {
-                throw new NullPointerException("Did you forget to init the Servo? ");
-            }
-        }
-    }
+    private AnalogInput analogInput;
 
     public ServoImplEx Servo() {
         return axonServo;
@@ -33,27 +19,25 @@ public class AxonServo extends Axon {
 
     public void setServo(ServoImplEx axonServo, AnalogInput analogInput){
         this.axonServo = axonServo;
-        setAnalogInput(analogInput);
+        this.analogInput = analogInput;
     }
 
-    static class CRAxonServo extends Axon{
+    public double getAnalogPositionAs360(){
+        return analogInput.getVoltage()/3.3*360;
+    }
+    public double getAnalogPosition(){
+        return analogInput.getVoltage()/3.3;
+    }
+
+
+    AnalogInput getAnalogInput() {
+        return analogInput;
+    }
+
+    static class CRAxonServo {
 
         private CRServoImplEx axonServo;
-
-        public void isInitialized(){
-            try{
-                getAnalogInput().getConnectionInfo();
-            } catch (Exception exception) {
-                throw new NullPointerException("Did you forget to init the Analog Input? ");
-            }
-            finally {
-                try {
-                    axonServo().getConnectionInfo();
-                } catch (Exception exception) {
-                    throw new NullPointerException("Did you forget to init the Servo? ");
-                }
-            }
-        }
+        private AnalogInput analogInput;
 
         public CRServoImplEx axonServo() {
             return axonServo;
@@ -65,7 +49,19 @@ public class AxonServo extends Axon {
 
         public void setServo(CRServoImplEx axonServo, AnalogInput analogInput){
             this.axonServo = axonServo;
-            setAnalogInput(analogInput);
+            this.analogInput = analogInput;
+        }
+
+        public double getAnalogPositionAs360(){
+            return analogInput.getVoltage()/3.3*360;
+        }
+        public double getAnalogPosition(){
+            return analogInput.getVoltage()/3.3;
+        }
+
+
+        AnalogInput getAnalogInput() {
+            return analogInput;
         }
     }
 }

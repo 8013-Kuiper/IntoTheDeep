@@ -7,9 +7,13 @@ public class Axon {
 
     private AnalogInput analogInput;
 
-    public double getAnalogPosition(){
+    public double getAnalogPositionAs360(){
         return analogInput.getVoltage()/3.3*360;
     }
+    public double getAnalogPosition(){
+        return analogInput.getVoltage()/3.3;
+    }
+
 
     AnalogInput getAnalogInput() {
         return analogInput;

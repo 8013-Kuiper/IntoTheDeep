@@ -23,6 +23,8 @@ public class MechTech extends DriveConstance{
                 outtakeFunc.setIntakeLiftToPos(outtakeIntakeMech.IntakeLiftEnum.Low);
             if (gamepad1.x)
                 outtakeFunc.setIntakeLiftToPos(outtakeIntakeMech.IntakeLiftEnum.High);
+            if (gamepad1.dpad_left)
+                outtakeFunc.setIntakeLiftToPos(outtakeIntakeMech.IntakeLiftEnum.Middle);
 
             if (gamepad1.dpad_down)
                 outtakeFunc.setOuttakePos(outtakeIntakeMech.outtake.GrabPos);
@@ -50,6 +52,8 @@ public class MechTech extends DriveConstance{
             backRight.setPower(backRightPower);
 
             telemetry.addData("axon state",outtakeFunc.getIntakePosAsEnum());
+            telemetry.addData("axon pos", intakeLift.Servo().getPosition());
+            telemetry.addData("Axon Analog Pos: ", intakeLift.getAnalogPosition());
             telemetry.update();
 
         }
