@@ -38,6 +38,7 @@ public class WheelTest extends DriveConstance{
                     if(gamepad1.dpad_right){
                         //intakeLift.Servo().setPwmEnable();
                         intake = IntakeLiftE.start;
+                        break;
                     }
 
                 case Middle:
@@ -48,6 +49,7 @@ public class WheelTest extends DriveConstance{
                     }*/
                     if(gamepad1.dpad_left){
                         intake= IntakeLiftE.Low;
+                        break;
                     }
 
                 case start:
@@ -55,6 +57,7 @@ public class WheelTest extends DriveConstance{
                     if (gamepad1.right_trigger>.1){
                         wait.reset();
                         intake = IntakeLiftE.Middle;
+                        break;
                     }
             }
 
