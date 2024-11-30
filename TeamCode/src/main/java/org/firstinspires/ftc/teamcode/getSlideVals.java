@@ -18,12 +18,12 @@ public class getSlideVals extends DriveConstance{
             //leftVertLinear.setMotorDisable();
             //rightVertLinear.setMotorDisable();
             if (gamepad1.a) {
-                leftVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-                rightVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                leftVertLinear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                rightVertLinear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             }
 
             if (gamepad1.b)
-                HorizontalLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                HorizontalLinear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
 
             telemetry.addData("Hort: ", HorizontalLinear.getCurrentPosition());

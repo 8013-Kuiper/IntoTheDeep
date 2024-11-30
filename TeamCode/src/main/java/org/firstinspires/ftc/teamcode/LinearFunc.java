@@ -11,12 +11,13 @@ import java.util.List;
 
 public class LinearFunc {
 
-    public int HighBasket = 2853;
-    public int LowBasket = 0;
-    public int HighBar = 0;
+    public int HighBasket = 1300;
+    public int LowBasket = 806;//+846;
+    public int HighBar = 556;//543;
     public int LowBar = 0;
+    public int start = 0;
 
-    public int HortPosMax = 1000;
+    public int HortPosMax = 975;
 
     public DcMotorEx leftVertLinear;
     public DcMotorEx rightVertLinear;
@@ -30,7 +31,7 @@ public class LinearFunc {
         this.allHubs = allHubs;
 
         for (LynxModule hub : allHubs) {
-            hub.setBulkCachingMode(LynxModule.BulkCachingMode.MANUAL);
+            hub.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
         }
     }
 
@@ -38,15 +39,13 @@ public class LinearFunc {
         HighBasket,
         LowBasket,
         HighBar,
-        LowBar
+        LowBar,
+        start
     }
 
     private LinearPosEnum LinearPos = null;
 
     public Dictionary<DcMotorEx, Integer> getLinearPos(){
-        for (LynxModule hub : allHubs) {
-            hub.clearBulkCache();
-        }
         Dictionary<DcMotorEx, Integer> positions= new Hashtable<>();
 
         positions.put(leftVertLinear, leftVertLinear.getCurrentPosition());
@@ -73,11 +72,15 @@ public class LinearFunc {
                 setVertPosition(LowBar);
                 LinearPos = PosEnum;
             }
+            case start -> {
+                setVertPosition(start);
+                LinearPos = PosEnum;
+            }
         }
 
     }
 
-    public void setVertPosition(int pos){
+    private void setVertPosition(int pos){
         setLeftVertPos(pos);
         setRightVertPos(pos);
     }

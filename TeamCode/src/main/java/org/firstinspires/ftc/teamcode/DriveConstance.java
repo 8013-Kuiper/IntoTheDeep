@@ -5,6 +5,7 @@ import com.qualcomm.hardware.rev.RevColorSensorV3;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.CRServoImplEx;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -55,7 +56,17 @@ public abstract class DriveConstance extends LinearOpMode {
         rightVertLinear = hardwareMap.get(DcMotorEx.class, "rightVertLinear");
         allHubs = hardwareMap.getAll(LynxModule.class);
 
+        leftVertLinear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightVertLinear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftVertLinear.setTargetPosition(0);
+        leftVertLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightVertLinear.setTargetPosition(0);
+        rightVertLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
         HorizontalLinear = hardwareMap.get(DcMotorEx.class, "HorizontalLinear");
+        HorizontalLinear.setDirection(DcMotorSimple.Direction.FORWARD);
+        HorizontalLinear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        HorizontalLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         outtakeFlip = hardwareMap.get(ServoImplEx.class, "outtakeFlip");
         outtakeSpin = hardwareMap.get(ServoImplEx.class, "outtakeSpin");
