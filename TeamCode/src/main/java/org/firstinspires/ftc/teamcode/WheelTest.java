@@ -17,7 +17,6 @@ public class WheelTest extends DriveConstance{
         initRobot();
 
         enum IntakeLiftE {
-            High,
             Middle,
             Low,
             start
@@ -27,6 +26,8 @@ public class WheelTest extends DriveConstance{
         waitForStart();
         while (opModeIsActive()){
             double horizontalPower = -gamepad2.left_stick_y;
+
+
             LinearFunc linearFunc = new LinearFunc(leftVertLinear, rightVertLinear, allHubs);
             if (gamepad1.x)
                 linearFunc.setLinearPos(LinearFunc.LinearPosEnum.HighBasket);
@@ -45,7 +46,7 @@ public class WheelTest extends DriveConstance{
             switch (intake){
 
                 case Low:
-                    if(gamepad2.a){
+                    if(gamepad2.y){
                         intakeLift.Servo().setPwmEnable();
                         intake = IntakeLiftE.start;
                         break;
@@ -53,7 +54,7 @@ public class WheelTest extends DriveConstance{
                     break;
                 case Middle:
                     intakeLift.Servo().setPosition(.2);
-                    if (wait.seconds()>1){
+                    if (wait.seconds()>0.8){
                         intakeLift.Servo().setPwmDisable();
                         intake = IntakeLiftE.Low;
                         break;
@@ -62,7 +63,7 @@ public class WheelTest extends DriveConstance{
                     break;
                 case start:
                     intakeLift.Servo().setPosition(1);
-                    if (gamepad2.y){
+                    if (gamepad2.b){
                         wait.reset();
                         intake = IntakeLiftE.Middle;
                         break;
@@ -76,17 +77,17 @@ public class WheelTest extends DriveConstance{
             if (gamepad1.right_bumper)
                 outtakeGrab.setPosition(0);
 
-            if (gamepad2.dpad_up) {
+            if (gamepad2.x) {
                 //   outtakeSpin.setPosition(1);
                 outtakeFlip.setPosition(.7);
             }
-            if (gamepad2.dpad_down) {
+            if (gamepad2.a) {
                 outtakeSpin.setPosition(0);
                 outtakeFlip.setPosition(0);
                 outtakeGrab.setPosition(0);
             }
 
-            if (gamepad2.b)
+            if (gamepad2.left_stick_button)
                     outtakeSpin.setPosition(1);
 
             if(HorizontalLinear.getCurrentPosition()>=975) {
@@ -125,6 +126,9 @@ public class WheelTest extends DriveConstance{
             telemetry.addData("state",intake);
             telemetry.addData("leftVertLinear: ", leftVertLinear.getCurrentPosition());
             telemetry.addData("rightVerLinear: ", rightVertLinear.getCurrentPosition());
+            telemetry.addData("leftvert target", leftVertLinear.getTargetPosition());
+            telemetry.addData("rightvert target", rightVertLinear.getTargetPosition());
+
             telemetry.update();
         }
     }
