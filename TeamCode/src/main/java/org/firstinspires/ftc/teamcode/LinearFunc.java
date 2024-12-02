@@ -54,7 +54,7 @@ public class LinearFunc {
         return positions;
     }
 
-    public void setLinearPos(LinearPosEnum PosEnum){
+    public void setLinearPosAsEnum(LinearPosEnum PosEnum){
         switch (PosEnum){
             case HighBasket -> {
                 setVertPosition(HighBasket);
