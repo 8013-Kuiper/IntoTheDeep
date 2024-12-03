@@ -10,6 +10,7 @@ public class WheelTest extends DriveConstance{
     @Override
     public void runOpMode() throws InterruptedException {
         ElapsedTime wait = new ElapsedTime();
+        ElapsedTime outtakeTime = new ElapsedTime();
         initRobot();
         leftVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -21,7 +22,16 @@ public class WheelTest extends DriveConstance{
             start
         }
 
+        enum outtakeOrder{
+            start,
+            middle,
+            end,
+            down
+        }
+
         IntakeLiftE intake = IntakeLiftE.start;
+
+        outtakeOrder outtake = outtakeOrder.down;
         waitForStart();
         while (opModeIsActive()){
             double horizontalPower = -gamepad2.left_stick_y;
@@ -75,12 +85,54 @@ public class WheelTest extends DriveConstance{
             }
 
 
-            if (gamepad1.left_bumper)
+            if (gamepad2.left_bumper)
                 outtakeGrab.setPosition(.5);
-            if (gamepad1.right_bumper)
+            if (gamepad2.right_bumper)
                 outtakeGrab.setPosition(0);
 
-            if (gamepad2.x) {
+
+
+            switch(outtake){
+                case down:
+                    outtakeSpin.setPosition(0);
+                    outtakeFlip.setPosition(0);
+                    outtakeGrab.setPosition(0);
+                    if (gamepad2.x){
+                        outtakeTime.reset();
+                        outtake = outtakeOrder.start;
+                        break;
+                    }
+                    break;
+                case start:
+                    outtakeGrab.setPosition(.5);
+                    if (outtakeTime.seconds()>.5){
+                        outtakeTime.reset();
+                        outtake = outtakeOrder.middle;
+                        break;
+                    }
+                    break;
+                case middle:
+                    Wheel.setPower(-1);
+                    outtakeFlip.setPosition(.7);
+                    if (outtakeTime.seconds()>.8){
+                        outtakeSpin.setPosition(1);
+                        outtake = outtakeOrder.end;
+                        break;
+                    }
+                    break;
+                case end:
+                    Wheel.setPower(0);
+                    if (gamepad2.a){
+                        outtake=outtakeOrder.down;
+                        break;
+                    }
+                    break;
+
+            }
+
+
+
+            /*if (gamepad2.x) {
                 //   outtakeSpin.setPosition(1);
                 outtakeFlip.setPosition(.7);
             }
@@ -93,6 +145,9 @@ public class WheelTest extends DriveConstance{
             if (gamepad2.left_stick_button)
                     outtakeSpin.setPosition(1);
 
+
+
+             */
             if(HorizontalLinear.getCurrentPosition()>=975) {
                 if (horizontalPower > 0) {
                     HorizontalLinear.setPower(.5);
