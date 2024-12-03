@@ -15,6 +15,9 @@ public class WheelTest extends DriveConstance{
     public void runOpMode() throws InterruptedException {
         ElapsedTime wait = new ElapsedTime();
         initRobot();
+        leftVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
 
         enum IntakeLiftE {
             Middle,
@@ -26,13 +29,17 @@ public class WheelTest extends DriveConstance{
         waitForStart();
         while (opModeIsActive()){
             double horizontalPower = -gamepad2.left_stick_y;
+            double VertPower = gamepad2.right_stick_y;
 
 
-            LinearFunc linearFunc = new LinearFunc(leftVertLinear, rightVertLinear, allHubs);
+            /*LinearFunc linearFunc = new LinearFunc(leftVertLinear, rightVertLinear, allHubs);
             if (gamepad1.x)
                 linearFunc.setLinearPos(LinearFunc.LinearPosEnum.HighBasket);
             if (gamepad1.b)
                 linearFunc.setLinearPos(LinearFunc.LinearPosEnum.start);
+
+*/
+
 
 
             if (gamepad2.right_trigger>.1)
@@ -62,7 +69,7 @@ public class WheelTest extends DriveConstance{
 
                     break;
                 case start:
-                    intakeLift.Servo().setPosition(1);
+                    intakeLift.Servo().setPosition(0.8);
                     if (gamepad2.b){
                         wait.reset();
                         intake = IntakeLiftE.Middle;
@@ -102,6 +109,11 @@ public class WheelTest extends DriveConstance{
             }
             else
                 HorizontalLinear.setPower(horizontalPower);
+
+
+            rightVertLinear.setPower(VertPower);
+            leftVertLinear.setPower(rightVertLinear.getPower());
+
 
 
 
