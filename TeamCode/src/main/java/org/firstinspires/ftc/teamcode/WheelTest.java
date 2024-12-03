@@ -1,12 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
-import android.text.method.MultiTapKeyListener;
-
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import java.math.*;
 
 @TeleOp
 public class WheelTest extends DriveConstance{
@@ -34,9 +30,9 @@ public class WheelTest extends DriveConstance{
 
             /*LinearFunc linearFunc = new LinearFunc(leftVertLinear, rightVertLinear, allHubs);
             if (gamepad1.x)
-                linearFunc.setLinearPos(LinearFunc.LinearPosEnum.HighBasket);
+                linearFunc.setLinearPosAsEnum(LinearFunc.LinearPosEnum.HighBasket);
             if (gamepad1.b)
-                linearFunc.setLinearPos(LinearFunc.LinearPosEnum.start);
+                linearFunc.setLinearPosAsEnum(LinearFunc.LinearPosEnum.start);
 
 */
 
