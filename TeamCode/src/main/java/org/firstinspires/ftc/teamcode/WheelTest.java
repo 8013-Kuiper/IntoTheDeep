@@ -148,10 +148,10 @@ public class WheelTest extends DriveConstance{
 
 
              */
-            if(HorizontalLinear.getCurrentPosition()>=975) {
+            if(HorizontalLinear.getCurrentPosition()>=1080) {
                 if (horizontalPower > 0) {
                     HorizontalLinear.setPower(.5);
-                    HorizontalLinear.setTargetPosition(975);
+                    HorizontalLinear.setTargetPosition(1080);
                     HorizontalLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 } else {
                     HorizontalLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -160,6 +160,9 @@ public class WheelTest extends DriveConstance{
             }
             else
                 HorizontalLinear.setPower(horizontalPower);
+
+
+
 
 
             rightVertLinear.setPower(VertPower);
