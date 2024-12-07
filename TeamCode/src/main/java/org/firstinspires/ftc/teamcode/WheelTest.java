@@ -86,9 +86,9 @@ public class WheelTest extends DriveConstance{
 
 
             if (gamepad2.left_bumper)
-                outtakeGrab.setPosition(.5);
+                outtakeGrab.setPosition(.6);
             if (gamepad2.right_bumper)
-                outtakeGrab.setPosition(0);
+                outtakeGrab.setPosition(.4);
 
 
 
@@ -96,7 +96,7 @@ public class WheelTest extends DriveConstance{
                 case down:
                     outtakeSpin.setPosition(0);
                     outtakeFlip.setPosition(0);
-                    outtakeGrab.setPosition(0);
+                    outtakeGrab.setPosition(.4);
                     if (gamepad2.x){
                         outtakeTime.reset();
                         outtake = outtakeOrder.start;
@@ -104,7 +104,7 @@ public class WheelTest extends DriveConstance{
                     }
                     break;
                 case start:
-                    outtakeGrab.setPosition(.5);
+                    outtakeGrab.setPosition(.6);
                     if (outtakeTime.seconds()>.5){
                         outtakeTime.reset();
                         outtake = outtakeOrder.middle;
@@ -113,7 +113,7 @@ public class WheelTest extends DriveConstance{
                     break;
                 case middle:
                     Wheel.setPower(-1);
-                    outtakeFlip.setPosition(.7);
+                    outtakeFlip.setPosition(.65);
                     if (outtakeTime.seconds()>.8){
                         outtakeSpin.setPosition(1);
                         outtake = outtakeOrder.end;
@@ -121,7 +121,7 @@ public class WheelTest extends DriveConstance{
                     }
                     break;
                 case end:
-                    Wheel.setPower(0);
+                    //Wheel.setPower(0);
                     if (gamepad2.a){
                         outtake=outtakeOrder.down;
                         break;
