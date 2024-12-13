@@ -148,18 +148,22 @@ public class WheelTest extends DriveConstance{
 
 
              */
-            if(HorizontalLinear.getCurrentPosition()>=1080) {
+            if (HorizontalLinear.getCurrentPosition()>=1030) {
                 if (horizontalPower > 0) {
-                    HorizontalLinear.setPower(.5);
-                    HorizontalLinear.setTargetPosition(1080);
-                    HorizontalLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    HorizontalLinear.setPower(0);
                 } else {
-                    HorizontalLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                     HorizontalLinear.setPower(horizontalPower);
                 }
             }
-            else
-                HorizontalLinear.setPower(horizontalPower);
+            else if (HorizontalLinear.getCurrentPosition() <= 0) {
+                    if (horizontalPower < 0) {
+                        HorizontalLinear.setPower(0);
+                    } else {
+                        HorizontalLinear.setPower(horizontalPower);
+                    }
+                } else
+                    HorizontalLinear.setPower(horizontalPower);
+
 
 
 
