@@ -1,14 +1,21 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.PoseVelocity2d;
+import com.acmerobotics.roadrunner.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.roadRunner.MecanumDrive;
+
 @TeleOp
-public class WheelTest extends DriveConstance{
+public class TeleOP extends DriveConstance{
 
     @Override
     public void runOpMode() throws InterruptedException {
+        MecanumDrive drive = new MecanumDrive(hardwareMap,new Pose2d(0, 0, 0));
+
         ElapsedTime wait = new ElapsedTime();
         ElapsedTime outtakeTime = new ElapsedTime();
         initRobot();
@@ -173,9 +180,15 @@ public class WheelTest extends DriveConstance{
             leftVertLinear.setPower(rightVertLinear.getPower());
 
 
+            drive.setDrivePowers(new PoseVelocity2d(
+                    new Vector2d(
+                            -gamepad1.left_stick_y,
+                            -gamepad1.left_stick_x
+                    ),
+                    -gamepad1.right_stick_x
+            ));
 
-
-            double y = -gamepad1.left_stick_y;
+            /*double y = -gamepad1.left_stick_y;
             double x = gamepad1.left_stick_x;
             double rx = gamepad1.right_stick_x;
 
@@ -190,6 +203,8 @@ public class WheelTest extends DriveConstance{
             frontRight.setPower(frontRightPower);
             backRight.setPower(backRightPower);
 
+
+             */
             telemetry.addData("hor", HorizontalLinear.getCurrentPosition());
             telemetry.addData("time", wait);
             telemetry.addData("controller", gamepad2.left_stick_y);
