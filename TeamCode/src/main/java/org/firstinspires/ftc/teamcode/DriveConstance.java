@@ -77,7 +77,7 @@ public abstract class DriveConstance extends LinearOpMode {
         Wheel = hardwareMap.get(CRServoImplEx.class, "Wheel");
         Wheel.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        intakeColorSensor = hardwareMap.get(RevColorSensorV3.class, "intakeColor");
+        //intakeColorSensor = hardwareMap.get(RevColorSensorV3.class, "intakeColor");
 
         intakeLift.setServo(hardwareMap.get(ServoImplEx.class, "intakeFlip"), hardwareMap.get(AnalogInput.class, "intakeFlipAnalog"));
 
