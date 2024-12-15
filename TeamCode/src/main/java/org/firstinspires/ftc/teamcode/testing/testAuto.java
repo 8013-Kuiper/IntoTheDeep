@@ -4,11 +4,13 @@ import android.app.Notification;
 
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.Trajectory;
 import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
 import com.acmerobotics.roadrunner.TrajectoryActionFactory;
 import com.acmerobotics.roadrunner.TrajectoryBuilder;
 import com.acmerobotics.roadrunner.Vector2d;
+import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -65,8 +67,13 @@ public class testAuto extends DriveConstance {
 
         if (opModeIsActive()){
 
+            Actions.runBlocking(
+                    new SequentialAction(
+                            test.build()
 
-            drive.
+                    )
+            );
+
         }
 
 
