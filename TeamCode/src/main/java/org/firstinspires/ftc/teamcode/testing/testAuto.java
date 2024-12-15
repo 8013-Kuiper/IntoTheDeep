@@ -65,6 +65,8 @@ public class testAuto extends DriveConstance {
 
         if (opModeIsActive()){
 
+
+            drive.
         }
 
 
