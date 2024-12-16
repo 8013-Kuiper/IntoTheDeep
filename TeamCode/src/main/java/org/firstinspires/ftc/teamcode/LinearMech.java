@@ -3,14 +3,13 @@ package org.firstinspires.ftc.teamcode;
 import androidx.annotation.NonNull;
 
 import com.qualcomm.hardware.lynx.LynxModule;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
 
-public class LinearFunc {
+public class LinearMech {
 
     public int HighBasket = 1300;
     public int LowBasket = 806;//+846;
@@ -26,7 +25,7 @@ public class LinearFunc {
     List<LynxModule> allHubs;
 
 
-    public LinearFunc(@NonNull DcMotorEx leftVertLinear, @NonNull DcMotorEx rightVertLinear, @NonNull List<LynxModule> allHubs) {
+    public LinearMech(@NonNull DcMotorEx leftVertLinear, @NonNull DcMotorEx rightVertLinear, @NonNull List<LynxModule> allHubs) {
         this.leftVertLinear = leftVertLinear;
         this.rightVertLinear = rightVertLinear;
         this.allHubs = allHubs;

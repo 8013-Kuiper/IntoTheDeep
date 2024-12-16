@@ -14,13 +14,13 @@ public class MechTech extends DriveConstance{
 
         IntakeMech intakeFunc = new IntakeMech(intakeLift,Wheel);
 
-        LinearFunc linerFunc = new LinearFunc(leftVertLinear, rightVertLinear, allHubs);
+        LinearMech linerFunc = new LinearMech(leftVertLinear, rightVertLinear, allHubs);
 
         waitForStart();
         while (opModeIsActive()){
 
             if (gamepad1.right_bumper)
-                linerFunc.setLinearPosAsEnum(LinearFunc.LinearPosEnum.HighBasket);
+                linerFunc.setLinearPosAsEnum(LinearMech.LinearPosEnum.HighBasket);
 
 
             if (gamepad1.a)
