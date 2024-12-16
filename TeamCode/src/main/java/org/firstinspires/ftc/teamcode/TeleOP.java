@@ -1,14 +1,21 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.PoseVelocity2d;
+import com.acmerobotics.roadrunner.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.roadRunner.MecanumDrive;
+
 @TeleOp
-public class WheelTest extends DriveConstance{
+public class TeleOP extends DriveConstance{
 
     @Override
     public void runOpMode() throws InterruptedException {
+        MecanumDrive drive = new MecanumDrive(hardwareMap,new Pose2d(0, 0, 0));
+
         ElapsedTime wait = new ElapsedTime();
         ElapsedTime outtakeTime = new ElapsedTime();
         initRobot();
@@ -24,14 +31,14 @@ public class WheelTest extends DriveConstance{
 
         enum outtakeOrder{
             start,
-            middle,
-            end,
-            down
+            Grabbing,
+            DropPos,
+            GrabPos
         }
 
         IntakeLiftE intake = IntakeLiftE.start;
 
-        outtakeOrder outtake = outtakeOrder.down;
+        outtakeOrder outtake = outtakeOrder.GrabPos;
         waitForStart();
         while (opModeIsActive()){
             double horizontalPower = -gamepad2.left_stick_y;
@@ -93,37 +100,41 @@ public class WheelTest extends DriveConstance{
 
 
             switch(outtake){
-                case down:
+                case GrabPos:
                     outtakeSpin.setPosition(0);
                     outtakeFlip.setPosition(0);
                     outtakeGrab.setPosition(.4);
                     if (gamepad2.x){
                         outtakeTime.reset();
-                        outtake = outtakeOrder.start;
+                        outtake = outtakeOrder./*start*/Grabbing;   //was start
                         break;
                     }
                     break;
-                case start:
+              /*  case start:
                     outtakeGrab.setPosition(.6);
                     if (outtakeTime.seconds()>.5){
                         outtakeTime.reset();
-                        outtake = outtakeOrder.middle;
+                        outtake = outtakeOrder.Grabbing;
                         break;
+
                     }
                     break;
-                case middle:
+
+               */
+                case Grabbing:
+                    outtakeGrab.setPosition(.6);    //new test
                     Wheel.setPower(-1);
                     outtakeFlip.setPosition(.65);
                     if (outtakeTime.seconds()>.8){
                         outtakeSpin.setPosition(1);
-                        outtake = outtakeOrder.end;
+                        outtake = outtakeOrder.DropPos;
                         break;
                     }
                     break;
-                case end:
+                case DropPos:
                     //Wheel.setPower(0);
                     if (gamepad2.a){
-                        outtake=outtakeOrder.down;
+                        outtake=outtakeOrder.GrabPos;
                         break;
                     }
                     break;
@@ -173,9 +184,15 @@ public class WheelTest extends DriveConstance{
             leftVertLinear.setPower(rightVertLinear.getPower());
 
 
+            drive.setDrivePowers(new PoseVelocity2d(
+                    new Vector2d(
+                            -gamepad1.left_stick_y,
+                            -gamepad1.left_stick_x
+                    ),
+                    -gamepad1.right_stick_x
+            ));
 
-
-            double y = -gamepad1.left_stick_y;
+            /*double y = -gamepad1.left_stick_y;
             double x = gamepad1.left_stick_x;
             double rx = gamepad1.right_stick_x;
 
@@ -190,6 +207,8 @@ public class WheelTest extends DriveConstance{
             frontRight.setPower(frontRightPower);
             backRight.setPower(backRightPower);
 
+
+             */
             telemetry.addData("hor", HorizontalLinear.getCurrentPosition());
             telemetry.addData("time", wait);
             telemetry.addData("controller", gamepad2.left_stick_y);

@@ -2,22 +2,23 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.CRServoImplEx;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.ServoImplEx;
 
 import org.firstinspires.ftc.teamcode.Axon.AxonServo;
 
 public class outtakeIntakeMech {
 
-    private AxonServo IntakeLift;
+
     private ServoImplEx outtakeFlip;
     private ServoImplEx outtakeSpin;
     private ServoImplEx outtakeGrab;
     private CRServoImplEx Wheel;
 
-    public outtakeIntakeMech(AxonServo intakeLift, ServoImplEx outtakeFlip,
+
+    public outtakeIntakeMech(ServoImplEx outtakeFlip,
                              ServoImplEx outtakeSpin, ServoImplEx outtakeGrab,
                              CRServoImplEx Wheel){
-        this.IntakeLift = intakeLift;
         this.outtakeFlip = outtakeFlip;
         this.outtakeSpin = outtakeSpin;
         this.outtakeGrab = outtakeGrab;
@@ -27,50 +28,15 @@ public class outtakeIntakeMech {
 
 
 
-    public enum IntakeLiftEnum {
-        High,
-        Middle,
-        Low
-    }
 
-    private IntakeLiftEnum IntakeLiftAsEnum;
 
-    public void setIntakeLiftToPos(IntakeLiftEnum IntakeLiftEnum) {
-        switch (IntakeLiftEnum) {
-            case Low -> {
-                IntakeLift.Servo().setPosition(0);
-                IntakeLiftAsEnum = IntakeLiftEnum;
 
-                //if (IntakeLift.getAnalogInput().getVoltage() / 3.3 <.1)
-                  //  IntakeLift.Servo().setPwmDisable();
 
-            }
-
-            case Middle -> {
-                IntakeLift.Servo().setPwmEnable();
-                IntakeLift.Servo().setPosition(.5);
-                IntakeLiftAsEnum = IntakeLiftEnum;
-            }
-
-            case High -> {
-                IntakeLift.Servo().setPwmEnable();
-                IntakeLift.Servo().setPosition(1);
-                IntakeLiftAsEnum = IntakeLiftEnum;
-            }
-            default -> {
-                IntakeLiftEnum = outtakeIntakeMech.IntakeLiftEnum.Low;
-            }
-
-        }
-    }
-
-    public IntakeLiftEnum getIntakePosAsEnum(){
-        return IntakeLiftAsEnum;
-    }
 
 
 
     private outtake outtakePosAsEnum;
+
     public enum outtake{
         DropPos,
         GrabPos
@@ -79,13 +45,16 @@ public class outtakeIntakeMech {
     public void setOuttakePos(outtake outtakePosEnum){
         switch (outtakePosEnum){
             case DropPos -> {
-                outtakeFlip.setPosition(.5);
-                outtakeSpin.setPosition(1);
+                outtakeGrab.setPosition(.6);    //new test
+                Wheel.setPower(-1);
+                outtakeFlip.setPosition(.65);
                 this.outtakePosAsEnum = outtakePosEnum;
             }
+
             case GrabPos -> {
-                outtakeFlip.setPosition(0);
                 outtakeSpin.setPosition(0);
+                outtakeFlip.setPosition(0);
+                outtakeGrab.setPosition(.4);
                 this.outtakePosAsEnum = outtakePosEnum;
             }
         }
@@ -97,37 +66,7 @@ public class outtakeIntakeMech {
 
 
 
-    public enum wheelEnum {
-        Forward,
-        Reverse,
-        Off
-    }
 
-    private wheelEnum wheelAsEnum;
-
-    public void setWheelPower(wheelEnum wheelPower) {
-        switch (wheelPower) {
-            case Forward -> {
-                Wheel.setPower(1);
-                wheelAsEnum = wheelPower;
-            }
-
-            case Reverse -> {
-                Wheel.setPower(-1);
-                wheelAsEnum = wheelPower;
-            }
-
-            case Off -> {
-                Wheel.setPower(0);
-                wheelAsEnum = wheelPower;
-            }
-
-        }
-    }
-
-    public wheelEnum getWheelPowerAsEnum(){
-        return wheelAsEnum;
-    }
 
 
 
@@ -139,10 +78,10 @@ public class outtakeIntakeMech {
     public void setOuttakeGrabPos(outtakeGrab pos){
         switch (pos){
             case Grabbed -> {
-                outtakeGrab.setPosition(1);
+                outtakeGrab.setPosition(.6);
             }
             case Release -> {
-                outtakeGrab.setPosition(.3);
+                outtakeGrab.setPosition(.4);
 
             }
 

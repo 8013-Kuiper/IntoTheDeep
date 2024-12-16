@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.testing;
 
 public class colorInIntakeClass {
     public static int neutralSampleColor = 0;
