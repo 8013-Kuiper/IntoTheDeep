@@ -1,26 +1,14 @@
-package org.firstinspires.ftc.teamcode.testing;
+package org.firstinspires.ftc.teamcode;
 
-import android.app.Notification;
-
-import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
-import com.acmerobotics.roadrunner.Trajectory;
 import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
-import com.acmerobotics.roadrunner.TrajectoryActionFactory;
-import com.acmerobotics.roadrunner.TrajectoryBuilder;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.DriveConstance;
+import org.firstinspires.ftc.teamcode.Actions.intakeAction;
 import org.firstinspires.ftc.teamcode.roadRunner.MecanumDrive;
-import org.openftc.easyopencv.OpenCvCamera;
-import org.openftc.easyopencv.OpenCvCameraFactory;
-import org.openftc.easyopencv.OpenCvCameraRotation;
 
 
 @Autonomous
@@ -30,9 +18,13 @@ public class testAuto extends DriveConstance {
 
     Pose2d startPose = new Pose2d(35, 58.5, Math.toRadians(90));
 
+
     public void runOpMode(){
         initRobot();
         MecanumDrive drive = new MecanumDrive(hardwareMap, startPose); //init motors
+
+        org.firstinspires.ftc.teamcode.Actions.intakeAction intakeAction = new  intakeAction(hardwareMap);
+
 
         TrajectoryActionBuilder test = drive.actionBuilder(startPose)
                 .setTangent(Math.toRadians(270))

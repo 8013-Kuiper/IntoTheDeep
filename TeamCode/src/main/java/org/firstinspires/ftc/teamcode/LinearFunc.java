@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import androidx.annotation.NonNull;
 
 import com.qualcomm.hardware.lynx.LynxModule;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import java.util.Dictionary;
@@ -79,7 +80,6 @@ public class LinearFunc {
         }
 
     }
-
     private void setVertPosition(int pos){
         setLeftVertPos(pos);
         setRightVertPos(pos);

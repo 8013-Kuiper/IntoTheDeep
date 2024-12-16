@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.CRServoImplEx;
 
+import org.firstinspires.ftc.teamcode.testing.colorInIntakeClass;
+
 public class intake extends DriveConstance{
     @Override
     public void runOpMode() throws InterruptedException {

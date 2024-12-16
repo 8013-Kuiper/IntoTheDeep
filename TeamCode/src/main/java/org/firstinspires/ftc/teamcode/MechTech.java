@@ -2,29 +2,39 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.Actions.intakeAction;
+
 @TeleOp
 public class MechTech extends DriveConstance{
     @Override
     public void runOpMode() throws InterruptedException {
         initRobot();
-        outtakeIntakeMech outtakeFunc = new outtakeIntakeMech(intakeLift,
+        outtakeIntakeMech outtakeFunc = new outtakeIntakeMech(
                 outtakeFlip, outtakeSpin, outtakeGrab, Wheel);
+
+        IntakeMech intakeFunc = new IntakeMech(intakeLift,Wheel);
+
+        LinearFunc linerFunc = new LinearFunc(leftVertLinear, rightVertLinear, allHubs);
 
         waitForStart();
         while (opModeIsActive()){
+
+            if (gamepad1.right_bumper)
+                linerFunc.setLinearPosAsEnum(LinearFunc.LinearPosEnum.HighBasket);
+
+
             if (gamepad1.a)
-                outtakeFunc.setWheelPower(outtakeIntakeMech.wheelEnum.Forward);
+                intakeFunc.setWheelPower(IntakeMech.wheelEnum.Forward);
             else if (gamepad1.b)
-                outtakeFunc.setWheelPower(outtakeIntakeMech.wheelEnum.Reverse);
+                intakeFunc.setWheelPower(IntakeMech.wheelEnum.Reverse);
             else
-                outtakeFunc.setWheelPower(outtakeIntakeMech.wheelEnum.Off);
+                intakeFunc.setWheelPower(IntakeMech.wheelEnum.Off);
 
             if (gamepad1.y)
-                outtakeFunc.setIntakeLiftToPos(outtakeIntakeMech.IntakeLiftEnum.Low);
+                intakeFunc.setIntakeLiftToPos(IntakeMech.IntakeLiftEnum.Low);
             if (gamepad1.x)
-                outtakeFunc.setIntakeLiftToPos(outtakeIntakeMech.IntakeLiftEnum.High);
-            if (gamepad1.dpad_left)
-                outtakeFunc.setIntakeLiftToPos(outtakeIntakeMech.IntakeLiftEnum.Middle);
+                intakeFunc.setIntakeLiftToPos(IntakeMech.IntakeLiftEnum.High);
+
 
             if (gamepad1.dpad_down)
                 outtakeFunc.setOuttakePos(outtakeIntakeMech.outtake.GrabPos);
@@ -51,7 +61,7 @@ public class MechTech extends DriveConstance{
             frontRight.setPower(frontRightPower);
             backRight.setPower(backRightPower);
 
-            telemetry.addData("axon state",outtakeFunc.getIntakePosAsEnum());
+            telemetry.addData("axon state",intakeFunc.getIntakePosAsEnum());
             telemetry.addData("axon pos", intakeLift.Servo().getPosition());
             telemetry.addData("Axon Analog Pos: ", intakeLift.getAnalogInput().getVoltage());
             telemetry.update();

@@ -31,14 +31,14 @@ public class TeleOP extends DriveConstance{
 
         enum outtakeOrder{
             start,
-            middle,
-            end,
-            down
+            Grabbing,
+            DropPos,
+            GrabPos
         }
 
         IntakeLiftE intake = IntakeLiftE.start;
 
-        outtakeOrder outtake = outtakeOrder.down;
+        outtakeOrder outtake = outtakeOrder.GrabPos;
         waitForStart();
         while (opModeIsActive()){
             double horizontalPower = -gamepad2.left_stick_y;
@@ -100,37 +100,41 @@ public class TeleOP extends DriveConstance{
 
 
             switch(outtake){
-                case down:
+                case GrabPos:
                     outtakeSpin.setPosition(0);
                     outtakeFlip.setPosition(0);
                     outtakeGrab.setPosition(.4);
                     if (gamepad2.x){
                         outtakeTime.reset();
-                        outtake = outtakeOrder.start;
+                        outtake = outtakeOrder./*start*/Grabbing;   //was start
                         break;
                     }
                     break;
-                case start:
+              /*  case start:
                     outtakeGrab.setPosition(.6);
                     if (outtakeTime.seconds()>.5){
                         outtakeTime.reset();
-                        outtake = outtakeOrder.middle;
+                        outtake = outtakeOrder.Grabbing;
                         break;
+
                     }
                     break;
-                case middle:
+
+               */
+                case Grabbing:
+                    outtakeGrab.setPosition(.6);    //new test
                     Wheel.setPower(-1);
                     outtakeFlip.setPosition(.65);
                     if (outtakeTime.seconds()>.8){
                         outtakeSpin.setPosition(1);
-                        outtake = outtakeOrder.end;
+                        outtake = outtakeOrder.DropPos;
                         break;
                     }
                     break;
-                case end:
+                case DropPos:
                     //Wheel.setPower(0);
                     if (gamepad2.a){
-                        outtake=outtakeOrder.down;
+                        outtake=outtakeOrder.GrabPos;
                         break;
                     }
                     break;
