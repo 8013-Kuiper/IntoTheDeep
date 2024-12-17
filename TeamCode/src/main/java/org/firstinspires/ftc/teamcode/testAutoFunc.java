@@ -29,10 +29,15 @@ public class testAutoFunc extends DriveConstance {
 
 
         TrajectoryActionBuilder test = drive.actionBuilder(startPose)
-                .stopAndAdd(intakeAction.intake(IntakeMech.IntakeLiftEnum.Middle))
-                //.afterTime(5, intakeAction.intake(IntakeMech.IntakeLiftEnum.Low))
+                .turn(0)
+                .afterTime(1, intakeAction.intake(IntakeMech.IntakeLiftEnum.Middle))
                 .afterTime(3,intakeAction.intake(IntakeMech.IntakeLiftEnum.Low))
                 .waitSeconds(10)
+
+                //or try this next
+                //.afterTime(1,intakeAction.intakeup())
+
+
                 /*.waitSeconds(5)
                 .stopAndAdd(intakeAction.intake(IntakeMech.IntakeLiftEnum.Low))
                 .stopAndAdd(intakeAction.Wheel(IntakeMech.wheelEnum.Forward))

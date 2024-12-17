@@ -14,6 +14,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.ServoImplEx;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Axon.AxonServo;
 import org.firstinspires.ftc.teamcode.DriveConstance;
@@ -26,6 +27,8 @@ public class intakeAction {
 
     public AxonServo IntakeLift;
     CRServoImplEx Wheel;
+
+    ElapsedTime timer = new ElapsedTime();
 
 
     private IntakeMech.IntakeLiftEnum pos;
@@ -56,6 +59,26 @@ public class intakeAction {
         return new intake();
     }
 
+
+    public class intakeup implements Action{
+        @Override
+        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+            intakeFunc.setIntakeLiftToPos(IntakeMech.IntakeLiftEnum.Middle);
+            if (timer.seconds()<.80)
+                return true;
+            else{
+                intakeFunc.setIntakeLiftToPos(IntakeMech.IntakeLiftEnum.Low);
+                return false;
+            }
+        }
+    }
+
+    public Action intakeup(){
+        return new intakeup();
+    }
+
+
+
     public class Wheel implements Action  {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
@@ -68,6 +91,5 @@ public class intakeAction {
         power = Power;
         return new Wheel();
     }
-
 
 }
