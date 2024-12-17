@@ -12,7 +12,7 @@ public class MechTech extends DriveConstance{
         outtakeIntakeMech outtakeFunc = new outtakeIntakeMech(
                 outtakeFlip, outtakeSpin, outtakeGrab, Wheel);
 
-        IntakeMech intakeFunc = new IntakeMech(intakeLift,Wheel);
+        IntakeMech intakeFunc = new IntakeMech(Wheel, intakeLift);
 
         LinearMech linerFunc = new LinearMech(leftVertLinear, rightVertLinear, allHubs);
 
@@ -34,6 +34,8 @@ public class MechTech extends DriveConstance{
                 intakeFunc.setIntakeLiftToPos(IntakeMech.IntakeLiftEnum.Low);
             if (gamepad1.x)
                 intakeFunc.setIntakeLiftToPos(IntakeMech.IntakeLiftEnum.High);
+            if(gamepad1.right_stick_button)
+                intakeFunc.setIntakeLiftToPos(IntakeMech.IntakeLiftEnum.Middle);
 
 
             if (gamepad1.dpad_down)

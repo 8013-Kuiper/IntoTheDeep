@@ -21,6 +21,10 @@ public class AxonServo {
         this.axonServo = axonServo;
         this.analogInput = analogInput;
     }
+    public void setServo(AxonServo Servo){
+        this.axonServo = Servo.axonServo;
+        this.analogInput = Servo.analogInput;
+    }
 
     public double getAnalogPositionAs360(){
         return analogInput.getVoltage()/3.3*360;

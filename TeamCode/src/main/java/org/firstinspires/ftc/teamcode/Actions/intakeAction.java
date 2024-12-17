@@ -24,18 +24,20 @@ public class intakeAction {
     public AxonServo IntakeLift;
     CRServoImplEx Wheel;
 
-    IntakeMech  intakeFunc = new IntakeMech(IntakeLift,Wheel);
 
     private IntakeMech.IntakeLiftEnum pos;
 
     private  IntakeMech.wheelEnum power;
+    IntakeMech intakeFunc;
 
-    public intakeAction(HardwareMap hardwareMap){
-        IntakeLift.setServo(hardwareMap.get(ServoImplEx.class, "intakeFlip"), hardwareMap.get(AnalogInput.class, "intakeFlipAnalog"));
-        Wheel = hardwareMap.get(CRServoImplEx.class, "Wheel");
-        Wheel.setDirection(DcMotorSimple.Direction.REVERSE);
+    public intakeAction(CRServoImplEx Wheel, AxonServo axonServo){
+        this.IntakeLift = axonServo;
+        this.Wheel = Wheel;
+        this.Wheel.setDirection(DcMotorSimple.Direction.REVERSE);
+        this.intakeFunc = new IntakeMech(Wheel, IntakeLift);
 
     }
+
 
 
     public class intake implements Action  {

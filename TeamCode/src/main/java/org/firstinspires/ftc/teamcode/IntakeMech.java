@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.CRServoImplEx;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.ServoImplEx;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -13,14 +15,9 @@ public class IntakeMech {
     public AxonServo IntakeLift;
     public CRServoImplEx Wheel;
 
-
-
-
-
-    public IntakeMech(AxonServo intakeLift, CRServoImplEx Wheel){
-        this.IntakeLift = intakeLift;
+    public IntakeMech(CRServoImplEx Wheel, AxonServo axonServo){
+        this.IntakeLift = axonServo;
         this.Wheel = Wheel;
-
     }
 
     public enum IntakeLiftEnum {

@@ -20,27 +20,33 @@ public class testAutoFunc extends DriveConstance {
 
 
     public void runOpMode(){
+
         initRobot();
         MecanumDrive drive = new MecanumDrive(hardwareMap, startPose); //init motors
 
-        org.firstinspires.ftc.teamcode.Actions.intakeAction intakeAction = new  intakeAction(hardwareMap);
+        org.firstinspires.ftc.teamcode.Actions.intakeAction intakeAction = new intakeAction(Wheel, intakeLift);
 
 
         TrajectoryActionBuilder test = drive.actionBuilder(startPose)
                 .stopAndAdd(intakeAction.intake(IntakeMech.IntakeLiftEnum.Middle))
-                .waitSeconds(1)
+                //.afterTime(5, intakeAction.intake(IntakeMech.IntakeLiftEnum.Low))
+                .afterTime(3,intakeAction.intake(IntakeMech.IntakeLiftEnum.Low))
+                .waitSeconds(10)
+                /*.waitSeconds(5)
                 .stopAndAdd(intakeAction.intake(IntakeMech.IntakeLiftEnum.Low))
                 .stopAndAdd(intakeAction.Wheel(IntakeMech.wheelEnum.Forward))
                 .waitSeconds(2)
-                .stopAndAdd(intakeAction.intake(IntakeMech.IntakeLiftEnum.High))
+                .stopAndAdd(intakeAction.intake(IntakeMech.IntakeLiftEnum.High))*/
                 .endTrajectory();
 
+
+
+        waitForStart();
         if (opModeIsActive()){
 
             Actions.runBlocking(
                     new SequentialAction(
                             test.build()
-
                     )
             );
 

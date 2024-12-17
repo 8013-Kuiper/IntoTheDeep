@@ -23,7 +23,7 @@ public class testAuto extends DriveConstance {
         initRobot();
         MecanumDrive drive = new MecanumDrive(hardwareMap, startPose); //init motors
 
-        org.firstinspires.ftc.teamcode.Actions.intakeAction intakeAction = new  intakeAction(hardwareMap);
+       // org.firstinspires.ftc.teamcode.Actions.intakeAction intakeAction = new  intakeAction(hardwareMap);
 
 
         TrajectoryActionBuilder test = drive.actionBuilder(startPose)
@@ -57,6 +57,8 @@ public class testAuto extends DriveConstance {
                 //park
                 .endTrajectory();
 
+
+       waitForStart();
         if (opModeIsActive()){
 
             Actions.runBlocking(

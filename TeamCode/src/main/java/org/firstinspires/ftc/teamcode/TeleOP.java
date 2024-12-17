@@ -124,7 +124,7 @@ public class TeleOP extends DriveConstance{
                 case Grabbing:
                     outtakeGrab.setPosition(.6);    //new test
                     Wheel.setPower(-1);
-                    outtakeFlip.setPosition(.65);
+                    outtakeFlip.setPosition(.7);
                     if (outtakeTime.seconds()>.8){
                         outtakeSpin.setPosition(1);
                         outtake = outtakeOrder.DropPos;
