@@ -64,7 +64,7 @@ public class intakeAction {
         @Override
         public boolean run(@NonNull TelemetryPacket telemetryPacket) {
             intakeFunc.setIntakeLiftToPos(IntakeMech.IntakeLiftEnum.Middle);
-            if (timer.seconds()<.80)
+            if (timer.seconds()<3)
                 return true;
             else{
                 intakeFunc.setIntakeLiftToPos(IntakeMech.IntakeLiftEnum.Low);
@@ -74,6 +74,7 @@ public class intakeAction {
     }
 
     public Action intakeup(){
+        timer.reset();
         return new intakeup();
     }
 
