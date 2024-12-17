@@ -14,6 +14,7 @@ public class meepMeepTesting {
 
         Pose2d blueLeft = new Pose2d(12, 58.5, Math.toRadians(90));
 
+        Pose2d redLeft = new Pose2d(-12,-58.5, Math.toRadians(-90));
 
         RoadRunnerBotEntity hookPlusThreeYellow = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
@@ -24,6 +25,10 @@ public class meepMeepTesting {
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .build();
+
+        RoadRunnerBotEntity redhookPlusThreeYellow = new DefaultBotBuilder(meepMeep)
+                //.setConstraints(60,60,Math.toRadians(180),Math.toRadians(180), 15)
+                        .build();
 
 
 
@@ -92,7 +97,42 @@ public class meepMeepTesting {
                         //Park
                         .build());
 
-
+        redhookPlusThreeYellow.runAction((redhookPlusThreeYellow.getDrive().actionBuilder(redLeft))
+                .setTangent(Math.toRadians(90)) // Flipped starting direction
+                .splineToConstantHeading(new Vector2d(-8, -32), Math.toRadians(45)) // Adjusted x, y, and heading
+                .waitSeconds(2)
+// Drop specimen on bar
+                .splineToConstantHeading(new Vector2d(-8, -40), Math.toRadians(180)) // Adjusted y, heading
+// Back up from bar
+                .setTangent(Math.toRadians(180))
+                .splineToSplineHeading(new Pose2d(-30, -25, Math.toRadians(180)), Math.toRadians(45)) // Flipped
+                .waitSeconds(2)
+// Pick up 1 sample
+                .setReversed(true)
+                .splineToSplineHeading(new Pose2d(-62, -60, Math.toRadians(50)), Math.toRadians(230)) // Adjusted
+                .waitSeconds(2)
+// Deposit sample into basket
+                .setTangent(Math.toRadians(180))
+                .setReversed(false)
+                .splineToLinearHeading(new Pose2d(-40, -25, Math.toRadians(180)), Math.toRadians(180))
+                .waitSeconds(2)
+// Move to pick up another sample (2)
+                .setReversed(true)
+                .splineToSplineHeading(new Pose2d(-62, -60, Math.toRadians(50)), Math.toRadians(230))
+                .waitSeconds(2)
+// Deposit sample into basket
+                .setReversed(false)
+                .splineToLinearHeading(new Pose2d(-50, -25, Math.toRadians(180)), Math.toRadians(180))
+                .waitSeconds(2)
+// Move to pick up another sample (3)
+                .setReversed(true)
+                .splineToSplineHeading(new Pose2d(-62, -60, Math.toRadians(50)), Math.toRadians(230))
+                .waitSeconds(2)
+// Deposit sample into basket
+                .setReversed(false)
+                .splineToLinearHeading(new Pose2d(-24, -10, Math.toRadians(180)), Math.toRadians(270)) // Adjusted
+// Park
+                .build());
 
 
 
@@ -104,6 +144,7 @@ public class meepMeepTesting {
         meepMeep.setBackground(MeepMeep.Background.FIELD_INTO_THE_DEEP_JUICE_DARK)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
+                .addEntity(redhookPlusThreeYellow)
                 .addEntity(hookPlusThreeYellow)
                 //.addEntity(oneBluePlusThreeYellow)
                 .start();
