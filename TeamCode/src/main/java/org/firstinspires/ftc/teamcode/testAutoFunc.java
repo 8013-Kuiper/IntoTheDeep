@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
+import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
@@ -37,7 +38,7 @@ public class testAutoFunc extends DriveConstance {
                 .stopAndAdd(intakeAction.Wheel(IntakeMech.wheelEnum.Forward))
                 .waitSeconds(2)
                 .stopAndAdd(intakeAction.intake(IntakeMech.IntakeLiftEnum.High))*/
-                .endTrajectory();
+                ;
 
 
 
@@ -47,6 +48,7 @@ public class testAutoFunc extends DriveConstance {
             Actions.runBlocking(
                     new SequentialAction(
                             test.build()
+
                     )
             );
 

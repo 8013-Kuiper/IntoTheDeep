@@ -5,6 +5,9 @@ import androidx.annotation.NonNull;
 
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
+import com.acmerobotics.roadrunner.InstantAction;
+import com.acmerobotics.roadrunner.SequentialAction;
+import com.acmerobotics.roadrunner.SleepAction;
 import com.qualcomm.robotcore.hardware.AnalogInput;
 import com.qualcomm.robotcore.hardware.CRServoImplEx;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -40,7 +43,7 @@ public class intakeAction {
 
 
 
-    public class intake implements Action  {
+    public class intake implements Action {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
             intakeFunc.setIntakeLiftToPos(pos);

@@ -34,19 +34,20 @@ public class IntakeMech {
             case Low -> {
                 IntakeLift.Servo().setPwmDisable();
                 IntakeLiftAsEnum = IntakeLiftEnum;
+                break;
             }
 
             case Middle -> {
                 IntakeLift.Servo().setPosition(.2);
+                IntakeLiftAsEnum = IntakeLiftEnum;
+                break;
             }
 
             case High -> {
                 IntakeLift.Servo().setPwmEnable();
                 IntakeLift.Servo().setPosition(0.8);
                 IntakeLiftAsEnum = IntakeLiftEnum;
-            }
-            default -> {
-                IntakeLiftEnum = IntakeMech.IntakeLiftEnum.Low;
+                break;
             }
 
         }
