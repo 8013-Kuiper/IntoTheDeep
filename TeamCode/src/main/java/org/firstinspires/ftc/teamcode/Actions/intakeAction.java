@@ -30,9 +30,6 @@ public class intakeAction {
 
     ElapsedTime timer = new ElapsedTime();
 
-
-    private IntakeMech.IntakeLiftEnum pos;
-
     private  IntakeMech.wheelEnum power;
     IntakeMech intakeFunc;
 
@@ -46,25 +43,24 @@ public class intakeAction {
 
 
 
-    public class intake implements Action {
+    public class intakeUp implements Action {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            intakeFunc.setIntakeLiftToPos(pos);
+            intakeFunc.setIntakeLiftToPos(IntakeMech.IntakeLiftEnum.High);
             return false;
         }
     }
 
-    public Action intake(IntakeMech.IntakeLiftEnum Pos){
-        pos =Pos;
-        return new intake();
+    public Action intakeUp(){
+        return new intakeUp();
     }
 
 
-    public class intakeup implements Action{
+    public class intakeDown implements Action{
         @Override
         public boolean run(@NonNull TelemetryPacket telemetryPacket) {
             intakeFunc.setIntakeLiftToPos(IntakeMech.IntakeLiftEnum.Middle);
-            if (timer.seconds()<3)
+            if (timer.seconds()<2)
                 return true;
             else{
                 intakeFunc.setIntakeLiftToPos(IntakeMech.IntakeLiftEnum.Low);
@@ -73,9 +69,9 @@ public class intakeAction {
         }
     }
 
-    public Action intakeup(){
+    public Action intakeDown(){
         timer.reset();
-        return new intakeup();
+        return new intakeDown();
     }
 
 
