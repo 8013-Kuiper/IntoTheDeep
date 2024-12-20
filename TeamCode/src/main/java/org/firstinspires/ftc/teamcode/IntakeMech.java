@@ -38,7 +38,7 @@ public class IntakeMech {
             }
 
             case Middle -> {
-                IntakeLift.Servo().setPosition(.2);
+                IntakeLift.Servo().setPosition(.1);
                 IntakeLiftAsEnum = IntakeLiftEnum;
                 break;
             }
@@ -70,16 +70,19 @@ public class IntakeMech {
             case Forward -> {
                 Wheel.setPower(1);
                 wheelAsEnum = wheelPower;
+                break;
             }
 
             case Reverse -> {
                 Wheel.setPower(-1);
                 wheelAsEnum = wheelPower;
+                break;
             }
 
             case Off -> {
                 Wheel.setPower(0);
                 wheelAsEnum = wheelPower;
+                break;
             }
 
         }

@@ -31,8 +31,11 @@ public class testAutoFunc extends DriveConstance {
         TrajectoryActionBuilder test = drive.actionBuilder(startPose)
                 .turn(Math.toRadians(1))
                 .afterTime(1,intakeAction.intakeDown())
-                .afterTime(1, intakeAction.Wheel(IntakeMech.wheelEnum.Forward))
+                .afterTime(2, intakeAction.WheelOn())
                 .afterTime(5, intakeAction.intakeUp())
+                .waitSeconds(6)
+                .turn(Math.toRadians(90))
+                .afterTime(1, intakeAction.WheelOff())
                 .waitSeconds(10)
 
 

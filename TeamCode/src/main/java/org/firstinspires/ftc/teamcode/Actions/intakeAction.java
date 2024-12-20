@@ -60,7 +60,7 @@ public class intakeAction {
         @Override
         public boolean run(@NonNull TelemetryPacket telemetryPacket) {
             intakeFunc.setIntakeLiftToPos(IntakeMech.IntakeLiftEnum.Middle);
-            if (timer.seconds()<2)
+            if (timer.seconds()<3)
                 return true;
             else{
                 intakeFunc.setIntakeLiftToPos(IntakeMech.IntakeLiftEnum.Low);
@@ -76,17 +76,30 @@ public class intakeAction {
 
 
 
-    public class Wheel implements Action  {
+    public class WheelOn implements Action  {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            intakeFunc.setWheelPower(power);
+            intakeFunc.setWheelPower(IntakeMech.wheelEnum.Forward);
             return false;
         }
     }
 
-    public Action Wheel(IntakeMech.wheelEnum Power){
-        power = Power;
-        return new Wheel();
+    public Action WheelOn(){
+       // power = Power;
+        return new WheelOn();
+    }
+
+    public class WheelOff implements Action  {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            intakeFunc.setWheelPower(IntakeMech.wheelEnum.Off);
+            return false;
+        }
+    }
+
+    public Action WheelOff(){
+        // power = Power;
+        return new WheelOff();
     }
 
 }
