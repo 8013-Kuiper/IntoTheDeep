@@ -9,6 +9,7 @@ import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.Actions.intakeAction;
+import org.firstinspires.ftc.teamcode.Actions.outtakeAction;
 import org.firstinspires.ftc.teamcode.Actions.vertSlidesAction;
 import org.firstinspires.ftc.teamcode.roadRunner.MecanumDrive;
 
@@ -28,10 +29,10 @@ public class testAutoFunc extends DriveConstance {
 
         org.firstinspires.ftc.teamcode.Actions.intakeAction intakeAction = new intakeAction(Wheel, intakeLift);
         org.firstinspires.ftc.teamcode.Actions.vertSlidesAction vertSlidesAction = new vertSlidesAction(leftVertLinear, rightVertLinear, allHubs);
-
+        org.firstinspires.ftc.teamcode.Actions.outtakeAction outtakeAction = new outtakeAction(outtakeFlip,outtakeSpin,outtakeGrab,Wheel);
 
         TrajectoryActionBuilder test = drive.actionBuilder(startPose)
-                .splineToConstantHeading(new Vector2d(35,40),Math.toRadians(0))
+                //.splineToConstantHeading(new Vector2d(35,40),Math.toRadians(0))
                 .turn(Math.toRadians(1))
                 .afterTime(1,intakeAction.Middle())
                 .afterTime(3, intakeAction.Low())
@@ -40,7 +41,7 @@ public class testAutoFunc extends DriveConstance {
                 .waitSeconds(6)
                 .turn(Math.toRadians(-1))
                 .afterTime(1, intakeAction.WheelOff())
-                .waitSeconds(10)
+                .waitSeconds(1)
 
 
 
@@ -52,8 +53,25 @@ public class testAutoFunc extends DriveConstance {
                 ;
 
                 TrajectoryActionBuilder test1 = drive.actionBuilder(startPose)
-                                .splineToConstantHeading(new Vector2d(35,40),Math.toRadians(0))
-                                        ;
+                                //.splineToConstantHeading(new Vector2d(35,48),Math.toRadians(0))
+                        .turn(Math.toRadians(.4))
+                        .afterTime(1, vertSlidesAction.high())
+                        .waitSeconds(3)
+                        .afterTime(1,outtakeAction.outtakeClaw(outtakeIntakeMech.outtakeGrab.Release))
+                        .waitSeconds(1)
+                        .afterTime(1,vertSlidesAction.outtakePos(LinearMech.LinearPosEnum.start))
+                                                .waitSeconds(10);
+
+                TrajectoryActionBuilder test2 = drive.actionBuilder(startPose)
+                                .turn(Math.toRadians(.3))
+                                        .afterTime(1, outtakeAction.outtakeDown())
+                                                .waitSeconds(2)
+                                                        .afterTime(.5,intakeAction.WheelReverse())
+                                                        .afterTime(2,outtakeAction.outtakeUp())
+                                                            .afterTime(3,intakeAction.WheelOff())
+                                                                .afterTime(3,outtakeAction.outtakeSpin())
+                                                                .waitSeconds(1);
+
 
 
 
@@ -61,9 +79,15 @@ public class testAutoFunc extends DriveConstance {
         waitForStart();
         if (opModeIsActive()){
 
+            telemetry.addData("left",leftVertLinear.getCurrentPosition());
+            telemetry.update();
+
+
             Actions.runBlocking(
                     new SequentialAction(
-                            test.build()
+                            test.build(),
+                            test2.build(),
+                            test1.build()
 
                     )
             );

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class LinearMech {
 
-    public int HighBasket = 1300;
+    public int HighBasket =  2600;//1300;
     public int LowBasket = 806;//+846;
     public int HighBar = 556;//543;
     public int LowBar = 0;
@@ -30,6 +30,12 @@ public class LinearMech {
         this.rightVertLinear = rightVertLinear;
         this.allHubs = allHubs;
 
+        /*for (LynxModule hub : allHubs) {
+            hub.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
+        }*/
+    }
+
+    public void runHubReadings(){
         for (LynxModule hub : allHubs) {
             hub.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
         }
@@ -89,9 +95,9 @@ public class LinearMech {
 
         if (leftVertLinear.getCurrentPosition()+ 20 > pos ||
                 leftVertLinear.getCurrentPosition() - 20 > pos)
-            leftVertLinear.setPower(1);
-        else
             leftVertLinear.setPower(.3);
+        else
+            leftVertLinear.setPower(1);
 
     }
 
@@ -100,9 +106,9 @@ public class LinearMech {
 
         if (rightVertLinear.getCurrentPosition()+ 20 > pos ||
                 rightVertLinear.getCurrentPosition() - 20 > pos)
-            rightVertLinear.setPower(1);
-        else
             rightVertLinear.setPower(.3);
+        else
+            rightVertLinear.setPower(1);
 
     }
 }

@@ -47,17 +47,28 @@ public class outtakeAction {
     }
 
 
-    public class outtakePos implements Action  {
+    public class outtakeDown implements Action  {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            outtakeFunc.setOuttakePos(pos);
+            outtakeFunc.setOuttakePos(outtakeIntakeMech.outtake.GrabPos);
             return false;
         }
     }
 
-    public Action outtakePos(outtakeIntakeMech.outtake Pos){
-        pos = Pos;
-        return new outtakePos();
+    public Action outtakeDown(){
+        return new outtakeDown();
+    }
+
+    public class outtakeUp implements Action  {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            outtakeFunc.setOuttakePos(outtakeIntakeMech.outtake.DropPos);
+            return false;
+        }
+    }
+
+    public Action outtakeUp(){
+        return new outtakeUp();
     }
 
 
@@ -69,7 +80,7 @@ public class outtakeAction {
         }
     }
 
-    public Action outtakePos(outtakeIntakeMech.outtakeGrab Pos){
+    public Action outtakeClaw(outtakeIntakeMech.outtakeGrab Pos){
         clawpos =Pos;
         return new outtakeClaw();
     }

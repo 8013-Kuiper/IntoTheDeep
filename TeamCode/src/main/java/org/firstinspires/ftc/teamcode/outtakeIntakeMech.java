@@ -45,8 +45,8 @@ public class outtakeIntakeMech {
     public void setOuttakePos(outtake outtakePosEnum){
         switch (outtakePosEnum){
             case DropPos -> {
-                outtakeGrab.setPosition(.6);    //new test
                 Wheel.setPower(-1);
+                outtakeGrab.setPosition(.6);    //new test
                 outtakeFlip.setPosition(.65);
                 this.outtakePosAsEnum = outtakePosEnum;
             }

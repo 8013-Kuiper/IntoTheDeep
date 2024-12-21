@@ -4,10 +4,13 @@ import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
 import com.acmerobotics.roadrunner.Vector2d;
+import com.acmerobotics.roadrunner.VelConstraint;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.Actions.intakeAction;
+import org.firstinspires.ftc.teamcode.Actions.outtakeAction;
+import org.firstinspires.ftc.teamcode.Actions.vertSlidesAction;
 import org.firstinspires.ftc.teamcode.roadRunner.MecanumDrive;
 
 
@@ -24,10 +27,13 @@ public class testAuto extends DriveConstance {
         MecanumDrive drive = new MecanumDrive(hardwareMap, startPose); //init motors
 
         org.firstinspires.ftc.teamcode.Actions.intakeAction intakeAction = new intakeAction(Wheel, intakeLift);
+        org.firstinspires.ftc.teamcode.Actions.vertSlidesAction vertSlidesAction = new vertSlidesAction(leftVertLinear, rightVertLinear, allHubs);
+        org.firstinspires.ftc.teamcode.Actions.outtakeAction outtakeAction = new outtakeAction(outtakeFlip,outtakeSpin,outtakeGrab,Wheel);
 
         TrajectoryActionBuilder test = drive.actionBuilder(startPose)
                 .setTangent(Math.toRadians(270))
                 .splineToConstantHeading(new Vector2d(8,32), Math.toRadians(225))
+                .afterTime(1,outtakeAction.outtakeUp())
                 .waitSeconds(1)
                 //Drop specimen on bar
                 .splineToConstantHeading(new Vector2d(8,40), Math.toRadians(0))
@@ -35,21 +41,40 @@ public class testAuto extends DriveConstance {
                 .setTangent(Math.toRadians(0))
                 .splineToSplineHeading(new Pose2d(30, 18, Math.toRadians(0)), Math.toRadians(179))
                 //.splineToConstantHeading(new Vector2d(30,25), Math.toRadians(0))
-                .splineToConstantHeading(new Vector2d(30,20),Math.toRadians(0))
-
-                .afterTime(2,intakeAction.Middle())
-                .afterTime(3, intakeAction.Low())
-                .afterTime(3, intakeAction.WheelOn())
-                .afterTime(7, intakeAction.intakeUp())
-                .waitSeconds(6)
+                .splineToConstantHeading(new Vector2d(29,21),Math.toRadians(0))
+                .waitSeconds(1)
+                .afterTime(1,intakeAction.Middle())
+                .afterTime(2, intakeAction.Low())
+                .afterTime(2, intakeAction.WheelOn())
+                .waitSeconds(3)
+                .splineToConstantHeading(new Vector2d(31,20),Math.toRadians(0))
+                .afterTime(2, intakeAction.intakeUp())
+                .waitSeconds(1)
                 .turn(Math.toRadians(-1))
-                .afterTime(1, intakeAction.WheelOff())
+                .afterTime(2, intakeAction.WheelOff())
+                .waitSeconds(1)
 
-                .waitSeconds(2)
                 //Pick up 1 sample
                 .setReversed(true)
                 .strafeToConstantHeading(new Vector2d(35,25))
+                .afterTime(1, outtakeAction.outtakeDown())
+                .waitSeconds(1)
+                .afterTime(.5,intakeAction.WheelReverse())
+                .afterTime(.5,outtakeAction.outtakeUp())
+                .afterTime(3,intakeAction.WheelOff())
+                .afterTime(3,outtakeAction.outtakeSpin())
+                .waitSeconds(1)
+
                 .splineToSplineHeading(new Pose2d(57,53, Math.toRadians(230)), Math.toRadians(50))
+                .afterTime(1, vertSlidesAction.high())
+                .waitSeconds(3)
+                .splineToConstantHeading(new Vector2d(59, 55), Math.toRadians(0))
+                .afterTime(1,outtakeAction.outtakeClaw(outtakeIntakeMech.outtakeGrab.Release))
+                .waitSeconds(1)
+                .splineToConstantHeading(new Vector2d(56,52),Math.toRadians(0))
+                .afterTime(2,vertSlidesAction.outtakePos(LinearMech.LinearPosEnum.start))
+                .waitSeconds(6)
+
                 .waitSeconds(2)
                 //Deposit sample into basket
                 .setTangent(Math.toRadians(0))

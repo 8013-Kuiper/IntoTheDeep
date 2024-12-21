@@ -32,7 +32,7 @@ public class vertSlidesAction {
 
     List<LynxModule> allHubs;
 
-    LinearMech linearFunc = new LinearMech(leftVertLinear, rightVertLinear, allHubs);
+    LinearMech linearFunc;
 
     private LinearMech.LinearPosEnum pos;
 
@@ -50,6 +50,10 @@ public class vertSlidesAction {
         this.rightVertLinear.setTargetPosition(0);
         this.rightVertLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+        this.linearFunc = new LinearMech(leftVertLinear, rightVertLinear, allHubs);
+
+        linearFunc.runHubReadings();
+
     }
 
     public class setVertSlidesPos implements Action  {
@@ -63,6 +67,18 @@ public class vertSlidesAction {
     public Action outtakePos(LinearMech.LinearPosEnum Pos){
         pos =Pos;
         return new setVertSlidesPos();
+    }
+
+    public class highbasket implements Action  {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            linearFunc.setLinearPosAsEnum(LinearMech.LinearPosEnum.HighBasket);
+            return false;
+        }
+    }
+
+    public Action high(){
+        return new highbasket();
     }
 
 }
