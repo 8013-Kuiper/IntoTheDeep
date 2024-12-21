@@ -120,7 +120,7 @@ public class intakeAction {
         return new WheelReverse();
     }
 
-    public class test implements Action  {
+    public class Middle implements Action  {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
             IntakeLift.Servo().setPosition(.2);
@@ -128,12 +128,12 @@ public class intakeAction {
         }
     }
 
-    public Action test(){
+    public Action Middle(){
         // power = Power;
-        return new test();
+        return new Middle();
     }
 
-    public class test1 implements Action  {
+    public class Low implements Action  {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
             IntakeLift.Servo().setPwmDisable();
@@ -141,9 +141,9 @@ public class intakeAction {
         }
     }
 
-    public Action test1(){
+    public Action Low(){
         // power = Power;
-        return new test1();
+        return new Low();
     }
 
 

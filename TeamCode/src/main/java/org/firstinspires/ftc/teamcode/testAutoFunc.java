@@ -9,6 +9,7 @@ import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.Actions.intakeAction;
+import org.firstinspires.ftc.teamcode.Actions.vertSlidesAction;
 import org.firstinspires.ftc.teamcode.roadRunner.MecanumDrive;
 
 
@@ -26,13 +27,14 @@ public class testAutoFunc extends DriveConstance {
         MecanumDrive drive = new MecanumDrive(hardwareMap, startPose); //init motors
 
         org.firstinspires.ftc.teamcode.Actions.intakeAction intakeAction = new intakeAction(Wheel, intakeLift);
+        org.firstinspires.ftc.teamcode.Actions.vertSlidesAction vertSlidesAction = new vertSlidesAction(leftVertLinear, rightVertLinear, allHubs);
 
 
         TrajectoryActionBuilder test = drive.actionBuilder(startPose)
                 .splineToConstantHeading(new Vector2d(35,40),Math.toRadians(0))
                 .turn(Math.toRadians(1))
-                .afterTime(1,intakeAction.test())
-                .afterTime(3, intakeAction.test1())
+                .afterTime(1,intakeAction.Middle())
+                .afterTime(3, intakeAction.Low())
                 .afterTime(2, intakeAction.WheelOn())
                 .afterTime(5, intakeAction.intakeUp())
                 .waitSeconds(6)
@@ -48,6 +50,11 @@ public class testAutoFunc extends DriveConstance {
                 .waitSeconds(2)
                 .stopAndAdd(intakeAction.intake(IntakeMech.IntakeLiftEnum.High))*/
                 ;
+
+                TrajectoryActionBuilder test1 = drive.actionBuilder(startPose)
+                                .splineToConstantHeading(new Vector2d(35,40),Math.toRadians(0))
+                                        ;
+
 
 
 

@@ -36,19 +36,19 @@ public class vertSlidesAction {
 
     private LinearMech.LinearPosEnum pos;
 
-    public vertSlidesAction(HardwareMap hardwareMap){
+    public vertSlidesAction(DcMotorEx leftVertLinear, DcMotorEx rightVertLinear, List<LynxModule> allHubs){
 
-        leftVertLinear = hardwareMap.get(DcMotorEx.class, "leftVertLinear");
+        this.leftVertLinear = leftVertLinear;
         leftVertLinear.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightVertLinear = hardwareMap.get(DcMotorEx.class, "rightVertLinear");
-        allHubs = hardwareMap.getAll(LynxModule.class);
+        this.rightVertLinear = rightVertLinear;
+        this.allHubs = allHubs;
 
-        leftVertLinear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightVertLinear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        leftVertLinear.setTargetPosition(0);
-        leftVertLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightVertLinear.setTargetPosition(0);
-        rightVertLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        this.leftVertLinear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        this.rightVertLinear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        this.leftVertLinear.setTargetPosition(0);
+        this.leftVertLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        this.rightVertLinear.setTargetPosition(0);
+        this.rightVertLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
     }
 
