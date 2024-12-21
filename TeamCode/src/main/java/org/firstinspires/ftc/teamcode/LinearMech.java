@@ -24,7 +24,6 @@ public class LinearMech {
 
     List<LynxModule> allHubs;
 
-
     public LinearMech(@NonNull DcMotorEx leftVertLinear, @NonNull DcMotorEx rightVertLinear, @NonNull List<LynxModule> allHubs) {
         this.leftVertLinear = leftVertLinear;
         this.rightVertLinear = rightVertLinear;
