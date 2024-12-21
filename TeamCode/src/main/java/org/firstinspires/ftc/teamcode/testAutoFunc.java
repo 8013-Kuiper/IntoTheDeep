@@ -29,12 +29,14 @@ public class testAutoFunc extends DriveConstance {
 
 
         TrajectoryActionBuilder test = drive.actionBuilder(startPose)
+                .splineToConstantHeading(new Vector2d(35,40),Math.toRadians(0))
                 .turn(Math.toRadians(1))
-                .afterTime(1,intakeAction.intakeDown())
+                .afterTime(1,intakeAction.test())
+                .afterTime(3, intakeAction.test1())
                 .afterTime(2, intakeAction.WheelOn())
                 .afterTime(5, intakeAction.intakeUp())
                 .waitSeconds(6)
-                .turn(Math.toRadians(90))
+                .turn(Math.toRadians(-1))
                 .afterTime(1, intakeAction.WheelOff())
                 .waitSeconds(10)
 

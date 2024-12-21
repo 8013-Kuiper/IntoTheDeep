@@ -27,23 +27,22 @@ public class outtakeAction {
     private CRServoImplEx Wheel;
 
 
-    outtakeIntakeMech outtakeFunc = new outtakeIntakeMech(outtakeFlip, outtakeSpin, outtakeGrab, Wheel);
-
     private outtakeIntakeMech.outtake pos;
 
     private outtakeIntakeMech.outtakeGrab clawpos;
 
-    public outtakeAction(HardwareMap hardwareMap){
-        outtakeFlip = hardwareMap.get(ServoImplEx.class, "outtakeFlip");
+    outtakeIntakeMech outtakeFunc;
 
-        outtakeSpin = hardwareMap.get(ServoImplEx.class, "outtakeSpin");
-        outtakeSpin.setDirection(Servo.Direction.REVERSE);
 
-        outtakeGrab = hardwareMap.get(ServoImplEx.class, "outtakeGrab");
-        outtakeGrab.setDirection(Servo.Direction.REVERSE);
-
-        Wheel = hardwareMap.get(CRServoImplEx.class, "Wheel");
-        Wheel.setDirection(DcMotorSimple.Direction.REVERSE);
+    public outtakeAction( ServoImplEx outtakeFlip,
+                          ServoImplEx outtakeSpin, ServoImplEx outtakeGrab,
+                          CRServoImplEx Wheel){
+        this.outtakeFlip = outtakeFlip;
+        this.outtakeSpin = outtakeSpin;
+        this.outtakeGrab = outtakeGrab;
+        this.Wheel = Wheel;
+        this.Wheel.setDirection(DcMotorSimple.Direction.REVERSE);
+        this.outtakeFunc = new outtakeIntakeMech(outtakeFlip,outtakeSpin,outtakeGrab,Wheel);
 
     }
 
@@ -57,7 +56,7 @@ public class outtakeAction {
     }
 
     public Action outtakePos(outtakeIntakeMech.outtake Pos){
-        pos =Pos;
+        pos = Pos;
         return new outtakePos();
     }
 
