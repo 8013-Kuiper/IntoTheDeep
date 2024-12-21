@@ -36,10 +36,10 @@ public class vertSlidesAction {
 
     private LinearMech.LinearPosEnum pos;
 
-    public vertSlidesAction(DcMotorEx leftVertLinear, DcMotorEx rightVertLinear, List<LynxModule> allHubs){
+    public vertSlidesAction(DcMotorEx leftVertLinear, DcMotorEx rightVertLinear,
+                            List<LynxModule> allHubs){
 
         this.leftVertLinear = leftVertLinear;
-        leftVertLinear.setDirection(DcMotorSimple.Direction.REVERSE);
         this.rightVertLinear = rightVertLinear;
         this.allHubs = allHubs;
 
