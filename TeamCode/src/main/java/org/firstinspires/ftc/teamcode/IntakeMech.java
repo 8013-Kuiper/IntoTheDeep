@@ -38,6 +38,7 @@ public class IntakeMech {
             }
 
             case Middle -> {
+                IntakeLift.Servo().setPwmEnable();
                 IntakeLift.Servo().setPosition(.1);
                 IntakeLiftAsEnum = IntakeLiftEnum;
                 break;
