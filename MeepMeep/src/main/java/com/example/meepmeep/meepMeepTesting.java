@@ -74,6 +74,7 @@ public class meepMeepTesting {
                 .waitSeconds(2)
                 //move to pick up another sample (3)
                 .setReversed(true)
+                        .setTangent(Math.toRadians(110))
                 .splineToSplineHeading(new Pose2d(57,55, Math.toRadians(230)), Math.toRadians(50))
                 .waitSeconds(2)
                 //Deposit sample into basket

@@ -12,8 +12,8 @@ import java.util.List;
 public class LinearMech {
 
     public int HighBasket =  2600;//1300;
-    public int LowBasket = 806;//+846;
-    public int HighBar = 556;//543;
+    public int LowBasket = 0;//+846;
+    public int HighBar = 800;//543;
     public int LowBar = 0;
     public int start = 0;
 

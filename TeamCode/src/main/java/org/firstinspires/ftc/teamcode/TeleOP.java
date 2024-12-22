@@ -16,11 +16,11 @@ public class TeleOP extends DriveConstance{
     public void runOpMode() throws InterruptedException {
         MecanumDrive drive = new MecanumDrive(hardwareMap,new Pose2d(0, 0, 0));
 
+        LinearMech linearFunc = new LinearMech(leftVertLinear, rightVertLinear, allHubs);
+
         ElapsedTime wait = new ElapsedTime();
         ElapsedTime outtakeTime = new ElapsedTime();
         initRobot();
-        leftVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
         enum IntakeLiftE {
@@ -36,9 +36,17 @@ public class TeleOP extends DriveConstance{
             GrabPos
         }
 
+        enum Liftstate{
+            manual,
+            auto
+        }
+
         IntakeLiftE intake = IntakeLiftE.start;
 
         outtakeOrder outtake = outtakeOrder.GrabPos;
+
+        Liftstate lift = Liftstate.auto;
+
         waitForStart();
         while (opModeIsActive()){
             double horizontalPower = -gamepad2.left_stick_y;
@@ -176,12 +184,36 @@ public class TeleOP extends DriveConstance{
                     HorizontalLinear.setPower(horizontalPower);
 
 
+            switch (lift) {
+                case auto -> {
+                    if (gamepad2.left_stick_y > 0)
+                        linearFunc.setLinearPosAsEnum(LinearMech.LinearPosEnum.HighBasket);
 
+                    if (gamepad2.left_stick_y < 0)
+                        linearFunc.setLinearPosAsEnum(LinearMech.LinearPosEnum.start);
+                    if (gamepad2.dpad_down){
+                        rightVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                        leftVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                        lift = Liftstate.manual;
+                    }
+                }
+                case manual ->{
+                    rightVertLinear.setPower(VertPower);
+                    leftVertLinear.setPower(rightVertLinear.getPower());
+                    //must bring slides to bottom before switching back
+                    if (gamepad2.dpad_up){
+                        leftVertLinear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                        rightVertLinear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                        leftVertLinear.setTargetPosition(0);
+                        leftVertLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                        rightVertLinear.setTargetPosition(0);
+                        rightVertLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                        lift = Liftstate.auto;
+                    }
+                }
 
+            }
 
-
-            rightVertLinear.setPower(VertPower);
-            leftVertLinear.setPower(rightVertLinear.getPower());
 
 
             drive.setDrivePowers(new PoseVelocity2d(

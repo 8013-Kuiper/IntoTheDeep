@@ -81,4 +81,17 @@ public class vertSlidesAction {
         return new highbasket();
     }
 
+
+    public class HighBar implements Action  {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            linearFunc.setLinearPosAsEnum(LinearMech.LinearPosEnum.HighBar);
+            return false;
+        }
+    }
+
+    public Action HighBar(){
+        return new HighBar();
+    }
+
 }
