@@ -47,7 +47,7 @@ public class outtakeIntakeMech {
             case DropPos -> {
                 Wheel.setPower(-1);
                 outtakeGrab.setPosition(.6);    //new test
-                outtakeFlip.setPosition(.65);
+                outtakeFlip.setPosition(.8);
                 this.outtakePosAsEnum = outtakePosEnum;
             }
 

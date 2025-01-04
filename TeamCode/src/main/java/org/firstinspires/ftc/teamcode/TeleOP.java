@@ -15,12 +15,12 @@ public class TeleOP extends DriveConstance{
     @Override
     public void runOpMode() throws InterruptedException {
         MecanumDrive drive = new MecanumDrive(hardwareMap,new Pose2d(0, 0, 0));
-
+        initRobot();
         LinearMech linearFunc = new LinearMech(leftVertLinear, rightVertLinear, allHubs);
 
         ElapsedTime wait = new ElapsedTime();
         ElapsedTime outtakeTime = new ElapsedTime();
-        initRobot();
+
 
 
         enum IntakeLiftE {
@@ -132,7 +132,7 @@ public class TeleOP extends DriveConstance{
                 case Grabbing:
                     outtakeGrab.setPosition(.6);    //new test
                     Wheel.setPower(-1);
-                    outtakeFlip.setPosition(.7);
+                    outtakeFlip.setPosition(.8);
                     if (outtakeTime.seconds()>.8){
                         outtakeSpin.setPosition(1);
                         outtake = outtakeOrder.DropPos;

@@ -58,6 +58,7 @@ public class meepMeepTesting {
                 .splineToSplineHeading(new Pose2d(57,55, Math.toRadians(230)), Math.toRadians(50))
                 .waitSeconds(2)
                 //Deposit sample into basket
+                /*
                 .setTangent(Math.toRadians(0))
                 .setReversed(false)
                 .splineToLinearHeading(new Pose2d(35, 15, Math.toRadians(0)), Math.toRadians(0))
@@ -78,8 +79,11 @@ public class meepMeepTesting {
                 .splineToSplineHeading(new Pose2d(57,55, Math.toRadians(230)), Math.toRadians(50))
                 .waitSeconds(2)
                 //Deposit sample into basket
-                .setReversed(false)
-                .splineToLinearHeading(new Pose2d(24,10,Math.toRadians(0)),Math.toRadians(90))
+
+                 */
+                //.setReversed(false)
+                .splineToConstantHeading(new Vector2d(45,10),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(15,10,Math.toRadians(0)),Math.toRadians(90))
                 //park
                 .build());
 
