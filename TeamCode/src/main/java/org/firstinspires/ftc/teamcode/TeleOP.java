@@ -186,10 +186,10 @@ public class TeleOP extends DriveConstance{
 
             switch (lift) {
                 case auto -> {
-                    if (gamepad2.left_stick_y > 0)
+                    if (gamepad2.right_stick_y > .1)
                         linearFunc.setLinearPosAsEnum(LinearMech.LinearPosEnum.HighBasket);
 
-                    if (gamepad2.left_stick_y < 0)
+                    if (gamepad2.right_stick_y < -.1)
                         linearFunc.setLinearPosAsEnum(LinearMech.LinearPosEnum.start);
                     if (gamepad2.dpad_down){
                         rightVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -242,9 +242,10 @@ public class TeleOP extends DriveConstance{
 
              */
             telemetry.addData("hor", HorizontalLinear.getCurrentPosition());
-            telemetry.addData("time", wait);
-            telemetry.addData("controller", gamepad2.left_stick_y);
-            telemetry.addData("state",intake);
+            //telemetry.addData("time", wait);
+            //telemetry.addData("controller", gamepad2.left_stick_y);
+            telemetry.addData("state(intake)",intake);
+            telemetry.addData("state(linear)", lift);
             telemetry.addData("leftVertLinear: ", leftVertLinear.getCurrentPosition());
             telemetry.addData("rightVerLinear: ", rightVertLinear.getCurrentPosition());
             telemetry.addData("leftvert target", leftVertLinear.getTargetPosition());

@@ -98,4 +98,18 @@ public class outtakeAction {
     }
 
 
+
+    public class firstOuttakeUp  implements Action  {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            outtakeFlip.setPosition(.8);
+            return false;
+        }
+    }
+
+    public Action firstOuttakeUp(){
+        return new firstOuttakeUp();
+    }
+
+
 }

@@ -31,8 +31,9 @@ public class testAuto extends DriveConstance {
         org.firstinspires.ftc.teamcode.Actions.outtakeAction outtakeAction = new outtakeAction(outtakeFlip,outtakeSpin,outtakeGrab,Wheel);
 
         TrajectoryActionBuilder test = drive.actionBuilder(startPose)
+                .afterTime(.1,outtakeAction.firstOuttakeUp())
                 .setTangent(Math.toRadians(270))
-                .afterTime(.1,vertSlidesAction.HighBar())
+                .afterTime(.5,vertSlidesAction.HighBar())
                 .splineToConstantHeading(new Vector2d(7,26), Math.toRadians(225))
                 .waitSeconds(1)
                 .afterTime(.1,vertSlidesAction.outtakePos(LinearMech.LinearPosEnum.start) )
