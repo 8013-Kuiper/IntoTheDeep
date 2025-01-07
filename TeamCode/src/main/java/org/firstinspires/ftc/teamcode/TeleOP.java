@@ -43,9 +43,9 @@ public class TeleOP extends DriveConstance{
 
         IntakeLiftE intake = IntakeLiftE.start;
 
-        outtakeOrder outtake = outtakeOrder.GrabPos;
+        outtakeOrder outtake = outtakeOrder.DropPos;
 
-        Liftstate lift = Liftstate.auto;
+        Liftstate lift = Liftstate.manual;
 
         waitForStart();
         while (opModeIsActive()){
