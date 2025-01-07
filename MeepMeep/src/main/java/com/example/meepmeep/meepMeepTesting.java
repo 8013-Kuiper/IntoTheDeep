@@ -43,47 +43,97 @@ public class meepMeepTesting {
 
         hookPlusThreeYellow.runAction(hookPlusThreeYellow.getDrive().actionBuilder(blueLeft)
                 .setTangent(Math.toRadians(270))
-                .splineToConstantHeading(new Vector2d(8,32), Math.toRadians(225))
-                .waitSeconds(2)
+                .splineToConstantHeading(new Vector2d(7,26), Math.toRadians(225))
+                .waitSeconds(1)
+                .waitSeconds(1)
                 //Drop specimen on bar
+
                 .splineToConstantHeading(new Vector2d(8,40), Math.toRadians(0))
                 //back up from bar
+
                 .setTangent(Math.toRadians(0))
-                .splineToSplineHeading(new Pose2d(25, 15, Math.toRadians(0)), Math.toRadians(179))
-                //.splineToConstantHeading(new Vector2d(30,25), Math.toRadians(0))
-                .waitSeconds(2)
+                .splineToSplineHeading(new Pose2d(31, 18, Math.toRadians(0)), Math.toRadians(179))//30
+                .splineToConstantHeading(new Vector2d(29,21),Math.toRadians(0))
+                //.waitSeconds(1)
+                .waitSeconds(3)
+                .splineToConstantHeading(new Vector2d(31,20),Math.toRadians(0))
+                .waitSeconds(.5)//
+                .waitSeconds(1)
+                //.waitSeconds(1)
+
                 //Pick up 1 sample
                 .setReversed(true)
-                .strafeToConstantHeading(new Vector2d(25,25))
-                .splineToSplineHeading(new Pose2d(57,55, Math.toRadians(230)), Math.toRadians(50))
-                .waitSeconds(2)
+                .strafeToConstantHeading(new Vector2d(35,25))
+                .waitSeconds(1)
+                //grab block with outtake
+
+                .splineToSplineHeading(new Pose2d(54,50, Math.toRadians(230)), Math.toRadians(50))
+                //move to basket
+                .waitSeconds(3)
+                .splineToConstantHeading(new Vector2d(60, 56), Math.toRadians(0))
+                .waitSeconds(1)
+                .waitSeconds(.5)
+                .splineToConstantHeading(new Vector2d(55,51),Math.toRadians(0))
+                .waitSeconds(.5)
+                .waitSeconds(1)
                 //Deposit sample into basket
-                /*
-                .setTangent(Math.toRadians(0))
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                /*.setTangent(Math.toRadians(0))
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(35, 15, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(40, 20, Math.toRadians(0)), Math.toRadians(0))
+                .waitSeconds(1)
+                .afterTime(1,intakeAction.Middle())
+                .afterTime(2, intakeAction.Low())
+                .afterTime(2, intakeAction.WheelOn())
                 .waitSeconds(2)
+                .splineToConstantHeading(new Vector2d(41,20),Math.toRadians(0))
+                .afterTime(2, intakeAction.intakeUp())
+                .waitSeconds(1)
+                .afterTime(2, intakeAction.WheelOff())
+                .waitSeconds(1)
                 //move to pick up another sample (2)
+
+
                 .setReversed(true)
-                        .setTangent(Math.toRadians(110))
-                .splineToSplineHeading(new Pose2d(57,55, Math.toRadians(230)), Math.toRadians(50))
-                .waitSeconds(2)
+                .afterTime(1, outtakeAction.outtakeDown())
+                .waitSeconds(1)
+                .afterTime(1,intakeAction.WheelReverse())
+                .afterTime(1,outtakeAction.outtakeUp())
+                .afterTime(3,intakeAction.WheelOff())
+                .afterTime(3,outtakeAction.outtakeSpin())
+                //grab block with outtake
+
+                .setTangent(Math.toRadians(110))
+                .splineToSplineHeading(new Pose2d(57,53, Math.toRadians(230)), Math.toRadians(50))
+                .afterTime(1, vertSlidesAction.high())
+                .waitSeconds(3)
+                .splineToConstantHeading(new Vector2d(59, 55), Math.toRadians(0))
+                .afterTime(1,outtakeAction.outtakeClaw(outtakeIntakeMech.outtakeGrab.Release))
+                .waitSeconds(1)
+                .splineToConstantHeading(new Vector2d(56,52),Math.toRadians(0))
+                .afterTime(2,vertSlidesAction.outtakePos(LinearMech.LinearPosEnum.start))
+                .waitSeconds(4)
                 //Deposit sample into basket
-                .setTangent(Math.toRadians(0))
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(45, 15, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(50, 18, Math.toRadians(0)), Math.toRadians(0))
                 .waitSeconds(2)
                 //move to pick up another sample (3)
                 .setReversed(true)
-                        .setTangent(Math.toRadians(110))
-                .splineToSplineHeading(new Pose2d(57,55, Math.toRadians(230)), Math.toRadians(50))
+                .setTangent(Math.toRadians(110))
+                .splineToSplineHeading(new Pose2d(57,53, Math.toRadians(230)), Math.toRadians(50))
                 .waitSeconds(2)
                 //Deposit sample into basket
 
                  */
-                //.setReversed(false)
-                .splineToConstantHeading(new Vector2d(45,10),Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(15,10,Math.toRadians(0)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(45,10,Math.toRadians(0)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(15,9,Math.toRadians(0)),Math.toRadians(90))
+                //park
+                .endTrajectory()
                 //park
                 .build());
 
@@ -106,40 +156,102 @@ public class meepMeepTesting {
                         .build());
 
         redhookPlusThreeYellow.runAction((redhookPlusThreeYellow.getDrive().actionBuilder(redLeft))
-                .setTangent(Math.toRadians(90)) // Flipped starting direction
-                .splineToConstantHeading(new Vector2d(-8, -32), Math.toRadians(45)) // Adjusted x, y, and heading
-                .waitSeconds(2)
-// Drop specimen on bar
-                .splineToConstantHeading(new Vector2d(-8, -40), Math.toRadians(180)) // Adjusted y, heading
-// Back up from bar
-                .setTangent(Math.toRadians(180))
-                .splineToSplineHeading(new Pose2d(-30, -25, Math.toRadians(180)), Math.toRadians(45)) // Flipped
-                .waitSeconds(2)
-// Pick up 1 sample
+
+
+                .setTangent(Math.toRadians(270-180))
+                .splineToConstantHeading(new Vector2d(-7,-26), Math.toRadians(225-180))
+                .waitSeconds(1)
+                .waitSeconds(1)
+                //Drop specimen on bar
+
+                .splineToConstantHeading(new Vector2d(-8,-40), Math.toRadians(-180))
+                //back up from bar
+
+                .setTangent(Math.toRadians(-180))
+                .splineToSplineHeading(new Pose2d(-31, -18, Math.toRadians(180)), Math.toRadians(-179-180))//30
+                .splineToConstantHeading(new Vector2d(-29,-21),Math.toRadians(0))
+                //.waitSeconds(1)
+                .waitSeconds(3)
+                .splineToConstantHeading(new Vector2d(-31,-20),Math.toRadians(0))
+                .waitSeconds(.5)//
+                .waitSeconds(1)
+                //.waitSeconds(1)
+
+                //Pick up 1 sample
                 .setReversed(true)
-                .splineToSplineHeading(new Pose2d(-62, -60, Math.toRadians(50)), Math.toRadians(230)) // Adjusted
-                .waitSeconds(2)
-// Deposit sample into basket
-                .setTangent(Math.toRadians(180))
+
+                .strafeToConstantHeading(new Vector2d(-35,-25))
+                .waitSeconds(1)
+                //grab block with outtake
+
+                .splineToSplineHeading(new Pose2d(-54,-50, Math.toRadians(230-180)), Math.toRadians(50-180))
+                //move to basket
+                .waitSeconds(3)
+                .splineToConstantHeading(new Vector2d(-60, -56), Math.toRadians(0))
+                .waitSeconds(1)
+                .waitSeconds(.5)
+                .splineToConstantHeading(new Vector2d(-55,-51),Math.toRadians(0))
+                .waitSeconds(.5)
+                .waitSeconds(1)
+                //Deposit sample into basket
+                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                /*.setTangent(Math.toRadians(0))
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(-40, -25, Math.toRadians(180)), Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(40, 20, Math.toRadians(0)), Math.toRadians(0))
+                .waitSeconds(1)
+                .afterTime(1,intakeAction.Middle())
+                .afterTime(2, intakeAction.Low())
+                .afterTime(2, intakeAction.WheelOn())
                 .waitSeconds(2)
-// Move to pick up another sample (2)
+                .splineToConstantHeading(new Vector2d(41,20),Math.toRadians(0))
+                .afterTime(2, intakeAction.intakeUp())
+                .waitSeconds(1)
+                .afterTime(2, intakeAction.WheelOff())
+                .waitSeconds(1)
+                //move to pick up another sample (2)
+
+
                 .setReversed(true)
-                .splineToSplineHeading(new Pose2d(-62, -60, Math.toRadians(50)), Math.toRadians(230))
-                .waitSeconds(2)
-// Deposit sample into basket
+                .afterTime(1, outtakeAction.outtakeDown())
+                .waitSeconds(1)
+                .afterTime(1,intakeAction.WheelReverse())
+                .afterTime(1,outtakeAction.outtakeUp())
+                .afterTime(3,intakeAction.WheelOff())
+                .afterTime(3,outtakeAction.outtakeSpin())
+                //grab block with outtake
+
+                .setTangent(Math.toRadians(110))
+                .splineToSplineHeading(new Pose2d(57,53, Math.toRadians(230)), Math.toRadians(50))
+                .afterTime(1, vertSlidesAction.high())
+                .waitSeconds(3)
+                .splineToConstantHeading(new Vector2d(59, 55), Math.toRadians(0))
+                .afterTime(1,outtakeAction.outtakeClaw(outtakeIntakeMech.outtakeGrab.Release))
+                .waitSeconds(1)
+                .splineToConstantHeading(new Vector2d(56,52),Math.toRadians(0))
+                .afterTime(2,vertSlidesAction.outtakePos(LinearMech.LinearPosEnum.start))
+                .waitSeconds(4)
+                //Deposit sample into basket
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(-50, -25, Math.toRadians(180)), Math.toRadians(180))
+                .splineToLinearHeading(new Pose2d(50, 18, Math.toRadians(0)), Math.toRadians(0))
                 .waitSeconds(2)
-// Move to pick up another sample (3)
+                //move to pick up another sample (3)
                 .setReversed(true)
-                .splineToSplineHeading(new Pose2d(-62, -60, Math.toRadians(50)), Math.toRadians(230))
+                .setTangent(Math.toRadians(110))
+                .splineToSplineHeading(new Pose2d(57,53, Math.toRadians(230)), Math.toRadians(50))
                 .waitSeconds(2)
-// Deposit sample into basket
-                .setReversed(false)
-                .splineToLinearHeading(new Pose2d(-24, -10, Math.toRadians(180)), Math.toRadians(270)) // Adjusted
-// Park
+                //Deposit sample into basket
+
+                 */
+                .splineToLinearHeading(new Pose2d(-45,-10,Math.toRadians(0-180)),Math.toRadians(90-180))
+                .splineToLinearHeading(new Pose2d(-15,-9,Math.toRadians(0-180)),Math.toRadians(90-180))
+                //park
+                .endTrajectory()
+                //park
                 .build());
 
 
