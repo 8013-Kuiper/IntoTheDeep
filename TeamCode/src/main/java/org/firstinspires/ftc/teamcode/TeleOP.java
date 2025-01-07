@@ -90,7 +90,7 @@ public class TeleOP extends DriveConstance{
 
                     break;
                 case start:
-                    intakeLift.Servo().setPosition(0.8);
+                    intakeLift.Servo().setPosition(0.8);//maybe too much
                     if (gamepad2.b){
                         wait.reset();
                         intake = IntakeLiftE.Middle;

@@ -18,7 +18,7 @@ import org.firstinspires.ftc.teamcode.roadRunner.MecanumDrive;
 
 public class redAuto extends DriveConstance {
 
-    Pose2d startPose = new Pose2d(12, 58.5, Math.toRadians(90));
+    Pose2d startPose = new Pose2d(-12, -58.5, Math.toRadians(-90));
 
 
     public void runOpMode(){
@@ -30,40 +30,56 @@ public class redAuto extends DriveConstance {
         org.firstinspires.ftc.teamcode.Actions.outtakeAction outtakeAction = new outtakeAction(outtakeFlip,outtakeSpin,outtakeGrab,Wheel);
 
         TrajectoryActionBuilder test = drive.actionBuilder(startPose)
+                .afterTime(.1,outtakeAction.firstOuttakeUp())
                 .setTangent(Math.toRadians(270-180))
+                .afterTime(.5,vertSlidesAction.HighBar())
                 .splineToConstantHeading(new Vector2d(-7,-26), Math.toRadians(225-180))
                 .waitSeconds(1)
+                .afterTime(.1,vertSlidesAction.outtakePos(LinearMech.LinearPosEnum.start) )
                 .waitSeconds(1)
                 //Drop specimen on bar
 
                 .splineToConstantHeading(new Vector2d(-8,-40), Math.toRadians(-180))
+                .afterTime(1,outtakeAction.outtakeUp())
                 //back up from bar
 
                 .setTangent(Math.toRadians(-180))
                 .splineToSplineHeading(new Pose2d(-31, -18, Math.toRadians(180)), Math.toRadians(-179-180))//30
+                .afterTime(1,intakeAction.Middle())
                 .splineToConstantHeading(new Vector2d(-29,-21),Math.toRadians(0))
                 //.waitSeconds(1)
+                .afterTime(2, intakeAction.Low())
+                .afterTime(2, intakeAction.WheelOn())
                 .waitSeconds(3)
                 .splineToConstantHeading(new Vector2d(-31,-20),Math.toRadians(0))
                 .waitSeconds(.5)//
+                .afterTime(1, intakeAction.intakeUp())//2
                 .waitSeconds(1)
+                .afterTime(2, intakeAction.WheelOff())
                 //.waitSeconds(1)
 
                 //Pick up 1 sample
                 .setReversed(true)
-
                 .strafeToConstantHeading(new Vector2d(-35,-25))
+                .afterTime(1, outtakeAction.outtakeDown())
                 .waitSeconds(1)
+                .afterTime(1,intakeAction.WheelReverse())
+                .afterTime(1,outtakeAction.outtakeUp())
+                .afterTime(3,intakeAction.WheelOff())
+                .afterTime(3,outtakeAction.outtakeSpin())
                 //grab block with outtake
 
                 .splineToSplineHeading(new Pose2d(-54,-50, Math.toRadians(230-180)), Math.toRadians(50-180))
                 //move to basket
+                .afterTime(1, vertSlidesAction.high())
                 .waitSeconds(3)
                 .splineToConstantHeading(new Vector2d(-60, -56), Math.toRadians(0))
                 .waitSeconds(1)
+                .afterTime(.1,outtakeAction.outtakeClaw(outtakeIntakeMech.outtakeGrab.Release))
                 .waitSeconds(.5)
                 .splineToConstantHeading(new Vector2d(-55,-51),Math.toRadians(0))
                 .waitSeconds(.5)
+                .afterTime(.5,vertSlidesAction.outtakePos(LinearMech.LinearPosEnum.start))
                 .waitSeconds(1)
                 //Deposit sample into basket
                 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
