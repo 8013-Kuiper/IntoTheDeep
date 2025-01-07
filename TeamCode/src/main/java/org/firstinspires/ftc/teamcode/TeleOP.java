@@ -191,6 +191,7 @@ public class TeleOP extends DriveConstance{
 
                     if (gamepad2.right_stick_y < -.1)
                         linearFunc.setLinearPosAsEnum(LinearMech.LinearPosEnum.start);
+
                     if (gamepad2.dpad_down){
                         rightVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                         leftVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
