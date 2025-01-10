@@ -46,6 +46,8 @@ public class TeleOP extends DriveConstance{
         outtakeOrder outtake = outtakeOrder.DropPos;
 
         Liftstate lift = Liftstate.manual;
+        leftVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         waitForStart();
         while (opModeIsActive()){
