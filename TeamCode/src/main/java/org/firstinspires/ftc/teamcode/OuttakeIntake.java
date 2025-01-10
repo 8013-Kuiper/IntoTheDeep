@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+@Disabled
+
 public class OuttakeIntake extends DriveConstance {
     enum State{
         low,
@@ -9,7 +12,6 @@ public class OuttakeIntake extends DriveConstance {
     }
 
     State state = null;
-
     @Override
     public void runOpMode() throws InterruptedException {
 

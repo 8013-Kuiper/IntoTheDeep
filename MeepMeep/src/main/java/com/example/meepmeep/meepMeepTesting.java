@@ -16,27 +16,64 @@ public class meepMeepTesting {
 
         Pose2d redLeft = new Pose2d(-12,-58.5, Math.toRadians(-90));
 
+        Pose2d blueRight = new Pose2d(-12,58.5, Math.toRadians(90));
+
+        Pose2d redRight = new Pose2d(12,-58.5,Math.toRadians(-90));
+
         RoadRunnerBotEntity hookPlusThreeYellow = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
-                //.setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
+                .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .build();
 
-        RoadRunnerBotEntity oneBluePlusThreeYellow = new DefaultBotBuilder(meepMeep)
+        RoadRunnerBotEntity bluepark = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .build();
 
         RoadRunnerBotEntity redhookPlusThreeYellow = new DefaultBotBuilder(meepMeep)
-                //.setConstraints(60,60,Math.toRadians(180),Math.toRadians(180), 15)
+                .setConstraints(60,60,Math.toRadians(180),Math.toRadians(180), 15)
                         .build();
 
+        RoadRunnerBotEntity redpark = new DefaultBotBuilder(meepMeep)
+                .setConstraints(60,60,Math.toRadians(180),Math.toRadians(180), 15)
+                .build();
 
 
 
 
 
+        bluepark.runAction(bluepark.getDrive().actionBuilder(blueRight)
+                .waitSeconds(5)
+                .setTangent(Math.toRadians(270))
+                .splineToConstantHeading(new Vector2d(-7,26), Math.toRadians(225))
+                .waitSeconds(1)
+                .waitSeconds(1)
+                //Drop specimen on bar
+
+                .splineToConstantHeading(new Vector2d(-8,40), Math.toRadians(0))
+                //back up from bar
+
+                .waitSeconds(1)
+                .splineTo(new Vector2d(-50,60),Math.toRadians(90))
+                .build())
+        ;
 
 
+        redpark.runAction(bluepark.getDrive().actionBuilder(redRight)
+                .waitSeconds(5)
+                .setTangent(Math.toRadians(-270))
+                .splineToConstantHeading(new Vector2d(7,-26), Math.toRadians(-225))
+                .waitSeconds(1)
+                .waitSeconds(1)
+                //Drop specimen on bar
+
+                .splineToConstantHeading(new Vector2d(8,-40), Math.toRadians(0))
+                //back up from bar
+
+                .waitSeconds(1)
+                .splineTo(new Vector2d(50,-60),Math.toRadians(-90))
+                .build())
+        ;
 
 
 
@@ -139,21 +176,7 @@ public class meepMeepTesting {
 
 
 
-        oneBluePlusThreeYellow.runAction(oneBluePlusThreeYellow.getDrive().actionBuilder(blueLeft)
-                        .setTangent(Math.toRadians(270))
-                        .splineToLinearHeading(new Pose2d(58, 50, Math.toRadians(250)), Math.toRadians(0))
-                        //Drop sample in basket and pick up another then drop again.
-                        .setTangent(0)
-                        .splineToLinearHeading(new Pose2d(61, 48, Math.toRadians(270)), Math.toRadians(0))
-                        //adjust for next pick up, pick up, then drop
-                        .setTangent(Math.toRadians(200))
-                        .splineToSplineHeading(new Pose2d(50, 35, Math.toRadians(340)), Math.toRadians(230))
-                        //Reach out and pick up sample
-                        .setTangent(Math.toRadians(110))
-                        .splineToSplineHeading(new Pose2d(60, 48, Math.toRadians(269)), Math.toRadians(0))
-                        //Deposit sample into basket
-                        //Park
-                        .build());
+
 
         redhookPlusThreeYellow.runAction((redhookPlusThreeYellow.getDrive().actionBuilder(redLeft))
 
@@ -266,7 +289,8 @@ public class meepMeepTesting {
                 .setBackgroundAlpha(0.95f)
                 .addEntity(redhookPlusThreeYellow)
                 .addEntity(hookPlusThreeYellow)
-                //.addEntity(oneBluePlusThreeYellow)
+                .addEntity(bluepark)
+                .addEntity(redpark)
                 .start();
     }
 }
