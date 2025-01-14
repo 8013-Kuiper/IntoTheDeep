@@ -31,13 +31,13 @@ public class blueRight extends DriveConstance {
 
         TrajectoryActionBuilder test = drive.actionBuilder(startPose)
                 .waitSeconds(5)
-                .afterTime(1,outtakeAction.firstOuttakeUp())
+                .afterTime(.1,outtakeAction.firstOuttakeUp())
                 .setTangent(Math.toRadians(270))
-                .afterTime(4,vertSlidesAction.HighBar())
+                .afterTime(.1,vertSlidesAction.HighBar())
                 .splineToConstantHeading(new Vector2d(-7,26), Math.toRadians(225))
                 .waitSeconds(1)
                 .afterTime(.1,vertSlidesAction.outtakePos(LinearMech.LinearPosEnum.start) )
-                .waitSeconds(1)
+                .waitSeconds(2)
                 //Drop specimen on bar
 
                 .splineToConstantHeading(new Vector2d(-8,40), Math.toRadians(0))
