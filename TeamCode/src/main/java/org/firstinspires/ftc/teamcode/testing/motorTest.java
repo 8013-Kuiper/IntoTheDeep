@@ -1,10 +1,11 @@
 package org.firstinspires.ftc.teamcode.testing;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.DriveConstance;
-
+@Disabled
 @TeleOp
 public class motorTest extends DriveConstance {
     int motorPortNum = 0;

@@ -1,13 +1,14 @@
 package org.firstinspires.ftc.teamcode.testing;
 
 import com.qualcomm.hardware.rev.RevColorSensorV3;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
-
+@Disabled
 @TeleOp (name = "DataCollection", group = "Testing")
 public class DataCollection extends LinearOpMode {
 
