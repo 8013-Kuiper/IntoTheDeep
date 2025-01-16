@@ -196,9 +196,10 @@ public class TeleOP extends DriveConstance{
                     if (gamepad2.right_stick_y < -.1)
                         linearFunc.setLinearPosAsEnum(LinearMech.LinearPosEnum.HighBasket);
 
-                    if(liftTime.seconds()>1 && linearFunc.getpos().equals(linearFunc.start)){
+                    if(liftTime.seconds()>1.4 && rightVertLinear.getTargetPosition() == 0){
                         leftVertLinear.setPower(0);
                         rightVertLinear.setPower(0);
+                        telemetry.addLine("testing");
                     }
 
                     if (gamepad2.dpad_down){

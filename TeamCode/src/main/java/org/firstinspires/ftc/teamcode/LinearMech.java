@@ -48,7 +48,7 @@ public class LinearMech {
         start
     }
 
-    private LinearPosEnum LinearPos = null;
+    private LinearPosEnum LinearPos = LinearPosEnum.start;
 
     public Dictionary<DcMotorEx, Integer> getLinearPos(){
         Dictionary<DcMotorEx, Integer> positions= new Hashtable<>();
