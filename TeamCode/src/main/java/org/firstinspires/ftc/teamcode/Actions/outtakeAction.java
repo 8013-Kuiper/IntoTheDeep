@@ -85,6 +85,18 @@ public class outtakeAction {
         return new outtakeClaw();
     }
 
+    public class CloseClaw  implements Action  {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            outtakeFunc.setOuttakeGrabPos(outtakeIntakeMech.outtakeGrab.Grabbed);
+            return false;
+        }
+    }
+
+    public Action CLoseClaw(){
+        return new CloseClaw();
+    }
+
     public class outtakeSpin  implements Action  {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
@@ -102,7 +114,7 @@ public class outtakeAction {
     public class firstOuttakeUp  implements Action  {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            outtakeFlip.setPosition(.8);
+            outtakeFlip.setPosition(.5);
             return false;
         }
     }
