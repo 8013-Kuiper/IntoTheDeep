@@ -59,6 +59,10 @@ public class LinearMech {
         return positions;
     }
 
+    public LinearPosEnum getpos() {
+        return LinearPos;
+    }
+
     public void setLinearPosAsEnum(LinearPosEnum PosEnum){
         switch (PosEnum){
             case HighBasket -> {
@@ -92,8 +96,8 @@ public class LinearMech {
     private void setLeftVertPos(int pos){
         leftVertLinear.setTargetPosition(pos);
 
-        if (leftVertLinear.getCurrentPosition()+ 20 > pos ||
-                leftVertLinear.getCurrentPosition() - 20 > pos)
+        if (leftVertLinear.getCurrentPosition()+ 20 >= Math.abs(pos) &&
+                leftVertLinear.getCurrentPosition() - 20 <= Math.abs(pos))
             leftVertLinear.setPower(.3);
         else
             leftVertLinear.setPower(1);
@@ -103,8 +107,8 @@ public class LinearMech {
     private void setRightVertPos(int pos){
         rightVertLinear.setTargetPosition(pos);
 
-        if (rightVertLinear.getCurrentPosition()+ 20 > pos ||
-                rightVertLinear.getCurrentPosition() - 20 > pos)
+        if (rightVertLinear.getCurrentPosition()+ 20 >= Math.abs(pos) &&
+                rightVertLinear.getCurrentPosition() - 20 <= Math.abs(pos))
             rightVertLinear.setPower(.3);
         else
             rightVertLinear.setPower(1);

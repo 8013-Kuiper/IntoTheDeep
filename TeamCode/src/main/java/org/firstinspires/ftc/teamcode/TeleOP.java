@@ -20,6 +20,7 @@ public class TeleOP extends DriveConstance{
 
         ElapsedTime wait = new ElapsedTime();
         ElapsedTime outtakeTime = new ElapsedTime();
+        ElapsedTime liftTime = new ElapsedTime();
 
 
 
@@ -188,11 +189,17 @@ public class TeleOP extends DriveConstance{
 
             switch (lift) {
                 case auto -> {
-                    if (gamepad2.right_stick_y > .1)
+                    if (gamepad2.right_stick_y > .1) {
+                        liftTime.reset();
+                        linearFunc.setLinearPosAsEnum(LinearMech.LinearPosEnum.start);
+                    }
+                    if (gamepad2.right_stick_y < -.1)
                         linearFunc.setLinearPosAsEnum(LinearMech.LinearPosEnum.HighBasket);
 
-                    if (gamepad2.right_stick_y < -.1)
-                        linearFunc.setLinearPosAsEnum(LinearMech.LinearPosEnum.start);
+                    if(liftTime.seconds()>1 && linearFunc.getpos().equals(linearFunc.start)){
+                        leftVertLinear.setPower(0);
+                        rightVertLinear.setPower(0);
+                    }
 
                     if (gamepad2.dpad_down){
                         rightVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);

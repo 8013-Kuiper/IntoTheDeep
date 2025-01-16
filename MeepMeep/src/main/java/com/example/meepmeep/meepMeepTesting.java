@@ -38,8 +38,37 @@ public class meepMeepTesting {
                 .setConstraints(60,60,Math.toRadians(180),Math.toRadians(180), 15)
                 .build();
 
+        RoadRunnerBotEntity bigboy = new DefaultBotBuilder(meepMeep)
+                .setConstraints(60,60,Math.toRadians(180),Math.toRadians(180), 15)
+                .build();
 
 
+
+        bigboy.runAction(bigboy.getDrive().actionBuilder(blueRight)
+                .splineToConstantHeading(new Vector2d(-7,26), Math.toRadians(225))
+                .waitSeconds(1)
+                .splineToSplineHeading(new Pose2d(-46,12.5,Math.toRadians(-90)),Math.toRadians(220))
+                .waitSeconds(.1)
+                .lineToY(55)
+                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))
+                .waitSeconds(1)
+                .splineToLinearHeading(new Pose2d(-60,12.5,Math.toRadians(-90)),Math.toRadians(220))
+                .waitSeconds(.1)
+                .lineToY(55)
+                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))
+                .waitSeconds(1)
+                .splineToLinearHeading(new Pose2d(-40,60,Math.toRadians(-90)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))
+                .waitSeconds(1)
+                .splineToLinearHeading(new Pose2d(-40,60,Math.toRadians(-90)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))
+
+
+
+                //.splineToConstantHeading(new Vector2d(-44, 65),Math.toRadians(90))
+                .build()
+        )
+        ;
 
 
         bluepark.runAction(bluepark.getDrive().actionBuilder(blueRight)
@@ -291,6 +320,7 @@ public class meepMeepTesting {
                 .addEntity(hookPlusThreeYellow)
                 .addEntity(bluepark)
                 .addEntity(redpark)
+                .addEntity(bigboy)
                 .start();
     }
 }
