@@ -94,4 +94,23 @@ public class vertSlidesAction {
         return new HighBar();
     }
 
+    public class resetSlides implements Action  {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            leftVertLinear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            rightVertLinear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            leftVertLinear.setTargetPosition(0);
+            leftVertLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightVertLinear.setTargetPosition(0);
+            rightVertLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            return false;
+        }
+    }
+
+    public Action resetSlides(){
+        return new resetSlides();
+    }
+
+
+
 }

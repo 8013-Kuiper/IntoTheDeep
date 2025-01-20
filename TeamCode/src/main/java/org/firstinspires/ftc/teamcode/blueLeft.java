@@ -40,6 +40,7 @@ public class blueLeft extends DriveConstance {
                 //Drop specimen on bar
 
                 .splineToConstantHeading(new Vector2d(8,40), Math.toRadians(0))
+                .afterTime(1, vertSlidesAction.resetSlides())//////////////////////////////////
                 .afterTime(1,outtakeAction.outtakeUp())
                 //back up from bar
 
@@ -51,7 +52,7 @@ public class blueLeft extends DriveConstance {
                 .afterTime(2, intakeAction.Low())
                 .afterTime(2, intakeAction.WheelOn())
                 .waitSeconds(3)
-                .splineToConstantHeading(new Vector2d(31,20),Math.toRadians(0))
+                .splineToConstantHeading(new Vector2d(31,24),Math.toRadians(0))//31,20 sat, 31, 24
                 .waitSeconds(.5)//
                 .afterTime(1, intakeAction.intakeUp())//2
                 .waitSeconds(1)

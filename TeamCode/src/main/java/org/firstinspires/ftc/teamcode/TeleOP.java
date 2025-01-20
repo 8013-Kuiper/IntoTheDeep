@@ -170,7 +170,7 @@ public class TeleOP extends DriveConstance{
 
 
              */
-            if (HorizontalLinear.getCurrentPosition()>=1030) {
+            if (HorizontalLinear.getCurrentPosition()>=945) {//1030
                 if (horizontalPower > 0) {
                     HorizontalLinear.setPower(0);
                 } else {
@@ -197,10 +197,18 @@ public class TeleOP extends DriveConstance{
                         linearFunc.setLinearPosAsEnum(LinearMech.LinearPosEnum.HighBasket);
 
                     if(liftTime.seconds()>1.4 && rightVertLinear.getTargetPosition() == 0){
-                        leftVertLinear.setPower(0);
-                        rightVertLinear.setPower(0);
+                        //leftVertLinear.setPower(0);
+                        //rightVertLinear.setPower(0);
+                        leftVertLinear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                        rightVertLinear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                        leftVertLinear.setTargetPosition(0);
+                        leftVertLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                        rightVertLinear.setTargetPosition(0);
+                        rightVertLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                         telemetry.addLine("testing");
                     }
+
+                    //if(rightVertLinear.getTargetPosition()==0 && gamepad1.right_stick_button)
 
                     if (gamepad2.dpad_down){
                         rightVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
