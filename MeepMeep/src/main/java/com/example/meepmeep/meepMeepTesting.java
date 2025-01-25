@@ -45,23 +45,39 @@ public class meepMeepTesting {
 
 
         bigboy.runAction(bigboy.getDrive().actionBuilder(blueRight)
+                .setTangent(Math.toRadians(270))
                 .splineToConstantHeading(new Vector2d(-7,26), Math.toRadians(225))
                 .waitSeconds(1)
-                .splineToSplineHeading(new Pose2d(-46,12.5,Math.toRadians(-90)),Math.toRadians(220))
+                //first drop off
+                .setTangent(Math.toRadians(-270))
+                .splineToLinearHeading(new Pose2d(-46,12.5,Math.toRadians(-90)),Math.toRadians(300))
                 .waitSeconds(.1)
+                //move to push block
                 .lineToY(55)
-                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))
-                .waitSeconds(1)
-                .splineToLinearHeading(new Pose2d(-60,12.5,Math.toRadians(-90)),Math.toRadians(220))
-                .waitSeconds(.1)
+                //push first block
+                .splineToLinearHeading(new Pose2d(-60,12.5,Math.toRadians(-90)),Math.toRadians(90))
+                //move to push block
                 .lineToY(55)
+                //push second block
+
                 .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))
                 .waitSeconds(1)
-                .splineToLinearHeading(new Pose2d(-40,60,Math.toRadians(-90)),Math.toRadians(0))
+                //second drop off
+
+                .splineToLinearHeading(new Pose2d(-34,60,Math.toRadians(-90)),Math.toRadians(0))
+                //pick up third block
                 .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))
                 .waitSeconds(1)
-                .splineToLinearHeading(new Pose2d(-40,60,Math.toRadians(-90)),Math.toRadians(0))
+                //drop third block
+                .splineToLinearHeading(new Pose2d(-34,60,Math.toRadians(-90)),Math.toRadians(0))
+                //pick up forth block
                 .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))
+                .waitSeconds(1)
+                //drop off forth block
+                .splineToLinearHeading(new Pose2d(-34,60,Math.toRadians(-90)),Math.toRadians(0))
+                //pick up fith block
+                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))
+                //drop off fith block
 
 
 
@@ -316,10 +332,10 @@ public class meepMeepTesting {
         meepMeep.setBackground(MeepMeep.Background.FIELD_INTO_THE_DEEP_JUICE_DARK)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
-                .addEntity(redhookPlusThreeYellow)
-                .addEntity(hookPlusThreeYellow)
-                .addEntity(bluepark)
-                .addEntity(redpark)
+                //.addEntity(redhookPlusThreeYellow)
+                //.addEntity(hookPlusThreeYellow)
+               // .addEntity(bluepark)
+                //.addEntity(redpark)
                 .addEntity(bigboy)
                 .start();
     }
