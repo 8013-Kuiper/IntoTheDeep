@@ -47,32 +47,38 @@ public class meepMeepTesting {
         bigboy.runAction(bigboy.getDrive().actionBuilder(blueRight)
                 .setTangent(Math.toRadians(270))
                 .splineToConstantHeading(new Vector2d(-7,26), Math.toRadians(225))
-                .waitSeconds(1)
+                .waitSeconds(.5)
                 //first drop off
                 .setTangent(Math.toRadians(-270))
                 .splineToLinearHeading(new Pose2d(-46,12.5,Math.toRadians(-90)),Math.toRadians(300))
-                .waitSeconds(.1)
+                .waitSeconds(.000001)
                 //move to push block
                 .lineToY(55)
                 //push first block
                 .splineToLinearHeading(new Pose2d(-60,12.5,Math.toRadians(-90)),Math.toRadians(90))
                 //move to push block
-                .lineToY(55)
+                        //.lineToY(55)
+                .splineToConstantHeading(new Vector2d(-60,55),Math.toRadians(0))
                 //push second block
 
+                .splineToLinearHeading(new Pose2d(-34,60,Math.toRadians(-90)),Math.toRadians(0))
+                .waitSeconds(.000001)
+                .lineToY(65)
+
+                        .setReversed(false)
                 .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))
-                .waitSeconds(1)
+                .waitSeconds(.5)
                 //second drop off
 
                 .splineToLinearHeading(new Pose2d(-34,60,Math.toRadians(-90)),Math.toRadians(0))
                 //pick up third block
                 .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))
-                .waitSeconds(1)
+                .waitSeconds(.5)
                 //drop third block
                 .splineToLinearHeading(new Pose2d(-34,60,Math.toRadians(-90)),Math.toRadians(0))
                 //pick up forth block
                 .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))
-                .waitSeconds(1)
+                .waitSeconds(.5)
                 //drop off forth block
                 .splineToLinearHeading(new Pose2d(-34,60,Math.toRadians(-90)),Math.toRadians(0))
                 //pick up fith block
