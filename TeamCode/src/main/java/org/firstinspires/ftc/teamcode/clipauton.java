@@ -34,17 +34,23 @@ public class clipauton extends DriveConstance {
                 .splineToConstantHeading(new Vector2d(-7,26), Math.toRadians(225))
                 .waitSeconds(.5)
                 //first drop off
+                .splineToConstantHeading(new Vector2d(-7,35),Math.toRadians(0))
                 .setTangent(Math.toRadians(-270))
-                .splineToLinearHeading(new Pose2d(-46,12.5,Math.toRadians(-90)),Math.toRadians(300))
+                .splineToLinearHeading(new Pose2d(-45,6,Math.toRadians(-90)),Math.toRadians(0))
                 //move to push block
                 .setTangent(Math.toRadians(90))
                 .splineToConstantHeading(new Vector2d(-49,60),Math.toRadians(0))
                 //push first block
-                .splineToLinearHeading(new Pose2d(-60,12.5,Math.toRadians(-90)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-50,12.5,Math.toRadians(-90)),Math.toRadians(90))
                 //move to push block
                 .setTangent(Math.toRadians(90))
                 .splineToConstantHeading(new Vector2d(-45,60),Math.toRadians(0))
                 //push second block
+                .splineToLinearHeading(new Pose2d(-58,20,Math.toRadians(-90)),Math.toRadians(90))
+                //move to push third block
+                .setTangent(Math.toRadians(90))
+                .splineToConstantHeading(new Vector2d(-45,60),Math.toRadians(0))
+                //push third block
                 .splineToLinearHeading(new Pose2d(-34,60,Math.toRadians(-90)),Math.toRadians(0))
                 .waitSeconds(.000001)
                 .lineToY(65)
@@ -54,7 +60,7 @@ public class clipauton extends DriveConstance {
                 .waitSeconds(.5)
                 //second drop off
                 .setTangent(90)
-                .splineToLinearHeading(new Pose2d(-34,60,Math.toRadians(-90)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-34,50,Math.toRadians(-90)),Math.toRadians(90))
                 .waitSeconds(.000001)
                 .lineToY(65)
                 //pick up third block
@@ -63,7 +69,7 @@ public class clipauton extends DriveConstance {
                 .waitSeconds(.5)
                 //drop third block
                 .setTangent(90)
-                .splineToLinearHeading(new Pose2d(-34,60,Math.toRadians(-90)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-34,50,Math.toRadians(-90)),Math.toRadians(90))
                 .waitSeconds(.000001)
                 .lineToY(65)
                 //pick up forth block
@@ -72,7 +78,7 @@ public class clipauton extends DriveConstance {
                 .waitSeconds(.5)
                 //drop off forth block
                 .setTangent(90)
-                .splineToLinearHeading(new Pose2d(-34,60,Math.toRadians(-90)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-34,50,Math.toRadians(-90)),Math.toRadians(90))
                 .waitSeconds(.000001)
                 .lineToY(65)
                 //pick up fith block
