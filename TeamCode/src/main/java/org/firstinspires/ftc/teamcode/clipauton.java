@@ -27,11 +27,11 @@ public class clipauton extends DriveConstance {
 
         org.firstinspires.ftc.teamcode.Actions.intakeAction intakeAction = new intakeAction(Wheel, intakeLift);
         org.firstinspires.ftc.teamcode.Actions.vertSlidesAction vertSlidesAction = new vertSlidesAction(leftVertLinear, rightVertLinear, allHubs);
-        org.firstinspires.ftc.teamcode.Actions.outtakeAction outtakeAction = new outtakeAction(outtakeFlip,outtakeSpin,outtakeGrab,Wheel);
+        org.firstinspires.ftc.teamcode.Actions.outtakeAction outtakeAction = new outtakeAction(outtakeFlip,outtakeSpin,outtakeGrab,Wheel,clipArm);
 
         TrajectoryActionBuilder test = drive.actionBuilder(startPose)
-                .setTangent(Math.toRadians(270))
-                .splineToConstantHeading(new Vector2d(-7,26), Math.toRadians(225))
+                .setTangent(Math.toRadians(-90))
+                .splineToConstantHeading(new Vector2d(-2,26), Math.toRadians(-90))
                 .waitSeconds(.5)
                 //first drop off
                 .splineToConstantHeading(new Vector2d(-7,35),Math.toRadians(0))
@@ -57,34 +57,34 @@ public class clipauton extends DriveConstance {
                 .waitSeconds(4)
                 //pick up second block
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))
+                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(-90)), Math.toRadians(225))
                 .waitSeconds(.5)
                 //second drop off
                 .setTangent(90)
-                .splineToLinearHeading(new Pose2d(-34,50,Math.toRadians(-90)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-25,55,Math.toRadians(-90)),Math.toRadians(90))
                 .waitSeconds(.000001)
-                .lineToY(65)
+                .lineToY(56)
                 //pick up third block
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))
+                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(-90)), Math.toRadians(225))
                 .waitSeconds(.5)
                 //drop third block
                 .setTangent(90)
-                .splineToLinearHeading(new Pose2d(-34,50,Math.toRadians(-90)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-25,55,Math.toRadians(-90)),Math.toRadians(90))
                 .waitSeconds(.000001)
-                .lineToY(65)
+                .lineToY(56)
                 //pick up forth block
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))
+                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(-90)), Math.toRadians(225))
                 .waitSeconds(.5)
                 //drop off forth block
                 .setTangent(90)
-                .splineToLinearHeading(new Pose2d(-34,50,Math.toRadians(-90)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-25,55,Math.toRadians(-90)),Math.toRadians(90))
                 .waitSeconds(.000001)
-                .lineToY(65)
+                .lineToY(56)
                 //pick up fith block
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))
+                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(-90)), Math.toRadians(225))
                 //drop off fith block
 
 

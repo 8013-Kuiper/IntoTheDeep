@@ -10,7 +10,7 @@ import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 
 public class meepMeepTesting {
     public static void main(String[] args) {
-        MeepMeep meepMeep = new MeepMeep(1000);
+        MeepMeep meepMeep = new MeepMeep(700);
 
         Pose2d blueLeft = new Pose2d(12, 58.5, Math.toRadians(90));
 
@@ -45,8 +45,10 @@ public class meepMeepTesting {
 
 
         bigboy.runAction(bigboy.getDrive().actionBuilder(blueRight)
-                .setTangent(Math.toRadians(270))
-                .splineToConstantHeading(new Vector2d(-7,26), Math.toRadians(225))
+                .setTangent(Math.toRadians(-90))
+                ///////////////////////////////////////
+                .splineToConstantHeading(new Vector2d(-2,26), Math.toRadians(-90))
+                //////////////////////////////////////////
                 .waitSeconds(.5)
                 //first drop off
                 .splineToConstantHeading(new Vector2d(-7,35),Math.toRadians(0))
@@ -54,51 +56,60 @@ public class meepMeepTesting {
                 .splineToLinearHeading(new Pose2d(-45,6,Math.toRadians(-90)),Math.toRadians(0))
                 //move to push block
                 .setTangent(Math.toRadians(90))
-                .splineToConstantHeading(new Vector2d(-49,50),Math.toRadians(0))
+                .splineToConstantHeading(new Vector2d(-40,55),Math.toRadians(0))
                 //push first block
-                .splineToLinearHeading(new Pose2d(-50,12.5,Math.toRadians(-90)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-55,12.5,Math.toRadians(-90)),Math.toRadians(90))
                 //move to push block
                 .setTangent(Math.toRadians(90))
-                .splineToConstantHeading(new Vector2d(-45,50),Math.toRadians(0))
+                .splineToConstantHeading(new Vector2d(-45,55),Math.toRadians(0))
                 //push second block
-                .splineToLinearHeading(new Pose2d(-58,20,Math.toRadians(-90)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-58,10,Math.toRadians(-90)),Math.toRadians(90))
                 //move to push third block
                 .setTangent(Math.toRadians(90))
-                .splineToConstantHeading(new Vector2d(-45,50),Math.toRadians(0))
+                .splineToConstantHeading(new Vector2d(-45,55),Math.toRadians(0))
                 //push third block
-                .splineToLinearHeading(new Pose2d(-34,50,Math.toRadians(-90)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(-25,55,Math.toRadians(-90)),Math.toRadians(0))
                 .waitSeconds(.000001)
-                .lineToY(55)
+                .lineToY(56)
+                .waitSeconds(4)
                 //pick up second block
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))
+                /////////////////////////////////////////////////
+                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(-90)), Math.toRadians(225))
+                ////////////////////////////////////////////////////////
                 .waitSeconds(.5)
                 //second drop off
                 .setTangent(90)
-                .splineToLinearHeading(new Pose2d(-34,50,Math.toRadians(-90)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-25,55,Math.toRadians(-90)),Math.toRadians(90))
                 .waitSeconds(.000001)
-                .lineToY(55)
+                .lineToY(56)
                 //pick up third block
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))
+                /////////////////////////////////////////////////////////
+                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(-90)), Math.toRadians(225))
+                ////////////////////////////////////////////////////////
                 .waitSeconds(.5)
                 //drop third block
                 .setTangent(90)
-                .splineToLinearHeading(new Pose2d(-34,50,Math.toRadians(-90)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-25,55,Math.toRadians(-90)),Math.toRadians(90))
                 .waitSeconds(.000001)
-                .lineToY(55)
+                .lineToY(56)
                 //pick up forth block
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))
+                //////////////////////////////////////////////////////
+                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(-90)), Math.toRadians(225))
+                ////////////////////////////////////////////////
                 .waitSeconds(.5)
                 //drop off forth block
                 .setTangent(90)
-                .splineToLinearHeading(new Pose2d(-34,50,Math.toRadians(-90)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-25,55,Math.toRadians(-90)),Math.toRadians(90))
                 .waitSeconds(.000001)
-                .lineToY(55)
+                .lineToY(56)
                 //pick up fith block
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))
+                /////////////////////////////////////////////////
+                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(-90)), Math.toRadians(225))
+                //////////////////////////////////////////////////
                 //drop off fith block
 
 

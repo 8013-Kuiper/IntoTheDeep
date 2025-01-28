@@ -13,6 +13,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.ServoImplEx;
 
+import org.firstinspires.ftc.teamcode.Axon.Axon;
 import org.firstinspires.ftc.teamcode.Axon.AxonServo;
 import org.firstinspires.ftc.teamcode.DriveConstance;
 import org.firstinspires.ftc.teamcode.IntakeMech;
@@ -25,6 +26,7 @@ public class outtakeAction {
     private ServoImplEx outtakeSpin;
     private ServoImplEx outtakeGrab;
     private CRServoImplEx Wheel;
+    private AxonServo clipArm;
 
 
     private outtakeIntakeMech.outtake pos;
@@ -34,16 +36,46 @@ public class outtakeAction {
     outtakeIntakeMech outtakeFunc;
 
 
-    public outtakeAction( ServoImplEx outtakeFlip,
-                          ServoImplEx outtakeSpin, ServoImplEx outtakeGrab,
-                          CRServoImplEx Wheel){
+    public outtakeAction(ServoImplEx outtakeFlip,
+                         ServoImplEx outtakeSpin, ServoImplEx outtakeGrab,
+                         CRServoImplEx Wheel, AxonServo axonServo){
         this.outtakeFlip = outtakeFlip;
         this.outtakeSpin = outtakeSpin;
         this.outtakeGrab = outtakeGrab;
         this.Wheel = Wheel;
+        this.clipArm = axonServo;
         this.Wheel.setDirection(DcMotorSimple.Direction.REVERSE);
         this.outtakeFunc = new outtakeIntakeMech(outtakeFlip,outtakeSpin,outtakeGrab,Wheel);
 
+    }
+
+
+
+    public class clipArmDown implements Action  {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            clipArm.Servo().setPosition(.85);
+            return false;
+        }
+    }
+
+    public Action clipArmDown(){
+        return new clipArmDown();
+    }
+
+
+
+
+    public class clipArmUp implements Action  {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            clipArm.Servo().setPosition(.5);
+            return false;
+        }
+    }
+
+    public Action clipArmUp(){
+        return new clipArmUp();
     }
 
 
