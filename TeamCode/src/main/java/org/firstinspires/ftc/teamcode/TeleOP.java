@@ -56,6 +56,19 @@ public class TeleOP extends DriveConstance{
             double VertPower = gamepad2.right_stick_y;
 
 
+            if (gamepad1.a){
+                clipArm.Servo().setPosition(.2);
+            }
+            if (gamepad1.b){
+                clipArm.Servo().setPosition(.8);
+            }
+
+            if (gamepad1.x){
+                clipArm.Servo().setPosition(.5);
+            }
+
+
+
             /*LinearFunc linearFunc = new LinearFunc(leftVertLinear, rightVertLinear, allHubs);
             if (gamepad1.x)
                 linearFunc.setLinearPosAsEnum(LinearFunc.LinearPosEnum.HighBasket);

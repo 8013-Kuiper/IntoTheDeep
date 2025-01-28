@@ -18,7 +18,7 @@ import org.firstinspires.ftc.teamcode.roadRunner.MecanumDrive;
 
 public class clipauton extends DriveConstance {
 
-    Pose2d startPose = new Pose2d(-12, 58.5, Math.toRadians(90));
+    Pose2d startPose = new Pose2d(-12, 58.5, Math.toRadians(-90));
 
 
     public void runOpMode(){
@@ -39,21 +39,22 @@ public class clipauton extends DriveConstance {
                 .splineToLinearHeading(new Pose2d(-45,6,Math.toRadians(-90)),Math.toRadians(0))
                 //move to push block
                 .setTangent(Math.toRadians(90))
-                .splineToConstantHeading(new Vector2d(-49,60),Math.toRadians(0))
+                .splineToConstantHeading(new Vector2d(-40,55),Math.toRadians(0))
                 //push first block
-                .splineToLinearHeading(new Pose2d(-50,12.5,Math.toRadians(-90)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-55,12.5,Math.toRadians(-90)),Math.toRadians(90))
                 //move to push block
                 .setTangent(Math.toRadians(90))
-                .splineToConstantHeading(new Vector2d(-45,60),Math.toRadians(0))
+                .splineToConstantHeading(new Vector2d(-45,55),Math.toRadians(0))
                 //push second block
-                .splineToLinearHeading(new Pose2d(-58,20,Math.toRadians(-90)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-58,10,Math.toRadians(-90)),Math.toRadians(90))
                 //move to push third block
                 .setTangent(Math.toRadians(90))
-                .splineToConstantHeading(new Vector2d(-45,60),Math.toRadians(0))
+                .splineToConstantHeading(new Vector2d(-45,55),Math.toRadians(0))
                 //push third block
-                .splineToLinearHeading(new Pose2d(-34,60,Math.toRadians(-90)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(-25,55,Math.toRadians(-90)),Math.toRadians(0))
                 .waitSeconds(.000001)
-                .lineToY(65)
+                .lineToY(56)
+                .waitSeconds(4)
                 //pick up second block
                 .setReversed(false)
                 .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(90)), Math.toRadians(225))

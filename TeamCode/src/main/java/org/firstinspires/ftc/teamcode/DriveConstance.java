@@ -38,6 +38,8 @@ public abstract class DriveConstance extends LinearOpMode {
 
     public AxonServo intakeLift = new AxonServo();
 
+    public AxonServo clipArm = new AxonServo();
+
     public void initRobot() {
 
 
@@ -80,6 +82,6 @@ public abstract class DriveConstance extends LinearOpMode {
         //intakeColorSensor = hardwareMap.get(RevColorSensorV3.class, "intakeColor");
 
         intakeLift.setServo(hardwareMap.get(ServoImplEx.class, "intakeFlip"), hardwareMap.get(AnalogInput.class, "intakeFlipAnalog"));
-
+        clipArm.setAxonServo(hardwareMap.get(ServoImplEx.class, "clipAxon"));
     }
 }

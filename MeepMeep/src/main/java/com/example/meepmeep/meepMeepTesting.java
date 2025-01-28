@@ -16,7 +16,7 @@ public class meepMeepTesting {
 
         Pose2d redLeft = new Pose2d(-12,-58.5, Math.toRadians(-90));
 
-        Pose2d blueRight = new Pose2d(-12,58.5, Math.toRadians(90));
+        Pose2d blueRight = new Pose2d(-12,58.5, Math.toRadians(-90));
 
         Pose2d redRight = new Pose2d(12,-58.5,Math.toRadians(-90));
 
