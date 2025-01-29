@@ -38,13 +38,88 @@ public class meepMeepTesting {
                 .setConstraints(60,60,Math.toRadians(180),Math.toRadians(180), 15)
                 .build();
 
-        RoadRunnerBotEntity bigboy = new DefaultBotBuilder(meepMeep)
+        RoadRunnerBotEntity clip5 = new DefaultBotBuilder(meepMeep)
                 .setConstraints(60,60,Math.toRadians(180),Math.toRadians(180), 15)
                 .build();
 
 
+        RoadRunnerBotEntity newclip5 = new DefaultBotBuilder(meepMeep)
+                .setConstraints(60,60,Math.toRadians(180),Math.toRadians(180), 15)
+                .build();
 
-        bigboy.runAction(bigboy.getDrive().actionBuilder(blueRight)
+        newclip5.runAction(newclip5.getDrive().actionBuilder(blueRight)
+                .setTangent(Math.toRadians(-90))
+                ///////////////////////////////////////
+                .splineToConstantHeading(new Vector2d(-2,26), Math.toRadians(-90))
+                //////////////////////////////////////////
+                .waitSeconds(.5)
+                //first drop off
+                .splineToLinearHeading(new Pose2d(-7,35,Math.toRadians(250)),Math.toRadians(0))
+                .turn(Math.toRadians(-90))
+                //push first block
+                .turn(Math.toRadians(85))
+                .splineToConstantHeading(new Vector2d(-15,35),Math.toRadians(0))
+                .turn(Math.toRadians(-90))
+                //push second block
+                .turn(Math.toRadians(85))
+                .splineToConstantHeading(new Vector2d(-25,35),Math.toRadians(0))
+                .turn(Math.toRadians(-90))
+                //push third block
+                .splineToLinearHeading(new Pose2d(-25,55,Math.toRadians(-90)),Math.toRadians(0))
+                .waitSeconds(.000001)
+                .lineToY(56)
+                .waitSeconds(4)
+                //pick up second block
+                .setReversed(false)
+                /////////////////////////////////////////////////
+                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(-90)), Math.toRadians(225))
+                ////////////////////////////////////////////////////////
+                .waitSeconds(.5)
+                //second drop off
+                .setTangent(90)
+                .splineToLinearHeading(new Pose2d(-25,55,Math.toRadians(-90)),Math.toRadians(90))
+                .waitSeconds(.000001)
+                .lineToY(56)
+                //pick up third block
+                .setReversed(false)
+                /////////////////////////////////////////////////////////
+                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(-90)), Math.toRadians(225))
+                ////////////////////////////////////////////////////////
+                .waitSeconds(.5)
+                //drop third block
+                .setTangent(90)
+                .splineToLinearHeading(new Pose2d(-25,55,Math.toRadians(-90)),Math.toRadians(90))
+                .waitSeconds(.000001)
+                .lineToY(56)
+                //pick up forth block
+                .setReversed(false)
+                //////////////////////////////////////////////////////
+                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(-90)), Math.toRadians(225))
+                ////////////////////////////////////////////////
+                .waitSeconds(.5)
+                //drop off forth block
+                .setTangent(90)
+                .splineToLinearHeading(new Pose2d(-25,55,Math.toRadians(-90)),Math.toRadians(90))
+                .waitSeconds(.000001)
+                .lineToY(56)
+                //pick up fith block
+                .setReversed(false)
+                /////////////////////////////////////////////////
+                .splineToLinearHeading(new Pose2d(-7,26,Math.toRadians(-90)), Math.toRadians(225))
+                //////////////////////////////////////////////////
+                //drop off fith block
+
+
+
+                //.splineToConstantHeading(new Vector2d(-44, 65),Math.toRadians(90))
+                .build()
+        )
+        ;
+
+
+
+
+        clip5.runAction(clip5.getDrive().actionBuilder(blueRight)
                 .setTangent(Math.toRadians(-90))
                 ///////////////////////////////////////
                 .splineToConstantHeading(new Vector2d(-2,26), Math.toRadians(-90))
@@ -58,7 +133,7 @@ public class meepMeepTesting {
                 .setTangent(Math.toRadians(90))
                 .splineToConstantHeading(new Vector2d(-40,55),Math.toRadians(0))
                 //push first block
-                .splineToLinearHeading(new Pose2d(-55,12.5,Math.toRadians(-90)),Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-55,10,Math.toRadians(-90)),Math.toRadians(90))
                 //move to push block
                 .setTangent(Math.toRadians(90))
                 .splineToConstantHeading(new Vector2d(-45,55),Math.toRadians(0))
@@ -369,7 +444,8 @@ public class meepMeepTesting {
                 //.addEntity(hookPlusThreeYellow)
                // .addEntity(bluepark)
                 //.addEntity(redpark)
-                .addEntity(bigboy)
+                .addEntity(clip5)
+                .addEntity(newclip5)
                 .start();
     }
 }
