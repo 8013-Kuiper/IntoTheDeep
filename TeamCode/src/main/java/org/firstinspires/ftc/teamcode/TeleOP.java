@@ -60,7 +60,7 @@ public class TeleOP extends DriveConstance{
                 clipArm.Servo().setPosition(.2);
             }
             if (gamepad1.b){
-                clipArm.Servo().setPosition(.8);
+                clipArm.Servo().setPosition(.85);
             }
 
             if (gamepad1.x){

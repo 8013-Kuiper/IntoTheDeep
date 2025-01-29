@@ -54,7 +54,7 @@ public class outtakeAction {
     public class clipArmDown implements Action  {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            clipArm.Servo().setPosition(.85);
+            clipArm.Servo().setPosition(.6);
             return false;
         }
     }
@@ -63,13 +63,25 @@ public class outtakeAction {
         return new clipArmDown();
     }
 
+    public class clipArmPickUp implements Action  {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            clipArm.Servo().setPosition(.9);
+            return false;
+        }
+    }
+
+    public Action clipArmPickUp(){
+        return new clipArmPickUp();
+    }
+
 
 
 
     public class clipArmUp implements Action  {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            clipArm.Servo().setPosition(.5);
+            clipArm.Servo().setPosition(.2);
             return false;
         }
     }
