@@ -6,14 +6,16 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 import org.firstinspires.ftc.teamcode.DriveConstance;
 
 public class SpecimenClawClass extends DriveConstance {
+    Servo SpecimenClaw;
+    TouchSensor touchSensor;
     @Override
     public void runOpMode() throws InterruptedException {
-        Servo SpecimenClaw = hardwareMap.get(Servo.class, "");
-        TouchSensor touchSensor = hardwareMap.get(TouchSensor.class, "");
-
-
+        SpecimenClaw = hardwareMap.get(Servo.class, "");
+        touchSensor = hardwareMap.get(TouchSensor.class, "");
 
     }
+    private final double SpecimenClawOpenPos = 0;
+    private final double SpecimenClawClosePos = 0;
     private SpecimenPos specimenPos = SpecimenPos.DownClose;
     private SpecimenClawPos specimenClawPos = SpecimenClawPos.Close;
     private SpecimenArmPos specimenArmPos = SpecimenArmPos.Start;
@@ -44,6 +46,24 @@ public class SpecimenClawClass extends DriveConstance {
             setSpecimenPos();
 
         }
+    }
+
+    public void TouchAutoClose(){
+        while (opModeIsActive()){
+            if (touchSensor.isPressed()){
+                SpecimenClaw.setPosition(SpecimenClawClosePos);
+            }
+        }
+    }
+
+    public void OpenSpecimenClaw(){
+        SpecimenClaw.setPosition(SpecimenClawOpenPos);
+        specimenClawPos = SpecimenClawPos.Open;
+    }
+
+    public void CloseSpecimenClaw(){
+        SpecimenClaw.setPosition(SpecimenClawClosePos);
+        specimenClawPos = SpecimenClawPos.Close;
     }
 
     public void setSpecimenPos(){
