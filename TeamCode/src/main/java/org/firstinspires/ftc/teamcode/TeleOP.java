@@ -17,6 +17,7 @@ public class TeleOP extends DriveConstance{
         MecanumDrive drive = new MecanumDrive(hardwareMap,new Pose2d(0, 0, 0));
         initRobot();
         LinearMech linearFunc = new LinearMech(leftVertLinear, rightVertLinear, allHubs);
+        SpecimenMech clipFunc = new SpecimenMech(SpecimenClaw,clipArm);
 
         ElapsedTime wait = new ElapsedTime();
         ElapsedTime outtakeTime = new ElapsedTime();
@@ -57,14 +58,21 @@ public class TeleOP extends DriveConstance{
 
 
             if (gamepad1.a){
-                clipArm.Servo().setPosition(.2);
+                clipFunc.setSpecimenArmPos(SpecimenMech.SpecimenArmPos.Down);
             }
             if (gamepad1.b){
-                clipArm.Servo().setPosition(.85);
+                clipFunc.setSpecimenArmPos(SpecimenMech.SpecimenArmPos.Up);
             }
 
             if (gamepad1.x){
-                clipArm.Servo().setPosition(.5);
+                clipFunc.setSpecimenArmPos(SpecimenMech.SpecimenArmPos.Drop);
+            }
+
+            if (gamepad1.right_trigger>.1){
+                clipFunc.setSpecimenClawPos(SpecimenMech.SpecimenClawPos.Open);
+            }
+            if (gamepad1.left_trigger>.1){
+                clipFunc.setSpecimenClawPos(SpecimenMech.SpecimenClawPos.Close);
             }
 
 
