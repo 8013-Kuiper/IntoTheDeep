@@ -14,6 +14,7 @@ public class TeleopNorr extends LinearOpMode {
         DcMotorEx frontRight = hardwareMap.get(DcMotorEx.class, "frontRight");
         DcMotorEx backLeft = hardwareMap.get(DcMotorEx.class, "backLeft");
         DcMotorEx backRight = hardwareMap.get(DcMotorEx.class, "backRight");
+        DcMotorEx arm = hardwareMap.get(DcMotorEx.class, "arm");
 
         frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
         frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -26,6 +27,7 @@ public class TeleopNorr extends LinearOpMode {
             double y = -gamepad1.left_stick_y;
             double x = gamepad1.left_stick_x;
             double rx = gamepad1.right_stick_x;
+            double armPower= gamepad2.right_stick_y;
 
             double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1);
             double frontLeftPower = (y + x + rx) / denominator;
@@ -37,6 +39,8 @@ public class TeleopNorr extends LinearOpMode {
             backLeft.setPower(backLeftPower);
             frontRight.setPower(frontRightPower);
             backRight.setPower(backRightPower);
+
+            arm.setPower(armPower);
 
 
         }

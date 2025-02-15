@@ -69,10 +69,10 @@ public class TeleOP extends DriveConstance{
             }
 
             if (gamepad1.right_trigger>.1){
-                clipFunc.setSpecimenClawPos(SpecimenMech.SpecimenClawPos.Open);
+                clipFunc.setSpecimenClawPos(SpecimenMech.SpecimenClawPos.Close);
             }
             if (gamepad1.left_trigger>.1){
-                clipFunc.setSpecimenClawPos(SpecimenMech.SpecimenClawPos.Close);
+                clipFunc.setSpecimenClawPos(SpecimenMech.SpecimenClawPos.Open);
             }
 
 

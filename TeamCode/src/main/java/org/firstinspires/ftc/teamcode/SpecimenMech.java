@@ -16,9 +16,9 @@ public class SpecimenMech {
 
     private final double SpecimenClawOpenPos = 0;
     private final double SpecimenClawClosePos = .5;
-    private final double SpecimenArmDropPos = .5;
-    private final double SpecimenArmDownPos = 0;
-    private final double SpecimenArmUpPos = 1;
+    private final double SpecimenArmDropPos = .6;
+    private final double SpecimenArmUpPos = .3;
+    private final double SpecimenArmDownPos = 1;
 
     private SpecimenClawPos specimenClawPos = SpecimenClawPos.Close;
     private SpecimenArmPos specimenArmPos = SpecimenArmPos.Down;
