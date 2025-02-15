@@ -9,7 +9,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.roadRunner.MecanumDrive;
 import org.firstinspires.ftc.teamcode.roadRunner.TankDrive;
-@Disabled
 @TeleOp
 public final class Stuff extends LinearOpMode {
     @Override
