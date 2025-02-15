@@ -27,6 +27,7 @@ public class outtakeAction {
     private ServoImplEx outtakeGrab;
     private CRServoImplEx Wheel;
     private AxonServo clipArm;
+    private Servo SpecimenClaw;
 
 
     private outtakeIntakeMech.outtake pos;
@@ -38,11 +39,12 @@ public class outtakeAction {
 
     public outtakeAction(ServoImplEx outtakeFlip,
                          ServoImplEx outtakeSpin, ServoImplEx outtakeGrab,
-                         CRServoImplEx Wheel, AxonServo axonServo){
+                         CRServoImplEx Wheel, AxonServo axonServo, Servo claw){
         this.outtakeFlip = outtakeFlip;
         this.outtakeSpin = outtakeSpin;
         this.outtakeGrab = outtakeGrab;
         this.Wheel = Wheel;
+        this.SpecimenClaw = claw;
         this.clipArm = axonServo;
         this.Wheel.setDirection(DcMotorSimple.Direction.REVERSE);
         this.outtakeFunc = new outtakeIntakeMech(outtakeFlip,outtakeSpin,outtakeGrab,Wheel);
@@ -89,6 +91,32 @@ public class outtakeAction {
     public Action clipArmUp(){
         return new clipArmUp();
     }
+
+
+    public class clipClawOpen implements Action  {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            SpecimenClaw.setPosition(.5);
+            return false;
+        }
+    }
+
+    public Action clipClawOpen(){
+        return new clipClawOpen();
+    }
+
+    public class clipClawClose implements Action  {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            SpecimenClaw.setPosition(1);
+            return false;
+        }
+    }
+
+    public Action clipClawClose(){
+        return new clipClawClose();
+    }
+
 
 
     public class outtakeDown implements Action  {

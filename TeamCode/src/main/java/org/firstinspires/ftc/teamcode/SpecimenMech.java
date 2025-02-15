@@ -14,11 +14,11 @@ public class SpecimenMech {
         this.SpecimenClaw = SpecimenClaw;
     }
 
-    private final double SpecimenClawOpenPos = 1;
+    private final double SpecimenClawOpenPos = 0;
     private final double SpecimenClawClosePos = .5;
     private final double SpecimenArmDropPos = .5;
-    private final double SpecimenArmDownPos = .05;
-    private final double SpecimenArmUpPos = .85;
+    private final double SpecimenArmDownPos = 0;
+    private final double SpecimenArmUpPos = 1;
 
     private SpecimenClawPos specimenClawPos = SpecimenClawPos.Close;
     private SpecimenArmPos specimenArmPos = SpecimenArmPos.Down;
@@ -36,6 +36,7 @@ public class SpecimenMech {
         SpecimenClaw.setPosition(SpecimenClawOpenPos);
         specimenClawPos = SpecimenClawPos.Open;
     }
+
 
     public void CloseSpecimenClaw() {
         SpecimenClaw.setPosition(SpecimenClawClosePos);

@@ -31,7 +31,7 @@ public class testAutoFunc extends DriveConstance {
 
         org.firstinspires.ftc.teamcode.Actions.intakeAction intakeAction = new intakeAction(Wheel, intakeLift);
         org.firstinspires.ftc.teamcode.Actions.vertSlidesAction vertSlidesAction = new vertSlidesAction(leftVertLinear, rightVertLinear, allHubs);
-        org.firstinspires.ftc.teamcode.Actions.outtakeAction outtakeAction = new outtakeAction(outtakeFlip,outtakeSpin,outtakeGrab,Wheel,clipArm);
+        org.firstinspires.ftc.teamcode.Actions.outtakeAction outtakeAction = new outtakeAction(outtakeFlip,outtakeSpin,outtakeGrab,Wheel,clipArm,SpecimenClaw);
 
         TrajectoryActionBuilder test = drive.actionBuilder(startPose)
                 //.splineToConstantHeading(new Vector2d(35,40),Math.toRadians(0))
