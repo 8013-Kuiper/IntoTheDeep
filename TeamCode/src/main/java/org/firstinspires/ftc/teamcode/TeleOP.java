@@ -17,7 +17,7 @@ public class TeleOP extends DriveConstance{
         MecanumDrive drive = new MecanumDrive(hardwareMap,new Pose2d(0, 0, 0));
         initRobot();
         LinearMech linearFunc = new LinearMech(leftVertLinear, rightVertLinear, allHubs);
-        SpecimenMech clipFunc = new SpecimenMech(SpecimenClaw,clipArm);
+        SpecimenMech clipFunc = new SpecimenMech(SpecimenClaw,Arm);
 
         ElapsedTime wait = new ElapsedTime();
         ElapsedTime outtakeTime = new ElapsedTime();
