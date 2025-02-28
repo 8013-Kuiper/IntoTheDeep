@@ -33,17 +33,18 @@ public class clipauton extends DriveConstance {
         telemetry.addData("arm",Arm.getCurrentPosition());
         telemetry.update();
         TrajectoryActionBuilder test = drive.actionBuilder(startPose)
-                //.splineToConstantHeading(new Vector2d(-12,60),Math.toRadians(0))
-                .turn(Math.toRadians(1))
-                .afterTime(.00001,outtakeAction.clipClawClose())
-                .afterTime(.01,outtakeAction.clipArmUp())
                 .setTangent(Math.toRadians(-90))
                 .splineToConstantHeading(new Vector2d(2,26), Math.toRadians(-90))
+                .afterTime(.00001,outtakeAction.clipClawClose())
+                //start of drop off
+                .afterTime(.01,outtakeAction.clipArmUp())
+                //.setTangent(Math.toRadians(-90))
+                //.splineToConstantHeading(new Vector2d(2,26), Math.toRadians(-90))
                 .waitSeconds(.0001)
-                .afterTime(.0001,outtakeAction.clipArmDrop())
-                .waitSeconds(.1)
+                .afterTime(.0001,outtakeAction.clipArmDown())
+                //.waitSeconds(.1)
                 .afterTime(.6, outtakeAction.clipClawOpen())
-                //first drop off
+                //end of first drop off
                 .splineToConstantHeading(new Vector2d(-7,35),Math.toRadians(0))
                 .waitSeconds(3)
                 .setTangent(Math.toRadians(-270))
@@ -117,8 +118,7 @@ public class clipauton extends DriveConstance {
 
 
 
-
-
+        SpecimenClaw.setPosition(.5);
         waitForStart();
         if (opModeIsActive()){
 telemetry.addData("arm",Arm.getCurrentPosition());

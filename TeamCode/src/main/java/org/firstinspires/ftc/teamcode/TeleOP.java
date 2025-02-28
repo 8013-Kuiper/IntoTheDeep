@@ -62,13 +62,13 @@ public class TeleOP extends DriveConstance{
             double horizontalPower = -gamepad2.left_stick_y;
             double VertPower = gamepad2.right_stick_y;
             double armPower = -gamepad1.right_stick_y;
-            double coefitiat =1;
+            double coefficient =1;
 
             if (gamepad1.right_stick_button){
-                coefitiat =.5;
+                coefficient =.5;
             }
             else {
-                coefitiat=1;
+                coefficient=1;
             }
 
 
@@ -295,10 +295,10 @@ public class TeleOP extends DriveConstance{
 
             drive.setDrivePowers(new PoseVelocity2d(
                     new Vector2d(
-                            -gamepad1.left_stick_y*coefitiat,
-                            -gamepad1.left_stick_x*coefitiat
+                            -gamepad1.left_stick_y*coefficient,
+                            -gamepad1.left_stick_x*coefficient
                     ),
-                    -gamepad1.right_stick_x*coefitiat
+                    -gamepad1.right_stick_x*coefficient
             ));
 
             /*double y = -gamepad1.left_stick_y;

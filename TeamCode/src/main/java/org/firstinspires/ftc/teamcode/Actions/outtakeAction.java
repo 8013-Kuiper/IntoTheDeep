@@ -64,7 +64,10 @@ public class outtakeAction {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
             //clipArm.Servo().setPosition(.6);
-            SpecimenFunc.setSpecimenArmPos(SpecimenMech.SpecimenArmPos.Down);
+            //SpecimenFunc.setSpecimenArmPos(SpecimenMech.SpecimenArmPos.Down);
+            Arm.setTargetPosition(15);
+            Arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            Arm.setPower(1);
             return false;
         }
     }
@@ -72,6 +75,9 @@ public class outtakeAction {
     public Action clipArmDown(){
         return new clipArmDown();
     }
+
+
+
 
     public class clipArmDrop implements Action  {
         @Override
@@ -109,6 +115,8 @@ public class outtakeAction {
     }
 
 
+
+
     public class clipArmStart implements Action  {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
@@ -125,6 +133,11 @@ public class outtakeAction {
         return new clipArmStart();
     }
 
+
+
+
+
+
     public class clipClawOpen implements Action  {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
@@ -138,6 +151,9 @@ public class outtakeAction {
     public Action clipClawOpen(){
         return new clipClawOpen();
     }
+
+
+
 
 
 
@@ -167,6 +183,11 @@ public class outtakeAction {
         return new outtakeDown();
     }
 
+
+
+
+
+
     public class outtakeUp implements Action  {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
@@ -178,6 +199,9 @@ public class outtakeAction {
     public Action outtakeUp(){
         return new outtakeUp();
     }
+
+
+
 
 
     public class outtakeClaw  implements Action  {
@@ -193,6 +217,10 @@ public class outtakeAction {
         return new outtakeClaw();
     }
 
+
+
+
+
     public class CloseClaw  implements Action  {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
@@ -205,6 +233,10 @@ public class outtakeAction {
         return new CloseClaw();
     }
 
+
+
+
+
     public class outtakeSpin  implements Action  {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
@@ -216,6 +248,9 @@ public class outtakeAction {
     public Action outtakeSpin(){
         return new outtakeSpin();
     }
+
+
+
 
 
 
