@@ -85,7 +85,7 @@ public abstract class DriveConstance extends LinearOpMode {
 
         intakeLift.setServo(hardwareMap.get(ServoImplEx.class, "intakeFlip"), hardwareMap.get(AnalogInput.class, "intakeFlipAnalog"));
         //clipArm.setAxonServo(hardwareMap.get(ServoImplEx.class, "clipAxon"));
-        Arm = hardwareMap.get(DcMotorEx.class,"Arm");
+        Arm = hardwareMap.get(DcMotorEx.class,"arm");
         SpecimenClaw = hardwareMap.get(Servo.class, "claw");
 
     }

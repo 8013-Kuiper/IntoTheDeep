@@ -6,6 +6,7 @@ import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.Actions.intakeAction;
 import org.firstinspires.ftc.teamcode.Actions.outtakeAction;
@@ -23,23 +24,28 @@ public class clipauton extends DriveConstance {
 
     public void runOpMode(){
         initRobot();
-        MecanumDrive drive = new MecanumDrive(hardwareMap, startPose); //init motors
+        MecanumDrive drive = new MecanumDrive(hardwareMap, startPose);//init motors
 
         org.firstinspires.ftc.teamcode.Actions.intakeAction intakeAction = new intakeAction(Wheel, intakeLift);
         org.firstinspires.ftc.teamcode.Actions.vertSlidesAction vertSlidesAction = new vertSlidesAction(leftVertLinear, rightVertLinear, allHubs);
         org.firstinspires.ftc.teamcode.Actions.outtakeAction outtakeAction = new outtakeAction(outtakeFlip,outtakeSpin,outtakeGrab,Wheel,Arm,SpecimenClaw);
 
+        telemetry.addData("arm",Arm.getCurrentPosition());
+        telemetry.update();
         TrajectoryActionBuilder test = drive.actionBuilder(startPose)
+                //.splineToConstantHeading(new Vector2d(-12,60),Math.toRadians(0))
+                .turn(Math.toRadians(1))
                 .afterTime(.00001,outtakeAction.clipClawClose())
+                .afterTime(.01,outtakeAction.clipArmUp())
                 .setTangent(Math.toRadians(-90))
-                .afterTime(.0001,outtakeAction.clipArmUp())
-                .splineToConstantHeading(new Vector2d(2,29), Math.toRadians(-90))
-                .afterTime(.1, outtakeAction.clipArmDrop())
-                .afterTime(1, outtakeAction.clipClawOpen())
-                .waitSeconds(4)
+                .splineToConstantHeading(new Vector2d(2,26), Math.toRadians(-90))
+                .waitSeconds(.0001)
+                .afterTime(.0001,outtakeAction.clipArmDrop())
+                .waitSeconds(.1)
+                .afterTime(.6, outtakeAction.clipClawOpen())
                 //first drop off
-                //.splineToConstantHeading(new Vector2d(-7,35),Math.toRadians(0))
-                /*.lineToY(35)
+                .splineToConstantHeading(new Vector2d(-7,35),Math.toRadians(0))
+                .waitSeconds(3)
                 .setTangent(Math.toRadians(-270))
                 .splineToLinearHeading(new Pose2d(-45,6,Math.toRadians(-90)),Math.toRadians(0))
                 //move to push block
@@ -56,7 +62,7 @@ public class clipauton extends DriveConstance {
                 .setTangent(Math.toRadians(90))
                 .splineToConstantHeading(new Vector2d(-45,55),Math.toRadians(0))
                 //push third block
-                .splineToLinearHeading(new Pose2d(-28,55,Math.toRadians(-90)),Math.toRadians(0))
+                /*.splineToLinearHeading(new Pose2d(-28,55,Math.toRadians(-90)),Math.toRadians(0))
                 .afterTime(.1,outtakeAction.clipArmDrop())
                 .waitSeconds(.000001)
                 .lineToY(56)
@@ -115,7 +121,8 @@ public class clipauton extends DriveConstance {
 
         waitForStart();
         if (opModeIsActive()){
-
+telemetry.addData("arm",Arm.getCurrentPosition());
+telemetry.update();
             Actions.runBlocking(
                     new SequentialAction(
                             test.build()

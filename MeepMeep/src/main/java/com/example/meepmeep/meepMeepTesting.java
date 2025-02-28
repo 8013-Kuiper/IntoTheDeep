@@ -445,7 +445,7 @@ public class meepMeepTesting {
                // .addEntity(bluepark)
                 //.addEntity(redpark)
                 .addEntity(clip5)
-                .addEntity(newclip5)
+                //.addEntity(newclip5)
                 .start();
     }
 }

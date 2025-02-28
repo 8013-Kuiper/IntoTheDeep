@@ -21,9 +21,11 @@ public class SpecimenMech {
 
     private final double SpecimenClawOpenPos = 0;
     private final double SpecimenClawClosePos = .5;
-    private final int SpecimenArmDropPos = 100;
-    private final int SpecimenArmUpPos = 150;
-    private final int SpecimenArmDownPos = 0;
+    private final int SpecimenArmDropPos = 700;
+    private final int SpecimenArmUpPos = 1400;
+    private final int SpecimenArmDownPos = 15;
+    private final int SpecimenArmStartPos = 300;
+
 
     private SpecimenClawPos specimenClawPos = SpecimenClawPos.Close;
     private SpecimenArmPos specimenArmPos = SpecimenArmPos.Down;
@@ -52,7 +54,8 @@ public class SpecimenMech {
     public enum SpecimenArmPos {
         Up,
         Down,
-        Drop
+        Drop,
+        start
     }
 
     public void setSpecimenArmPos(SpecimenArmPos setArmPos) {
@@ -60,18 +63,27 @@ public class SpecimenMech {
             case Up -> {
                 //SpecimenArm.Servo().setPosition(SpecimenArmUpPos);
                 Arm.setTargetPosition(SpecimenArmUpPos);
+                Arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 Arm.setPower(1);
                 specimenArmPos = setArmPos;
             }
             case Down -> {
                 //SpecimenArm.Servo().setPosition(SpecimenArmDownPos);
                 Arm.setTargetPosition(SpecimenArmDownPos);
+                Arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 Arm.setPower(1);
                 specimenArmPos = setArmPos;
             }
             case Drop -> {
                 //SpecimenArm.Servo().setPosition(SpecimenArmDropPos);
                 Arm.setTargetPosition(SpecimenArmDropPos);
+                Arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                Arm.setPower(1);
+                specimenArmPos = setArmPos;
+            }
+            case start -> {
+                Arm.setTargetPosition(SpecimenArmStartPos);
+                Arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 Arm.setPower(1);
                 specimenArmPos = setArmPos;
             }

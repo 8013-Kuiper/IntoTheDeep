@@ -52,7 +52,7 @@ public class outtakeAction {
         this.SpecimenClaw = claw;
         //this.clipArm = axonServo;
         this.Arm = Arm;
-        this.Arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //this.Arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         this.outtakeFunc = new outtakeIntakeMech(outtakeFlip,outtakeSpin,outtakeGrab,Wheel);
         this.SpecimenFunc = new SpecimenMech(SpecimenClaw,Arm);
 
@@ -77,7 +77,10 @@ public class outtakeAction {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
             //clipArm.Servo().setPosition(.9);
-            SpecimenFunc.setSpecimenArmPos(SpecimenMech.SpecimenArmPos.Drop);
+            //SpecimenFunc.setSpecimenArmPos(SpecimenMech.SpecimenArmPos.Drop);
+            Arm.setTargetPosition(600);
+            Arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            Arm.setPower(1);
             return false;
         }
     }
@@ -93,7 +96,10 @@ public class outtakeAction {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
             //clipArm.Servo().setPosition(.2);
-            SpecimenFunc.setSpecimenArmPos(SpecimenMech.SpecimenArmPos.Up);
+            //SpecimenFunc.setSpecimenArmPos(SpecimenMech.SpecimenArmPos.Up);
+            Arm.setTargetPosition(1400);
+            Arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            Arm.setPower(1);
             return false;
         }
     }
@@ -103,10 +109,28 @@ public class outtakeAction {
     }
 
 
+    public class clipArmStart implements Action  {
+        @Override
+        public boolean run(@NonNull TelemetryPacket packet) {
+            //clipArm.Servo().setPosition(.2);
+            //SpecimenFunc.setSpecimenArmPos(SpecimenMech.SpecimenArmPos.start);
+            Arm.setTargetPosition(300);
+            Arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            Arm.setPower(1);
+            return false;
+        }
+    }
+
+    public Action clipArmStart(){
+        return new clipArmStart();
+    }
+
     public class clipClawOpen implements Action  {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            SpecimenFunc.setSpecimenClawPos(SpecimenMech.SpecimenClawPos.Open);
+            //SpecimenFunc.setSpecimenClawPos(SpecimenMech.SpecimenClawPos.Open);
+            SpecimenClaw.setPosition(0);
+
             return false;
         }
     }
@@ -114,6 +138,8 @@ public class outtakeAction {
     public Action clipClawOpen(){
         return new clipClawOpen();
     }
+
+
 
     public class clipClawClose implements Action  {
         @Override

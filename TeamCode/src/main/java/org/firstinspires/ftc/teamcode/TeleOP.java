@@ -38,16 +38,22 @@ public class TeleOP extends DriveConstance{
             GrabPos
         }
 
-        enum Liftstate{
+        enum liftState{
             manual,
             auto
+        }
+
+        enum armState{
+            auto,
+            manual
         }
 
         IntakeLiftE intake = IntakeLiftE.start;
 
         outtakeOrder outtake = outtakeOrder.DropPos;
 
-        Liftstate lift = Liftstate.auto;
+        liftState lift = liftState.auto;
+        armState ArmState = armState.auto;
         //leftVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         //rightVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
@@ -55,18 +61,49 @@ public class TeleOP extends DriveConstance{
         while (opModeIsActive()){
             double horizontalPower = -gamepad2.left_stick_y;
             double VertPower = gamepad2.right_stick_y;
+            double armPower = -gamepad1.right_stick_y;
+            double coefitiat =1;
+
+            if (gamepad1.right_stick_button){
+                coefitiat =.5;
+            }
+            else {
+                coefitiat=1;
+            }
 
 
-            if (gamepad1.a){
-                clipFunc.setSpecimenArmPos(SpecimenMech.SpecimenArmPos.Down);
-            }
-            if (gamepad1.b){
-                clipFunc.setSpecimenArmPos(SpecimenMech.SpecimenArmPos.Up);
+            switch (ArmState) {
+                case auto -> {
+                    if (gamepad1.a) {
+                        clipFunc.setSpecimenArmPos(SpecimenMech.SpecimenArmPos.Down);
+                    }
+                    if (gamepad1.b) {
+                        clipFunc.setSpecimenArmPos(SpecimenMech.SpecimenArmPos.start);
+                    }
+
+
+                    if (gamepad1.y){
+                        clipFunc.setSpecimenArmPos(SpecimenMech.SpecimenArmPos.Up);
+                    }
+
+                    if (gamepad1.left_bumper){
+                        Arm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+                        ArmState = armState.manual;
+                    }
+
+                }
+                case manual -> {
+                   Arm.setPower(armPower);
+                   if (gamepad1.right_bumper){
+                       Arm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                       Arm.setTargetPosition(0);
+                       Arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                       ArmState = armState.auto;
+                   }
+                }
             }
 
-            if (gamepad1.x){
-                clipFunc.setSpecimenArmPos(SpecimenMech.SpecimenArmPos.Drop);
-            }
+
 
             if (gamepad1.right_trigger>.1){
                 clipFunc.setSpecimenClawPos(SpecimenMech.SpecimenClawPos.Close);
@@ -234,7 +271,7 @@ public class TeleOP extends DriveConstance{
                     if (gamepad2.dpad_down){
                         rightVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                         leftVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-                        lift = Liftstate.manual;
+                        lift = liftState.manual;
                     }
                 }
                 case manual ->{
@@ -248,7 +285,7 @@ public class TeleOP extends DriveConstance{
                         leftVertLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                         rightVertLinear.setTargetPosition(0);
                         rightVertLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                        lift = Liftstate.auto;
+                        lift = liftState.auto;
                     }
                 }
 
@@ -258,10 +295,10 @@ public class TeleOP extends DriveConstance{
 
             drive.setDrivePowers(new PoseVelocity2d(
                     new Vector2d(
-                            -gamepad1.left_stick_y,
-                            -gamepad1.left_stick_x
+                            -gamepad1.left_stick_y*coefitiat,
+                            -gamepad1.left_stick_x*coefitiat
                     ),
-                    -gamepad1.right_stick_x
+                    -gamepad1.right_stick_x*coefitiat
             ));
 
             /*double y = -gamepad1.left_stick_y;
@@ -282,6 +319,7 @@ public class TeleOP extends DriveConstance{
 
              */
             telemetry.addData("hor", HorizontalLinear.getCurrentPosition());
+            telemetry.addData("arm",Arm.getCurrentPosition());
             //telemetry.addData("time", wait);
             //telemetry.addData("controller", gamepad2.left_stick_y);
             telemetry.addData("state(intake)",intake);
