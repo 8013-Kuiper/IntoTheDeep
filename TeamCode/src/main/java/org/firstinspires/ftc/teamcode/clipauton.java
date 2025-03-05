@@ -42,22 +42,23 @@ public class clipauton extends DriveConstance {
                 .afterTime(.000001,outtakeAction.clipArmUp())
                 .setTangent(Math.toRadians(-90))
                 //.splineToConstantHeading(new Vector2d(2,24), Math.toRadians(-90))
-                .splineToLinearHeading(new Pose2d(9,24,Math.toRadians(-90)),Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(-5,24,Math.toRadians(-90)),Math.toRadians(-90))
                 .waitSeconds(.000001)
                 .afterTime(.0001,outtakeAction.clipArmDown())
                 .waitSeconds(.1)
                 .afterTime(.4, outtakeAction.clipClawOpen())
                 //end of first drop off
                 .lineToY(30)
-                .splineToConstantHeading(new Vector2d(-46,35),Math.toRadians(-90))//0
+                .splineToConstantHeading(new Vector2d(-50,35),Math.toRadians(-90))//0
                 //.waitSeconds(3)
                 //.setTangent(Math.toRadians(-270))new
-                .splineToLinearHeading(new Pose2d(-38,6,Math.toRadians(-90)),Math.toRadians(90))//0
-                .waitSeconds(.00001)//new
-                .strafeToConstantHeading(new Vector2d(-45,6))
+                .splineToLinearHeading(new Pose2d(-38,6,Math.toRadians(-90)),Math.toRadians(270))//0
+                //.waitSeconds(.00001)//new
+                //.strafeToConstantHeading(new Vector2d(-45,6))
+                .splineToConstantHeading(new Vector2d(-45,6),Math.toRadians(90))
                 //move to push block
                 .setTangent(Math.toRadians(90))
-                .splineToConstantHeading(new Vector2d(-40,54),Math.toRadians(0))
+                .splineToConstantHeading(new Vector2d(-40,56),Math.toRadians(0))
                 //push first block
                 .splineToLinearHeading(new Pose2d(-55,8,Math.toRadians(-90)),Math.toRadians(90))
                 //move to push block
@@ -71,16 +72,16 @@ public class clipauton extends DriveConstance {
                 //push third block
                 .splineToLinearHeading(new Pose2d(-39,55,Math.toRadians(-90)),Math.toRadians(0))
                 .waitSeconds(.000001)
-                .lineToY(59.5)
-                .waitSeconds(1)
-                .afterTime(.5,outtakeAction.clipClawClose())
+                .lineToY(59)
+                .waitSeconds(.0001)
+                .afterTime(.0001,outtakeAction.clipClawClose())
                 .waitSeconds(1)
                 //pick up second block
                 .setReversed(false)
                 .afterTime(.0001,outtakeAction.clipArmUp())
                 //.setTangent(Math.toRadians(-90))
-                .splineToConstantHeading(new Vector2d(3,40), Math.toRadians(-90))
-                .splineToConstantHeading(new Vector2d(3,23),Math.toRadians(-90))
+                .splineToConstantHeading(new Vector2d(7,40), Math.toRadians(-90))
+                .splineToConstantHeading(new Vector2d(7,21),Math.toRadians(-90))
                 .waitSeconds(.000001)
                 .afterTime(.0001,outtakeAction.clipArmDown())
                 .waitSeconds(.1)
@@ -92,22 +93,40 @@ public class clipauton extends DriveConstance {
                 .setTangent(90)
                 .splineToLinearHeading(new Pose2d(-30,55,Math.toRadians(-90)),Math.toRadians(90))
                 .waitSeconds(.000001)
-                .lineToY(59.5)
-                .waitSeconds(1)
-                .afterTime(.5,outtakeAction.clipClawClose())
+                .lineToY(59)
+                .waitSeconds(.0001)
+                .afterTime(.0001,outtakeAction.clipClawClose())
                 .waitSeconds(1)
                 //pick up third block
                 .setReversed(false)
                 .afterTime(.0001,outtakeAction.clipArmUp())
-                .splineToConstantHeading(new Vector2d(-6,50), Math.toRadians(-90))
-                .splineToConstantHeading(new Vector2d(-6,21),Math.toRadians(-90))
+                .splineToConstantHeading(new Vector2d(12,50), Math.toRadians(-90))
+                .splineToConstantHeading(new Vector2d(12,20),Math.toRadians(-90))
                 .waitSeconds(.000001)
                 .afterTime(.0001,outtakeAction.clipArmDown())
                 .waitSeconds(.1)
                 .afterTime(.5, outtakeAction.clipClawOpen())
                 .lineToY(30)
-                //.waitSeconds(.5)
-                //drop third block
+                //third drop off
+                .waitSeconds(.1)
+                .setTangent(90)
+                .splineToLinearHeading(new Pose2d(-30,55,Math.toRadians(-90)),Math.toRadians(90))
+                .waitSeconds(.000001)
+                .lineToY(59)
+                .waitSeconds(.00001)
+                .afterTime(.00001,outtakeAction.clipClawClose())
+                .waitSeconds(1)
+                //pick up forth block
+                .setReversed(false)
+                .afterTime(.0001,outtakeAction.clipArmUp())
+                .splineToConstantHeading(new Vector2d(15,50), Math.toRadians(-90))
+                .splineToConstantHeading(new Vector2d(15,20),Math.toRadians(-90))
+                .waitSeconds(.000001)
+                .afterTime(.0001,outtakeAction.clipArmDown())
+                .waitSeconds(.1)
+                .afterTime(.5, outtakeAction.clipClawOpen())
+                .lineToY(30)
+                //drop forth block
                 /*.setTangent(90)
                 .splineToLinearHeading(new Pose2d(-28,55,Math.toRadians(-90)),Math.toRadians(90))
                 .waitSeconds(.000001)
