@@ -103,7 +103,7 @@ public class outtakeAction {
         public boolean run(@NonNull TelemetryPacket packet) {
             //clipArm.Servo().setPosition(.2);
             //SpecimenFunc.setSpecimenArmPos(SpecimenMech.SpecimenArmPos.Up);
-            Arm.setTargetPosition(1400);
+            Arm.setTargetPosition(1500);
             Arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             Arm.setPower(1);
             return false;
