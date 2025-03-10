@@ -34,9 +34,9 @@ public class redLeft extends DriveConstance {
                 .setTangent(Math.toRadians(270-180))
                 .afterTime(.5,vertSlidesAction.HighBar())
                 .splineToConstantHeading(new Vector2d(-7,-26), Math.toRadians(225-180))
-                .waitSeconds(1)
+                .waitSeconds(.1)
                 .afterTime(.1,vertSlidesAction.outtakePos(LinearMech.LinearPosEnum.start) )
-                .waitSeconds(1)
+                .waitSeconds(.5)
                 //Drop specimen on bar
 
                 .splineToConstantHeading(new Vector2d(-8,-40), Math.toRadians(-180))
@@ -51,18 +51,18 @@ public class redLeft extends DriveConstance {
                 //.waitSeconds(1)
                 .afterTime(2, intakeAction.Low())
                 .afterTime(2, intakeAction.WheelOn())
-                .waitSeconds(3)
-                .splineToConstantHeading(new Vector2d(-31,-24),Math.toRadians(0))//31,20 sat, 31, 23
+                .waitSeconds(2.5)
+                .splineToConstantHeading(new Vector2d(-31,-22),Math.toRadians(0))//31,20 sat, 31, 23
                 .waitSeconds(.5)//
                 .afterTime(1, intakeAction.intakeUp())//2
-                .waitSeconds(1)
+                //.waitSeconds(1)
                 .afterTime(2, intakeAction.WheelOff())
                 //.waitSeconds(1)
 
                 //Pick up 1 sample
                 .setReversed(true)
                 .strafeToConstantHeading(new Vector2d(-35,-25))
-                .afterTime(1, outtakeAction.outtakeDown())
+                .afterTime(1.1, outtakeAction.outtakeDown())
                 .waitSeconds(1)
                 .afterTime(1,intakeAction.WheelReverse())
                 .afterTime(1,outtakeAction.outtakeUp())
@@ -72,21 +72,21 @@ public class redLeft extends DriveConstance {
 
                 .splineToSplineHeading(new Pose2d(-54,-50, Math.toRadians(230-180)), Math.toRadians(50-180))
                 //move to basket
-                .afterTime(1, vertSlidesAction.high())
-                .waitSeconds(3)
+                .afterTime(.1, vertSlidesAction.high())
+                .waitSeconds(1)
                 .splineToConstantHeading(new Vector2d(-60, -56), Math.toRadians(0))
-                .waitSeconds(1)
+                .waitSeconds(.51)
                 .afterTime(.1,outtakeAction.outtakeClaw(outtakeIntakeMech.outtakeGrab.Release))
-                .waitSeconds(1)
-                .afterTime(1, outtakeAction.CLoseClaw())
+                .waitSeconds(.5)
+                .afterTime(.4, outtakeAction.CLoseClaw())
                 .splineToConstantHeading(new Vector2d(-50,-51),Math.toRadians(0))
                 .waitSeconds(.5)
                 .afterTime(.5,vertSlidesAction.outtakePos(LinearMech.LinearPosEnum.start))
-                .waitSeconds(1)
+                //.waitSeconds(1)
                 //Deposit sample into basket
                 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                /*.setTangent(Math.toRadians(0))
+                .setTangent(Math.toRadians(0))
                 .setReversed(false)
                 .splineToLinearHeading(new Pose2d(40, 20, Math.toRadians(0)), Math.toRadians(0))
                 .waitSeconds(1)
@@ -126,7 +126,7 @@ public class redLeft extends DriveConstance {
 
 
 
-                .setReversed(false)
+                /*.setReversed(false)
                 .splineToLinearHeading(new Pose2d(50, 18, Math.toRadians(0)), Math.toRadians(0))
                 .waitSeconds(2)
                 //move to pick up another sample (3)
