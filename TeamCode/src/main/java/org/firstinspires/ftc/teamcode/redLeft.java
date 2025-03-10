@@ -85,25 +85,61 @@ public class redLeft extends DriveConstance {
                 //.waitSeconds(1)
                 //Deposit sample into basket
                 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+                /*
                 .setTangent(Math.toRadians(0))
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(40, 20, Math.toRadians(0)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(-40, -20, Math.toRadians(0)), Math.toRadians(0))
                 .waitSeconds(1)
-                .afterTime(1,intakeAction.Middle())
-                .afterTime(2, intakeAction.Low())
-                .afterTime(2, intakeAction.WheelOn())
+                //.afterTime(1,intakeAction.Middle())
+                //.afterTime(2, intakeAction.Low())
+                //.afterTime(2, intakeAction.WheelOn())
                 .waitSeconds(2)
-                .splineToConstantHeading(new Vector2d(41,20),Math.toRadians(0))
-                .afterTime(2, intakeAction.intakeUp())
+                .splineToConstantHeading(new Vector2d(-41,-20),Math.toRadians(0))
+                //.afterTime(2, intakeAction.intakeUp())
                 .waitSeconds(1)
-                .afterTime(2, intakeAction.WheelOff())
+                //.afterTime(2, intakeAction.WheelOff())
                 .waitSeconds(1)
                 //move to pick up another sample (2)
 
 
                 .setReversed(true)
-                .afterTime(1, outtakeAction.outtakeDown())
+                //.afterTime(1, outtakeAction.outtakeDown())
+                .waitSeconds(1)
+                //.afterTime(1,intakeAction.WheelReverse())
+                //.afterTime(1,outtakeAction.outtakeUp())
+                //.afterTime(3,intakeAction.WheelOff())
+                //.afterTime(3,outtakeAction.outtakeSpin())
+                //grab block with outtake
+
+                .setTangent(Math.toRadians(110))
+                .splineToSplineHeading(new Pose2d(-57,-53, Math.toRadians(230-180)), Math.toRadians(50-180))
+                //.afterTime(1, vertSlidesAction.high())
+                .waitSeconds(3)
+                .splineToConstantHeading(new Vector2d(-59, -55), Math.toRadians(0))
+                //.afterTime(1,outtakeAction.outtakeClaw(outtakeIntakeMech.outtakeGrab.Release))
+                .waitSeconds(1)
+                .splineToConstantHeading(new Vector2d(-56,-52),Math.toRadians(0))
+                //.afterTime(2,vertSlidesAction.outtakePos(LinearMech.LinearPosEnum.start))
+                .waitSeconds(4)
+                //Deposit sample into basket
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                */
+                .setTangent(Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(-39, -18, Math.toRadians(180)), Math.toRadians(90))//30
+                .afterTime(1,intakeAction.Middle())
+                //.waitSeconds(1)
+                .afterTime(2, intakeAction.Low())
+                .afterTime(2, intakeAction.WheelOn())
+                .waitSeconds(2.5)
+                .splineToConstantHeading(new Vector2d(-37,-22),Math.toRadians(0))//31,20 sat, 31, 23
+                .waitSeconds(.5)//
+                .afterTime(1, intakeAction.intakeUp())//2
+                //.waitSeconds(1)
+                .afterTime(2, intakeAction.WheelOff())
+                //.waitSeconds(1)
+                //.setReversed(true)
+                //.strafeToConstantHeading(new Vector2d(-40,-25))
+                .afterTime(1.1, outtakeAction.outtakeDown())
                 .waitSeconds(1)
                 .afterTime(1,intakeAction.WheelReverse())
                 .afterTime(1,outtakeAction.outtakeUp())
@@ -111,20 +147,20 @@ public class redLeft extends DriveConstance {
                 .afterTime(3,outtakeAction.outtakeSpin())
                 //grab block with outtake
 
-                .setTangent(Math.toRadians(110))
-                .splineToSplineHeading(new Pose2d(57,53, Math.toRadians(230)), Math.toRadians(50))
-                .afterTime(1, vertSlidesAction.high())
-                .waitSeconds(3)
-                .splineToConstantHeading(new Vector2d(59, 55), Math.toRadians(0))
-                .afterTime(1,outtakeAction.outtakeClaw(outtakeIntakeMech.outtakeGrab.Release))
+                .splineToSplineHeading(new Pose2d(-54,-50, Math.toRadians(230-180)), Math.toRadians(50-180))
+                //move to basket
+                .afterTime(.1, vertSlidesAction.high())
                 .waitSeconds(1)
-                .splineToConstantHeading(new Vector2d(56,52),Math.toRadians(0))
-                .afterTime(2,vertSlidesAction.outtakePos(LinearMech.LinearPosEnum.start))
-                .waitSeconds(4)
+                .splineToConstantHeading(new Vector2d(-60, -56), Math.toRadians(0))
+                .waitSeconds(.51)
+                .afterTime(.1,outtakeAction.outtakeClaw(outtakeIntakeMech.outtakeGrab.Release))
+                .waitSeconds(.5)
+                .afterTime(.4, outtakeAction.CLoseClaw())
+                .splineToConstantHeading(new Vector2d(-50,-51),Math.toRadians(0))
+                .waitSeconds(.5)
+                .afterTime(.5,vertSlidesAction.outtakePos(LinearMech.LinearPosEnum.start))
+                //.waitSeconds(1)
                 //Deposit sample into basket
-                /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
                 /*.setReversed(false)
                 .splineToLinearHeading(new Pose2d(50, 18, Math.toRadians(0)), Math.toRadians(0))
@@ -139,6 +175,8 @@ public class redLeft extends DriveConstance {
                  */
                 .splineToLinearHeading(new Pose2d(-45,-10,Math.toRadians(0-180)),Math.toRadians(90-180))
                 .splineToLinearHeading(new Pose2d(-15,-9,Math.toRadians(0-180)),Math.toRadians(90-180))
+                //park
+                .endTrajectory()
                 //park
                 .endTrajectory();
                 //park
