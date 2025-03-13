@@ -1,11 +1,14 @@
 package org.firstinspires.ftc.teamcode;
 
+import androidx.core.view.WindowInsetsAnimationCompat;
+
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.teamcode.Actions.intakeAction;
 import org.firstinspires.ftc.teamcode.Actions.outtakeAction;
@@ -14,7 +17,7 @@ import org.firstinspires.ftc.teamcode.roadRunner.MecanumDrive;
 
 
 @Autonomous
-
+@Disabled
 
 public class blueclipauton extends DriveConstance {
 
@@ -26,7 +29,7 @@ public class blueclipauton extends DriveConstance {
         MecanumDrive drive = new MecanumDrive(hardwareMap, startPose);//init motors
 
         org.firstinspires.ftc.teamcode.Actions.intakeAction intakeAction = new intakeAction(Wheel, intakeLift);
-        org.firstinspires.ftc.teamcode.Actions.vertSlidesAction vertSlidesAction = new vertSlidesAction(leftVertLinear, rightVertLinear, allHubs);
+        org.firstinspires.ftc.teamcode.Actions.vertSlidesAction vertSlidesAction = new vertSlidesAction(leftVertLinear, rightVertLinear, allHubs, HorizontalLinear);
         org.firstinspires.ftc.teamcode.Actions.outtakeAction outtakeAction = new outtakeAction(outtakeFlip,outtakeSpin,outtakeGrab,Wheel,Arm,SpecimenClaw);
 
         telemetry.addData("arm",Arm.getCurrentPosition());

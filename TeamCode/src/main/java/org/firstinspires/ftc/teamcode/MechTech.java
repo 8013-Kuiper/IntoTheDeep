@@ -14,7 +14,7 @@ public class MechTech extends DriveConstance{
 
         IntakeMech intakeFunc = new IntakeMech(Wheel, intakeLift);
 
-        LinearMech linerFunc = new LinearMech(leftVertLinear, rightVertLinear, allHubs);
+        LinearMech linerFunc = new LinearMech(leftVertLinear, rightVertLinear, allHubs, HorizontalLinear);
 
         waitForStart();
         while (opModeIsActive()){

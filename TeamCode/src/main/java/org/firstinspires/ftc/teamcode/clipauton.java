@@ -17,7 +17,7 @@ import org.firstinspires.ftc.teamcode.roadRunner.MecanumDrive;
 @Autonomous
 
 
-public class redclipauton extends DriveConstance {
+public class clipauton extends DriveConstance {
 
     Pose2d startPose = new Pose2d(12,-56,Math.toRadians(180));
 
@@ -27,11 +27,12 @@ public class redclipauton extends DriveConstance {
         MecanumDrive drive = new MecanumDrive(hardwareMap, startPose);//init motors
 
         org.firstinspires.ftc.teamcode.Actions.intakeAction intakeAction = new intakeAction(Wheel, intakeLift);
-        org.firstinspires.ftc.teamcode.Actions.vertSlidesAction vertSlidesAction = new vertSlidesAction(leftVertLinear, rightVertLinear, allHubs);
+        org.firstinspires.ftc.teamcode.Actions.vertSlidesAction vertSlidesAction = new vertSlidesAction(leftVertLinear, rightVertLinear, allHubs,HorizontalLinear);
         org.firstinspires.ftc.teamcode.Actions.outtakeAction outtakeAction = new outtakeAction(outtakeFlip,outtakeSpin,outtakeGrab,Wheel,Arm,SpecimenClaw);
 
         telemetry.addData("arm",Arm.getCurrentPosition());
         telemetry.update();
+
         TrajectoryActionBuilder test = drive.actionBuilder(startPose)
 
                 .turn(Math.toRadians(-1))
@@ -50,6 +51,7 @@ public class redclipauton extends DriveConstance {
 
                 .splineToConstantHeading(new Vector2d(50,-35),Math.toRadians(90))//0
                 .splineToLinearHeading(new Pose2d(37,-6,Math.toRadians(90)),Math.toRadians(90))//0
+                .splineToConstantHeading(new Vector2d(49,-6),Math.toRadians(-90))
                 .splineToConstantHeading(new Vector2d(51,-6),Math.toRadians(-90))
                 //move to push block
                 .setTangent(Math.toRadians(-90))
@@ -89,6 +91,7 @@ public class redclipauton extends DriveConstance {
                 //move to pick up third block
                 .waitSeconds(.000001)
                 .lineToY(-59.5)
+                .waitSeconds(.0001)
                 .waitSeconds(.0001)//
                 .afterTime(.0001,outtakeAction.clipClawClose())
                 .waitSeconds(.1)
@@ -110,6 +113,7 @@ public class redclipauton extends DriveConstance {
                 .splineToLinearHeading(new Pose2d(32,-55,Math.toRadians(90)),Math.toRadians(0))
                 //move to pick up fourth block
                 .waitSeconds(.000001)
+                .lineToY(-59)
                 .lineToY(-60)
                 .waitSeconds(.00001)
                 .afterTime(.00001,outtakeAction.clipClawClose())

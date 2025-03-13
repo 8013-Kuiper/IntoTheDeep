@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.Actions.vertSlidesAction;
 import org.firstinspires.ftc.teamcode.roadRunner.MecanumDrive;
 
 @TeleOp
@@ -17,7 +18,7 @@ public class TeleOP extends DriveConstance{
     public void runOpMode() throws InterruptedException {
         MecanumDrive drive = new MecanumDrive(hardwareMap,new Pose2d(0, 0, 0));
         initRobot();
-        LinearMech linearFunc = new LinearMech(leftVertLinear, rightVertLinear, allHubs);
+        LinearMech linearFunc = new LinearMech(leftVertLinear, rightVertLinear, allHubs, HorizontalLinear);
         SpecimenMech clipFunc = new SpecimenMech(SpecimenClaw,Arm);
 
         ElapsedTime wait = new ElapsedTime();
@@ -57,6 +58,7 @@ public class TeleOP extends DriveConstance{
         armState ArmState = armState.auto;
         //leftVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         //rightVertLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        HorizontalLinear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         waitForStart();
         while (opModeIsActive()){
