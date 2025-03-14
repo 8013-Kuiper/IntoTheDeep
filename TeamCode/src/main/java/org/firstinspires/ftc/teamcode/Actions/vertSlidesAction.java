@@ -59,6 +59,26 @@ public class vertSlidesAction {
 
     }
 
+    public vertSlidesAction(DcMotorEx leftVertLinear, DcMotorEx rightVertLinear,
+                            List<LynxModule> allHubs){
+
+        this.leftVertLinear = leftVertLinear;
+        this.rightVertLinear = rightVertLinear;
+        this.allHubs = allHubs;
+
+        this.leftVertLinear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        this.rightVertLinear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        this.leftVertLinear.setTargetPosition(0);
+        this.leftVertLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        this.rightVertLinear.setTargetPosition(0);
+        this.rightVertLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        this.linearFunc = new LinearMech(leftVertLinear, rightVertLinear, allHubs);
+
+        linearFunc.runHubReadings();
+
+    }
+
     public class setVertSlidesPos implements Action  {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {

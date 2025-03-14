@@ -36,6 +36,15 @@ public class LinearMech {
             hub.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
         }*/
     }
+    public LinearMech(@NonNull DcMotorEx leftVertLinear, @NonNull DcMotorEx rightVertLinear, @NonNull List<LynxModule> allHubs) {
+        this.leftVertLinear = leftVertLinear;
+        this.rightVertLinear = rightVertLinear;
+        this.allHubs = allHubs;
+
+        /*for (LynxModule hub : allHubs) {
+            hub.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
+        }*/
+    }
 
     public void runHubReadings(){
         for (LynxModule hub : allHubs) {
