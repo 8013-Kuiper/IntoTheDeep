@@ -16,7 +16,7 @@ import org.firstinspires.ftc.teamcode.roadRunner.MecanumDrive;
 @Autonomous
 public class redLeft extends DriveConstance {
 
-    Pose2d startPose = new Pose2d(-12, -58.5, Math.toRadians(-90));
+    Pose2d startPose = new Pose2d(-16, -58.5, Math.toRadians(-90));
 
 
     public void runOpMode(){
@@ -44,14 +44,14 @@ public class redLeft extends DriveConstance {
                 //back up from bar
 
                 .setTangent(Math.toRadians(-180))
-                .splineToSplineHeading(new Pose2d(-32, -18, Math.toRadians(180)), Math.toRadians(-179-180))//30
+                .splineToSplineHeading(new Pose2d(-35, -18, Math.toRadians(180)), Math.toRadians(-179-180))//30
                 .afterTime(1,intakeAction.Middle())
-                .splineToConstantHeading(new Vector2d(-25,-17),Math.toRadians(0))
+                .splineToConstantHeading(new Vector2d(-22,-16),Math.toRadians(0))
                 //.waitSeconds(1)
                 .afterTime(2, intakeAction.Low())
                 .afterTime(2, intakeAction.WheelOn())
                 .waitSeconds(1.5)
-                .splineToConstantHeading(new Vector2d(-31,-22),Math.toRadians(0))//31,20 sat, 31, 23
+                .splineToConstantHeading(new Vector2d(-24,-17),Math.toRadians(0))//31,20 sat, 31, 23
                 .waitSeconds(.5)//
                 .afterTime(1, intakeAction.intakeUp())//2
                 //.waitSeconds(1)
@@ -73,7 +73,7 @@ public class redLeft extends DriveConstance {
                 //move to basket
                 .afterTime(.1, vertSlidesAction.high())
                 .waitSeconds(1.5)
-                .splineToConstantHeading(new Vector2d(-60, -56), Math.toRadians(0))
+                .splineToConstantHeading(new Vector2d(-60, -57), Math.toRadians(0))
                 .waitSeconds(.51)
                 .afterTime(.1,outtakeAction.outtakeClaw(outtakeIntakeMech.outtakeGrab.Release))
                 .waitSeconds(.4)
@@ -85,7 +85,7 @@ public class redLeft extends DriveConstance {
                 //Deposit sample into basket
                 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                .setTangent(Math.toRadians(90))
+                /*.setTangent(Math.toRadians(90))
                 .splineToLinearHeading(new Pose2d(-37, -18, Math.toRadians(180)), Math.toRadians(90))//30
                 .afterTime(1,intakeAction.Middle())
                 .afterTime(1,vertSlidesAction.resetSlides())
@@ -136,7 +136,7 @@ public class redLeft extends DriveConstance {
                 //Deposit sample into basket
 
                  */
-                .splineToLinearHeading(new Pose2d(-45,-10,Math.toRadians(0-180)),Math.toRadians(90-180))
+                .splineToLinearHeading(new Pose2d(-45,-7,Math.toRadians(0-180)),Math.toRadians(90-180))
                 .splineToLinearHeading(new Pose2d(-15,-9,Math.toRadians(0-180)),Math.toRadians(90-180))
                 //park
                 .endTrajectory()

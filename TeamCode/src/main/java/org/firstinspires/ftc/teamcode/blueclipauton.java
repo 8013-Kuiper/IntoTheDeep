@@ -18,7 +18,6 @@ import org.firstinspires.ftc.teamcode.roadRunner.MecanumDrive;
 
 @Autonomous
 @Disabled
-
 public class blueclipauton extends DriveConstance {
 
     Pose2d startPose = new Pose2d(-12, 56, Math.toRadians(0));//-90

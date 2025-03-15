@@ -18,7 +18,7 @@ public class LinearMech {
     public int LowBar = 0;
     public int start = 0;
 
-    public int HortPosMax = 975;
+    public int HortPosMax = 1050;
 
     public DcMotorEx leftVertLinear;
     public DcMotorEx rightVertLinear;
