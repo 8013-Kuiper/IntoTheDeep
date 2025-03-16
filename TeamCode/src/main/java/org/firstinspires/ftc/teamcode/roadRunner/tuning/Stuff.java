@@ -9,8 +9,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.roadRunner.MecanumDrive;
 import org.firstinspires.ftc.teamcode.roadRunner.TankDrive;
-@Disabled
 @TeleOp
+@Disabled
 public final class Stuff extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {

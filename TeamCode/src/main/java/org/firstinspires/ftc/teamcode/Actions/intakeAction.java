@@ -123,7 +123,7 @@ public class intakeAction {
     public class Middle implements Action  {
         @Override
         public boolean run(@NonNull TelemetryPacket packet) {
-            IntakeLift.Servo().setPosition(.2);
+            IntakeLift.Servo().setPosition(.1);
             return false;
         }
     }

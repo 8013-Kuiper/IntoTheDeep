@@ -29,12 +29,35 @@ public class vertSlidesAction {
 
     private DcMotorEx leftVertLinear;
     private DcMotorEx rightVertLinear;
+    private DcMotorEx HortSlide;
 
     List<LynxModule> allHubs;
 
     LinearMech linearFunc;
 
     private LinearMech.LinearPosEnum pos;
+
+    public vertSlidesAction(DcMotorEx leftVertLinear, DcMotorEx rightVertLinear,
+                            List<LynxModule> allHubs, DcMotorEx HortSlide){
+
+        this.leftVertLinear = leftVertLinear;
+        this.rightVertLinear = rightVertLinear;
+        this.allHubs = allHubs;
+        this.HortSlide = HortSlide;
+
+        this.leftVertLinear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        this.rightVertLinear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        this.leftVertLinear.setTargetPosition(0);
+        this.leftVertLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        this.rightVertLinear.setTargetPosition(0);
+        this.rightVertLinear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        this.HortSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        this.linearFunc = new LinearMech(leftVertLinear, rightVertLinear, allHubs, HortSlide);
+
+        linearFunc.runHubReadings();
+
+    }
 
     public vertSlidesAction(DcMotorEx leftVertLinear, DcMotorEx rightVertLinear,
                             List<LynxModule> allHubs){
@@ -111,6 +134,15 @@ public class vertSlidesAction {
         return new resetSlides();
     }
 
-
+    public class HoldHortSlides implements Action{
+        @Override
+        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+            linearFunc.HortSlideHoldPos();
+            return false;
+        }
+    }
+    public Action HoldHortSlides(){
+        return new HoldHortSlides();
+    }
 
 }

@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import androidx.annotation.NonNull;
 
 import com.qualcomm.hardware.lynx.LynxModule;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import java.util.Dictionary;
@@ -17,13 +18,24 @@ public class LinearMech {
     public int LowBar = 0;
     public int start = 0;
 
-    public int HortPosMax = 975;
+    public int HortPosMax = 1050;
 
     public DcMotorEx leftVertLinear;
     public DcMotorEx rightVertLinear;
+    public DcMotorEx HortSlide;
 
     List<LynxModule> allHubs;
 
+    public LinearMech(@NonNull DcMotorEx leftVertLinear, @NonNull DcMotorEx rightVertLinear, @NonNull List<LynxModule> allHubs, @NonNull DcMotorEx HortSlide) {
+        this.leftVertLinear = leftVertLinear;
+        this.rightVertLinear = rightVertLinear;
+        this.allHubs = allHubs;
+        this.HortSlide = HortSlide;
+
+        /*for (LynxModule hub : allHubs) {
+            hub.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
+        }*/
+    }
     public LinearMech(@NonNull DcMotorEx leftVertLinear, @NonNull DcMotorEx rightVertLinear, @NonNull List<LynxModule> allHubs) {
         this.leftVertLinear = leftVertLinear;
         this.rightVertLinear = rightVertLinear;
@@ -112,6 +124,14 @@ public class LinearMech {
             rightVertLinear.setPower(.3);
         else
             rightVertLinear.setPower(1);
+
+    }
+
+    public void HortSlideHoldPos(){
+        HortSlide.setTargetPosition(0);
+        HortSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        HortSlide.setPower(.2);
+
 
     }
 }

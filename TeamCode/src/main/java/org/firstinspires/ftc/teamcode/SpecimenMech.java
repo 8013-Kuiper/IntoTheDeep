@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Axon.AxonServo;
@@ -7,18 +9,23 @@ import org.firstinspires.ftc.teamcode.Axon.AxonServo;
 public class SpecimenMech {
 
     Servo SpecimenClaw;
-    AxonServo SpecimenArm;
+    //AxonServo SpecimenArm;
+    DcMotorEx Arm;
 
-    public SpecimenMech(Servo SpecimenClaw, AxonServo SpecimenArm) {
-        this.SpecimenArm = SpecimenArm;
+    public SpecimenMech(Servo SpecimenClaw, /*AxonServo SpecimenArm*/ DcMotorEx Arm) {
+        //this.SpecimenArm = SpecimenArm;
+        this.Arm = Arm;
+        this.Arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         this.SpecimenClaw = SpecimenClaw;
     }
 
-    private final double SpecimenClawOpenPos = 1;
+    private final double SpecimenClawOpenPos = 0;
     private final double SpecimenClawClosePos = .5;
-    private final double SpecimenArmDropPos = .5;
-    private final double SpecimenArmDownPos = .05;
-    private final double SpecimenArmUpPos = .25;
+    private final int SpecimenArmDropPos = 700;
+    private final int SpecimenArmUpPos = 1400;
+    private final int SpecimenArmDownPos = 15;
+    private final int SpecimenArmStartPos = 300;
+
 
     private SpecimenClawPos specimenClawPos = SpecimenClawPos.Close;
     private SpecimenArmPos specimenArmPos = SpecimenArmPos.Down;
@@ -37,6 +44,7 @@ public class SpecimenMech {
         specimenClawPos = SpecimenClawPos.Open;
     }
 
+
     public void CloseSpecimenClaw() {
         SpecimenClaw.setPosition(SpecimenClawClosePos);
         specimenClawPos = SpecimenClawPos.Close;
@@ -46,21 +54,37 @@ public class SpecimenMech {
     public enum SpecimenArmPos {
         Up,
         Down,
-        Drop
+        Drop,
+        start
     }
 
     public void setSpecimenArmPos(SpecimenArmPos setArmPos) {
         switch (specimenArmPos) {
             case Up -> {
-                SpecimenArm.Servo().setPosition(SpecimenArmUpPos);
+                //SpecimenArm.Servo().setPosition(SpecimenArmUpPos);
+                Arm.setTargetPosition(SpecimenArmUpPos);
+                Arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                Arm.setPower(1);
                 specimenArmPos = setArmPos;
             }
             case Down -> {
-                SpecimenArm.Servo().setPosition(SpecimenArmDownPos);
+                //SpecimenArm.Servo().setPosition(SpecimenArmDownPos);
+                Arm.setTargetPosition(SpecimenArmDownPos);
+                Arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                Arm.setPower(1);
                 specimenArmPos = setArmPos;
             }
             case Drop -> {
-                SpecimenArm.Servo().setPosition(SpecimenArmDropPos);
+                //SpecimenArm.Servo().setPosition(SpecimenArmDropPos);
+                Arm.setTargetPosition(SpecimenArmDropPos);
+                Arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                Arm.setPower(1);
+                specimenArmPos = setArmPos;
+            }
+            case start -> {
+                Arm.setTargetPosition(SpecimenArmStartPos);
+                Arm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                Arm.setPower(1);
                 specimenArmPos = setArmPos;
             }
         }
