@@ -40,6 +40,7 @@ import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.VoltageSensor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 import org.firstinspires.ftc.teamcode.roadRunner.messages.DriveCommandMessage;
 import org.firstinspires.ftc.teamcode.roadRunner.messages.MecanumCommandMessage;
@@ -63,7 +64,7 @@ public final class MecanumDrive {
                 RevHubOrientationOnRobot.UsbFacingDirection.BACKWARD;
 
         // drive model parameters
-        public double inPerTick = (((48/25.4)* Math.PI) /2000);
+        public double inPerTick = (((48/DistanceUnit.mmPerInch)* Math.PI) /2000);
         public double lateralInPerTick = inPerTick;
         public double trackWidthTicks = 4487.248236997641;
 
